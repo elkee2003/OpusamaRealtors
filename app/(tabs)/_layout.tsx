@@ -1,37 +1,37 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import React from 'react'
+import { Tabs } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const TabsLayout= () => {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
+    <Tabs screenOptions={{
+        headerShown:false
       }}>
-      <Tabs.Screen
-        name="index"
+        <Tabs.Screen 
+        name='home'
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+            tabBarLabel:'Home',
+            tabBarIcon:({color})=><FontAwesome6 name="house-crack" size={24} color={color} />
         }}
-      />
-      <Tabs.Screen
-        name="explore"
+        />
+        <Tabs.Screen 
+        name='share'
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+            tabBarLabel:'Upload',
+            tabBarIcon:({color})=><AntDesign name="pluscircle" size={24} color={color} />
         }}
-      />
+        />
+        <Tabs.Screen 
+        name='profile'
+        options={{
+            tabBarLabel:'Profile',
+            tabBarIcon:({color})=> <Ionicons name="person-sharp" size={28} color={color} />
+          }}
+        />
     </Tabs>
-  );
+  )
 }
+
+export default TabsLayout
