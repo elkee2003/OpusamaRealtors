@@ -1,12 +1,16 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, FlatList } from 'react-native'
 import React from 'react'
-import DetailedPost from '../../../components/DetailedPost'
+import PostItem from '../../../components/PostItem'
+import feeds from '../../../assets/data/feed'
 
 const Home = () => {
 
   return (
-    <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
-      <DetailedPost/>
+    <View style={{flex:1, }}>
+      {<FlatList
+      data={feeds}
+      renderItem={({item})=><PostItem post={item}/>}
+      />}
     </View>
   )
 }

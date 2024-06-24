@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { useLocalSearchParams } from 'expo-router'
 import feeds from '../../../assets/data/feed'
-import PostItem from '../../../components/PostItem'
+import DetailedPost from '../../../components/DetailedPost'
 
 const Post = () => {
 
@@ -12,7 +12,7 @@ const Post = () => {
 
   return (
     <View>
-      <PostItem post={photo}/>
+      <DetailedPost post={photo}/>
     </View>
   )
 }

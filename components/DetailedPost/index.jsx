@@ -4,8 +4,7 @@ import React from 'react'
 import styles from './styles'
 import { FontAwesome6 } from '@expo/vector-icons';
 
-
-const PostItem = ({post}) => {
+const DetailedPost = ({post}) => {
 
   return (
       <View style={styles.container}>
@@ -33,7 +32,7 @@ const PostItem = ({post}) => {
         </View>
 
         {/* Type & Description */}
-        <Text style={styles.description} numberOfLines={2} >{post.description}</Text>
+        <Text style={styles.description} >{post.description}</Text>
 
         {/* Rent */}
         <View style={styles.priceRow}>
@@ -56,4 +55,4 @@ const PostItem = ({post}) => {
   )
 }
 
-export default PostItem;
+export default DetailedPost;
