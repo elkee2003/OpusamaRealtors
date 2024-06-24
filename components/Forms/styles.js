@@ -9,18 +9,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         gap:4,
     },
-    imageUploadContainer:{
-        height:130,
-        width:130,
+    mediaUploadContainer:{
+        height:300,
+        width:'100%',
         borderRadius:35,
         backgroundColor:'#a2a2a8',
         justifyContent:'center',
         marginVertical:8,
-        alignSelf:'center',
     },
-    image:{
-        height:'100%',
-        width:'100%',
+    media:{
+        height:200,
+        width:150,
         borderRadius:20,
     },
     imgUploadTxt:{
@@ -42,18 +41,21 @@ const styles = StyleSheet.create({
         borderRadius:20, 
         fontSize:15,
     },
-    btnUpload:{
+    btnReview:{
         padding:10,
         marginBottom:20,
-        marginHorizontal:20,
+        marginHorizontal:50,
         borderRadius:20,
+        borderWidth:2,
+        borderColor:'#020213',
         alignItems:'center',
-        backgroundColor:'#020213'
+        backgroundColor:'rgba(0,0,0,0.1)'
     },
     uploadTxt:{
-        fontSize:25,
+        fontWeight:'bold',
+        fontSize:20,
         textAlign:'center',
-        color:'#fffefe',
+        color:'#020213',
     },
     error:{
         marginLeft:5,
@@ -61,6 +63,7 @@ const styles = StyleSheet.create({
         color:'red',
         fontStyle:'italic'
     },
+
 })
 
 export default styles

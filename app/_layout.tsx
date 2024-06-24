@@ -1,11 +1,15 @@
 import { Stack } from "expo-router";
+import UploadProvider from '../providers/UploadProvider'
 
 export default function RootLayout() {
   return (
-    <Stack screenOptions={{
+    <UploadProvider>
+      <Stack screenOptions={{
       headerShown:false
-    }}>
-      <Stack.Screen name="(tabs)" />
-    </Stack>
+      }}>
+        <Stack.Screen name="(tabs)" />
+      </Stack>
+    </UploadProvider>
+    
   );
 }

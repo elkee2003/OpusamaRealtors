@@ -13,9 +13,22 @@ const styles = StyleSheet.create({
         borderRadius:35,
         backgroundColor:'#a2a2a8',
         justifyContent:'center',
-        marginVertical:8,
+        marginVertical:5,
+        position:'relative',
+        overflow: 'hidden', 
     },
-
+    plusIcon:{
+        position:'absolute',
+        top:-40,
+        left:105,
+        backgroundColor:'transparent',
+    },
+    img:{
+        width:'100%',
+        height:'100%',
+        resizeMode:"contain",
+        borderRadius:35,
+    },
     row:{
         flexDirection:'row',
         gap:10,

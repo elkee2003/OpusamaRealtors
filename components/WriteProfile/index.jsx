@@ -5,7 +5,7 @@ import { Link } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons';
 
 
-const Profile = () => {
+const WriteProfile = () => {
 
     const [firstName, setFirstName] = useState("")
     const [surname, setSurname] = useState("")
@@ -70,4 +70,4 @@ const Profile = () => {
   )
 }
 
-export default Profile;
+export default WriteProfile;

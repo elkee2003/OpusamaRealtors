@@ -8,6 +8,8 @@ const UploadLayout = () => {
         headerShown:false
       }}>
         <Stack.Screen name='index'/>
+        <Stack.Screen name='review'/>
+        <Stack.Screen name='pickmedia'/>
     </Stack>
   )
 }
