@@ -9,7 +9,8 @@ const UploadLayout = () => {
       }}>
         <Stack.Screen name='index'/>
         <Stack.Screen name='review'/>
-        <Stack.Screen name='pickmedia'/>
+        <Stack.Screen name='forms'/>
+        <Stack.Screen name='displayedmedia'/>
     </Stack>
   )
 }

@@ -9,24 +9,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         gap:4,
     },
-    mediaUploadContainer:{
-        height:300,
-        width:'100%',
-        borderRadius:35,
-        backgroundColor:'#a2a2a8',
-        justifyContent:'center',
-        marginVertical:8,
-    },
-    media:{
-        height:200,
-        width:150,
-        borderRadius:20,
-    },
-    imgUploadTxt:{
-        color:'#186cda',
-        alignSelf:"center",
-        fontWeight:'bold',
-    },
     label:{
         color:'#02061b',
         fontSize:15,
@@ -51,7 +33,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor:'rgba(0,0,0,0.1)'
     },
-    uploadTxt:{
+    reviewTxt:{
         fontWeight:'bold',
         fontSize:20,
         textAlign:'center',

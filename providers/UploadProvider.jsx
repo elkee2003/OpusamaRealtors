@@ -45,11 +45,22 @@ const UploadContextProvider = ({children}) => {
           setErrors('Describtion is required')
           return false;
         }
-        if (media.length <= 2) {
-          setErrors('Kindly Upload At least 3 images');
-          return false;
-        }
         return true;
+    }
+
+
+    // Function to remove media by index
+    const removeMedia = (index) => {
+      setMedia((prevMedia) => prevMedia.filter((_, idx) => idx !== index));
+    };
+
+    // Function for imageUpload Validation
+    const imageUploadValidattion = ()=>{
+      if (media.length <= 2) {
+        setErrors('Kindly Upload At least 3 images');
+        return false;
+      }
+      return true;
     }
 
     const onUpload = () => {
@@ -59,7 +70,19 @@ const UploadContextProvider = ({children}) => {
     const onValidate = ()=>{
         if (validateInput()) {
             console.warn('Uploading Apartment:', apartmentType)
+            return true;
+        }else{
+          return false;
         }
+    }
+
+    const onImageUploadValidation= ()=>{
+      if (imageUploadValidattion()){
+        console.warn('image validated')
+        return true;
+      }else{
+        return false;
+      }
     }
 
   return (
@@ -74,7 +97,8 @@ const UploadContextProvider = ({children}) => {
         coverPhoto, setCoverPhoto,
         location, setLocation,
         errors, setErrors,
-        onUpload, onValidate
+        onUpload, onValidate, 
+        onImageUploadValidation, removeMedia
     }}>
       {children}
     </UploadContext.Provider>

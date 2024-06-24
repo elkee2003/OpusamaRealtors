@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import Upload from '../../../components/Upload'
+import SelectMedia from '../../../components/SelectMedia'
 
 const Share = () => {
   return (
     <View style={{flex:1, }}>
-      <Upload/>
+      <SelectMedia/>
     </View>
   )
 }

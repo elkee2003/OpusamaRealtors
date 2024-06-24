@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     profilePicContainer:{
+        position:'relative',
+        overflow: 'hidden',
         height:150,
         width:150,
         borderRadius:75,
@@ -20,6 +22,18 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignSelf:'center',
         marginVertical:10,
+    },
+    img:{
+        width:'100%',
+        height:'100%',
+        resizeMode:"contain",
+        borderRadius:35,
+    },
+    plusIcon:{
+        position:'absolute',
+        top:-50,
+        right:105,
+        backgroundColor:'transparent',
     },
     input: {
         margin: 10,

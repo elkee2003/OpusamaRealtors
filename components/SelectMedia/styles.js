@@ -5,7 +5,14 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems:'center',
         justifyContent:'center'
-    }
+    },
+    icon:{
+        color:'#060647',
+        fontSize:100,
+    },
+    txt:{
+        fontSize:16,
+    },
 })
 
 export default styles
