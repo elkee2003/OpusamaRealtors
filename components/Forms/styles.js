@@ -3,11 +3,18 @@ import { StyleSheet, } from 'react-native'
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        marginTop:20,
+        marginTop:35,
+        marginHorizontal:10,
     },
     contentContainer: {
         justifyContent: 'center',
         gap:4,
+    },
+    header:{
+        fontSize:25,
+        fontWeight:'bold',
+        textAlign:'center',
+        marginTop:10,
     },
     label:{
         color:'#02061b',
@@ -45,7 +52,6 @@ const styles = StyleSheet.create({
         color:'red',
         fontStyle:'italic'
     },
-
 })
 
 export default styles

@@ -12,8 +12,6 @@ const Forms = () => {
       description, setDescription,
       rent, setRent,
       totalRent, setTotalRent,
-      media, setMedia,
-      coverPhoto, setCoverPhoto,
       location, setLocation,
       errors, onValidate
       } = useUploadContext()
@@ -25,6 +23,8 @@ const Forms = () => {
       showsVerticalScrollIndicator={false}
     >
 
+      <Text style={styles.header}>Property Details</Text>
+
       <Text style={styles.label}>Apartment Type:</Text>
       <TextInput
       style={styles.input}
@@ -32,8 +32,15 @@ const Forms = () => {
       onChangeText={setApartmentType}
       placeholder='Apartment Type'
       />
+      <Text style={styles.label}>Location:</Text>
+      <TextInput
+      style={styles.input}
+      value={location}
+      onChangeText={setLocation}
+      placeholder='Location'
+      />
 
-      <Text style={styles.label}>Rent:</Text>
+      <Text style={styles.label}>Rent (₦):</Text>
       <TextInput
       style={styles.input}
       value={rent}
@@ -42,7 +49,7 @@ const Forms = () => {
       keyboardType='numeric'
       />
 
-      <Text style={styles.label}>Total Rent:</Text>
+      <Text style={styles.label}>Total Rent (₦):</Text>
       <TextInput
       style={styles.input}
       value={totalRent}
@@ -79,7 +86,7 @@ const Forms = () => {
     <Text style={styles.error}>{errors}</Text>
 
     {/* Button */}
-    <Pressable onPress={()=>console.warn('rest')} style={styles.btnReview}>
+    <Pressable onPress={onValidate} style={styles.btnReview}>
         <Text style={styles.reviewTxt}>Review</Text>
     </Pressable>
 

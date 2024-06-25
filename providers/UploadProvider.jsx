@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native'
 import React,{useState, createContext, useContext} from 'react'
+import { router } from 'expo-router'
 
 const UploadContext = createContext({})
 
@@ -23,6 +24,10 @@ const UploadContextProvider = ({children}) => {
         
         if(!apartmentType){
           setErrors('Apartment Type is Required')
+          return false;
+        }
+        if(!location){
+          setErrors('Location is Required')
           return false;
         }
         if(!rent){
@@ -69,7 +74,7 @@ const UploadContextProvider = ({children}) => {
 
     const onValidate = ()=>{
         if (validateInput()) {
-            console.warn('Uploading Apartment:', apartmentType)
+            router.push('/share/review')
             return true;
         }else{
           return false;

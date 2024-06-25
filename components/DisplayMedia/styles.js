@@ -23,12 +23,14 @@ const styles = StyleSheet.create({
     mediaContainer:{
         position:'relative',
         height:350,
-        width:220
+        width:220,
+        backgroundColor:'#aeaebb',
+        borderRadius:20,
     },
     mediaFullDisplayContainer:{
-        marginHorizontal:10,
         justifyContent:'center',
         alignItems:'center',
+        gap:5,
     },
     removebtn:{
         position:'absolute',
@@ -41,6 +43,29 @@ const styles = StyleSheet.create({
         height:"100%",
         width:"100%",
         borderRadius:20,
+    },
+    videoWrapper: {
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+    },
+    videoOverlayContainer: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        flexDirection: 'row',
+
+    },
+    videoOverlayLeft: {
+        flex: 1,
+    },
+    videoOverlayCenter: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    videoOverlayRight: {
+        flex: 1,
     },
 })
 

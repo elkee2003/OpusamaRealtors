@@ -1,4 +1,4 @@
-import { View, Text, TextInput,Pressable, Alert, ScrollView, Image} from 'react-native'
+import { View, Text, TextInput,Pressable, Alert, ScrollView, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import styles from './styles'
@@ -40,9 +40,9 @@ const WriteProfile = () => {
       <View style={styles.profilePicContainer}>
           {profilePic && <Image source={{ uri: profilePic }} style={styles.img} />}
       </View>
-        <Pressable onPress={pickImage}>
+        <TouchableOpacity onPress={pickImage}>
           <AntDesign style={styles.plusIcon} name="pluscircle" size={30} color="#03033b" />
-        </Pressable>
+        </TouchableOpacity>
 
       <TextInput 
       value={firstName}
@@ -69,7 +69,7 @@ const WriteProfile = () => {
       onChangeText={setPhoneNumber}
       placeholder='Phone Number'
       style={styles.input}
-      
+      keyboardType='numeric'
       />
 
       {/* Error Message */}
@@ -77,9 +77,9 @@ const WriteProfile = () => {
       
       <View style={styles.scrnBtns}>
           {/* <Link href={'/profile'} asChild> */}
-              <Pressable onPress={handleSave} style={styles.saveBtn}>
+              <TouchableOpacity onPress={handleSave} style={styles.saveBtn}>
               <Text style={styles.saveTxt}>Save</Text>
-              </Pressable>
+              </TouchableOpacity>
           {/* </Link> */}
 
           <Pressable onPress={()=>console.warn('sign out')} style={styles.signoutBtn}>

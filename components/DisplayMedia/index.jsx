@@ -1,5 +1,6 @@
 import { View, Text, Pressable, FlatList, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useState,useRef, useCallback} from 'react'
+import { useFocusEffect } from '@react-navigation/native';
 import styles from './styles'
 import { Video } from 'expo-av';
 import { useUploadContext } from '../../providers/UploadProvider'
@@ -10,6 +11,23 @@ import { router } from 'expo-router';
 const DisplayMedia = () => {
 
   const {media, removeMedia} = useUploadContext()
+  const videoRefs = useRef([]);  // Array to hold references to Video components
+  const [isPlaying, setIsPlaying] = useState([]);
+
+  // This useFocusEffect is to pause the video, when navigate to another screen
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        // Stop all videos when the screen loses focus
+        videoRefs.current.forEach(async (videoRef) => {
+          if (videoRef) {
+            await videoRef.pauseAsync();
+          }
+        });
+        setIsPlaying([]);
+      };
+    }, [])
+  );
   
   // Function Render Items for Flatlist
   const renderItem = ({item, index})=>{
@@ -18,6 +36,38 @@ const DisplayMedia = () => {
     const handleRemove =()=>{
       removeMedia(index);
     }
+
+    const handlePlayPause = async (index)=>{
+      const videoRef = videoRefs.current[index];
+      if (isPlaying[index]){
+        await videoRef.pauseAsync();
+      }else {
+        await videoRef.playAsync();
+      }
+      setIsPlaying((prev)=>{
+        const newPlayingState = [...prev];
+        newPlayingState[index] = !newPlayingState[index];
+        return newPlayingState;
+      });
+    };
+
+    const handleFastForward = async (index) => {
+      const videoRef = videoRefs.current[index];
+      const status = await videoRef.getStatusAsync();
+      if (status.isLoaded) {
+        const newPosition = status.positionMillis + 10000; // fast forward by 10 seconds
+        await videoRef.setPositionAsync(newPosition);
+      }
+    };
+
+    const handleRewind = async (index) => {
+      const videoRef = videoRefs.current[index];
+      const status = await videoRef.getStatusAsync();
+      if (status.isLoaded) {
+        const newPosition = Math.max(status.positionMillis - 10000, 0); // rewind by 10 seconds
+        await videoRef.setPositionAsync(newPosition);
+      }
+    };
 
     if(item.type && item.type.includes('image')){
       return (
@@ -31,13 +81,31 @@ const DisplayMedia = () => {
     }else if (item.type && item.type.includes('video')){
       return (
         <View style={styles.mediaContainer}>
-          <Video
-            source={{uri: item.uri}}
-            style={styles.media}
-            useNativeControls
-            resizeMode='contain'
-            isLooping
-          />
+          <View style={styles.videoWrapper}>
+          {/* For pausing and playing videos */}
+              <Video
+                ref={(el)=>(videoRefs.current[index] = el)}
+                source={{uri: item.uri}}
+                style={styles.media}
+                useNativeControls={false}
+                resizeMode='contain'
+                isLooping
+              />
+
+              {/* If I want to use an Icon to control the Pause and Play */}
+              {/* <MaterialIcons style={styles.controlbtn} name={isPlaying[index] ? "pause" : "play-arrow"} /> */}
+
+              {/* Controls container */}
+            <View style={styles.videoOverlayContainer}>
+              <TouchableOpacity style={styles.videoOverlayLeft} onPress={() => handleRewind(index)} />
+
+              <TouchableOpacity style={styles.videoOverlayCenter} onPress={() => handlePlayPause(index)}/>
+
+              <TouchableOpacity style={styles.videoOverlayRight} onPress={() => handleFastForward(index)} />
+            </View>
+            <TouchableOpacity style={styles.videoOverlayRight} onPress={() => handleFastForward(index)} />
+          </View>
+          {/* For the cancel button */}
           <TouchableOpacity onPress={handleRemove}>
             <MaterialIcons style={styles.removebtn} name="cancel"  />
           </TouchableOpacity>
@@ -49,7 +117,13 @@ const DisplayMedia = () => {
 
   // function to go to forms
   const goToForms =()=>{
-    router.push('/share/forms')
+    if(media.length >= 3){
+     router.push('/share/forms')
+     return true; 
+    }else{
+      return false;
+    }
+    
   }
 
   return (
