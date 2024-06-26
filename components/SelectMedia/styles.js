@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     icon:{
         color:'#060647',
         fontSize:100,
+        alignSelf:"center",
     },
     txt:{
         fontSize:16,

@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
         color:'#020216',
         fontSize:40,
     },
+    controlbtn:{
+        fontSize:30,
+        color:'blue',
+    },
     header:{
         fontSize:34,
         fontWeight:'bold',

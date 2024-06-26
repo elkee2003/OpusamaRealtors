@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         color:'#e3e3e4',
         fontSize:40,
     },
+
     mediaContainer:{
         position:'relative',
         height:350,
@@ -54,10 +55,15 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         flexDirection: 'row',
-
+    },
+    controlbtn:{
+        fontSize:30,
+        color:'rgba(0,0,0,0.6)',
     },
     videoOverlayLeft: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     videoOverlayCenter: {
         flex: 1,
@@ -66,6 +72,22 @@ const styles = StyleSheet.create({
     },
     videoOverlayRight: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    progressBar: {
+        position: 'absolute',
+        bottom: 3,
+        left: 10, // Adjust to make the progressbar fit inside
+        right: 10, // Adjust to make the progressbar fit inside
+        height: 4,
+        borderRadius: 2,
+        overflow:'hidden'
+    },
+    progress: {
+        height: '100%',
+        backgroundColor: '#007bff', // Change color as needed
+        borderRadius: 2,
     },
 })
 

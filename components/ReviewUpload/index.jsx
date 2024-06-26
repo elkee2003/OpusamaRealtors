@@ -1,10 +1,11 @@
 import { View, Text, Pressable, FlatList, Image, TouchableOpacity,ScrollView } from 'react-native'
-import React,{useState,useRef, useCallback} from 'react'
+import React,{useState,useRef, useCallback, useEffect} from 'react'
 import { useFocusEffect } from '@react-navigation/native';
 import { Video } from 'expo-av';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './styles'
+import { AntDesign } from '@expo/vector-icons';
 import { useUploadContext } from '../../providers/UploadProvider'
 
 const ReviewUpload = () => {
@@ -21,8 +22,9 @@ const ReviewUpload = () => {
 
     const videoRefs = useRef([]);  // Array to hold references to Video components
     const [isPlaying, setIsPlaying] = useState([]);
+    const [showControls, setShowControls] = useState(false);
     
-     // This useFocusEffect is to pause the video, when navigate to another screen
+     // This useFocusEffect is to pause the video, when navigating to another screen
       useFocusEffect(
         useCallback(() => {
           return () => {
@@ -37,9 +39,18 @@ const ReviewUpload = () => {
         }, [])
       );
 
-    // Function Render Items for Flatlist
-    const renderItem = ({item, index})=>{
+      // Toggle controls visibility on interaction
+      const toggleControls = () => {
+          setShowControls(true);
+          // Reset the timer to hide controls after 3 seconds of inactivity
+          clearTimeout(controlTimer);
+          controlTimer = setTimeout(() => {
+              setShowControls(false);
+          }, 3000); // Adjust the duration (in milliseconds) as needed
+      };
+    // Function to handle play/pause, fastward and rewind below
 
+    // Function to handle play/pause a video
     const handlePlayPause = async (index)=>{
       const videoRef = videoRefs.current[index];
       if (isPlaying[index]){
@@ -52,26 +63,56 @@ const ReviewUpload = () => {
         newPlayingState[index] = !newPlayingState[index];
         return newPlayingState;
       });
+      toggleControls(); // Show controls when playing/pausing
     };
 
+    // Function to handle fastforward a video
     const handleFastForward = async (index) => {
       const videoRef = videoRefs.current[index];
       const status = await videoRef.getStatusAsync();
       if (status.isLoaded) {
-        const newPosition = status.positionMillis + 10000; // fast forward by 10 seconds
+        const newPosition = status.positionMillis + 5000; // fast forward by 5 seconds
         await videoRef.setPositionAsync(newPosition);
       }
+      toggleControls(); // Show controls when fast forwarding
     };
 
+    // Function to handle rewinding a video
     const handleRewind = async (index) => {
       const videoRef = videoRefs.current[index];
       const status = await videoRef.getStatusAsync();
       if (status.isLoaded) {
-        const newPosition = Math.max(status.positionMillis - 10000, 0); // rewind by 10 seconds
+        const newPosition = Math.max(status.positionMillis - 5000, 0); // rewind by 5 seconds
         await videoRef.setPositionAsync(newPosition);
       }
+      toggleControls(); // Show controls when rewinding
     };
 
+    // Function to calculate video length
+    const getVideoLength = async (index) => {
+      const videoRef = videoRefs.current[index];
+      const status = await videoRef.getStatusAsync();
+      return status.durationMillis;
+    };
+
+    // Timer to hide controls after a period of inactivity
+    let controlTimer;
+
+    useEffect(() => {
+      // Initial setup: hide controls after a delay
+      controlTimer = setTimeout(() => {
+          setShowControls(false);
+      }, 3000); // Adjust the duration (in milliseconds) as needed
+
+      return () => {
+          clearTimeout(controlTimer); // Clear the timer on unmount
+      };
+    }, []);
+
+    // Function Render Items for Flatlist
+    const renderItem = ({item, index})=>{
+
+    // if statement for the main function
     if(item.type && item.type.includes('image')){
       return (
         <View style={styles.mediaContainer}>
@@ -100,7 +141,6 @@ const ReviewUpload = () => {
 
               <TouchableOpacity style={styles.videoOverlayRight} onPress={() => handleFastForward(index)} />
             </View>
-            <TouchableOpacity style={styles.videoOverlayRight} onPress={() => handleFastForward(index)} />
           </View>
         </View>
     )

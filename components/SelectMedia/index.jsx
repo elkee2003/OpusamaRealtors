@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -44,10 +44,10 @@ const SelectMedia = () => {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={pickMediaAsync}>
+      <TouchableOpacity onPress={pickMediaAsync}>
         <MaterialIcons style={styles.icon} name="add-a-photo" />
-      </Pressable>
-      <Text style={styles.txt}>Upload Images of Property</Text>
+        <Text style={styles.txt}>Upload Images of Property</Text>
+      </TouchableOpacity>
     </View>
   )
 }

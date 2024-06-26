@@ -38,11 +38,17 @@ const WriteProfile = () => {
 
       {/* Upload Profile Picture */}
       <View style={styles.profilePicContainer}>
-          {profilePic && <Image source={{ uri: profilePic }} style={styles.img} />}
-      </View>
+        {profilePic && <Image source={{ uri: profilePic }} style={styles.img} />}
+        <View style={styles.plusIconContainer}>
         <TouchableOpacity onPress={pickImage}>
-          <AntDesign style={styles.plusIcon} name="pluscircle" size={30} color="#03033b" />
+          <AntDesign style={styles.plusIcon} name="pluscircle"  />
         </TouchableOpacity>
+        </View>
+      </View>
+      {/* <TouchableOpacity onPress={pickImage}>
+        <AntDesign style={styles.plusIcon} name="pluscircle" size={30} color="#03033b" />
+      </TouchableOpacity> */}
+        
 
       <TextInput 
       value={firstName}
