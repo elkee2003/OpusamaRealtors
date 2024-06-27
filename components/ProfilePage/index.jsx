@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react';
 import styles from './styles'
 import { FontAwesome } from '@expo/vector-icons';
@@ -23,9 +23,11 @@ const ProfilePage = () => {
       <View style={styles.profileDetails}>
 
         {/* Profile Picture */}
-        <View style={styles.profilePicContainer}>
-          <Image source={{ uri: profilePic }} style={styles.img} />
-        </View>
+        <Link href={'/profile/writeProfile'} asChild>
+          <TouchableOpacity style={styles.profilePicContainer}>
+            <Image source={{ uri: profilePic }} style={styles.img} />
+          </TouchableOpacity>
+        </Link>
     
         <View style={styles.details}>
           {/* Name and Surname */}
@@ -52,16 +54,16 @@ const ProfilePage = () => {
       <View style={styles.profileSubrow}>
 
         <Link href={'/profile/writeProfile'} asChild>
-          <Pressable style={styles.subHeaderContainer}>
+          <TouchableOpacity style={styles.subHeaderContainer}>
             <Text style={styles.subHeader}>Edit Profile</Text>
-          </Pressable>
+          </TouchableOpacity>
         </Link>
 
-        <Pressable onPress={()=>console.warn('View Sub')} style={styles.subHeaderContainer}>
+        <TouchableOpacity onPress={()=>console.warn('View Sub')} style={styles.subHeaderContainer}>
           <Text style={styles.subHeader}>
             View Subscription
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
       </View>
     </View>

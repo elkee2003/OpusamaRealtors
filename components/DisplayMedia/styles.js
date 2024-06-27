@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         color: '#c70f0f',
         top:-350,
         right:0,
-        fontSize:40,
+        fontSize:45,
     },
     media:{
         height:"100%",
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     progress: {
         height: '100%',
-        backgroundColor: '#007bff', // Change color as needed
+        backgroundColor: '#949494', // Change color as needed
         borderRadius: 2,
     },
 })

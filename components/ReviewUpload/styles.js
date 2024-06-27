@@ -16,15 +16,14 @@ const styles = StyleSheet.create({
         color:'#020216',
         fontSize:40,
     },
-    controlbtn:{
-        fontSize:30,
-        color:'blue',
-    },
     header:{
         fontSize:34,
         fontWeight:'bold',
         textAlign:'center',
         marginBottom:10
+    },
+    row:{
+        flexDirection:'column',
     },
     inputDisplay:{
         marginTop:15,
@@ -32,12 +31,12 @@ const styles = StyleSheet.create({
     inputReview:{
         fontSize:22,
         fontWeight: 'bold',
-        marginBottom:5
+        marginBottom:5,
     },
     displayLabel: {
         marginTop: 10,
         fontSize:18,
-        fontStyle:'italic'
+        fontStyle:'italic',
     },
     btnUpload:{
         padding:10,
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
         height:210,
         width:150,
         backgroundColor:'#aeaebb',
-       
+        borderRadius:10
     },
     media:{
         height:"100%",
@@ -77,7 +76,8 @@ const styles = StyleSheet.create({
     videoOverlayContainer: {
         position: 'absolute',
         width: '100%',
-        height: '100%',
+        height: '30%',
+        top:70,
         flexDirection: 'row',
     },
     videoOverlayLeft: {

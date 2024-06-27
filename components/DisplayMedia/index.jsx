@@ -1,4 +1,4 @@
-import { View, Text, Pressable, FlatList, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Pressable, FlatList, Image, TouchableOpacity, Alert } from 'react-native'
 import React, {useState,useRef, useCallback, useEffect} from 'react'
 import { useFocusEffect } from '@react-navigation/native';
 import styles from './styles'
@@ -71,20 +71,23 @@ const DisplayMedia = () => {
   // Function to handle play/pause a video
   const handlePlayPause = async (index)=>{
     const videoRef = videoRefs.current[index];
-    try {if (isPlaying[index]){
-        await videoRef.pauseAsync();
-      }else {
-        await videoRef.playAsync();
-      }
-      setIsPlaying((prev)=>{
-        const newPlayingState = [...prev];
-        newPlayingState[index] = !newPlayingState[index];
-        return newPlayingState;
-      });
-      toggleControls(index); // Show controls when playing/pausing
-      }catch(error){
-        console.error('Error playing/pausing video:', error);
-      }
+    if(videoRef){
+      try {
+        if (isPlaying[index]){
+          await videoRef.pauseAsync();
+        }else {
+          await videoRef.playAsync();
+        }
+        setIsPlaying((prev)=>{
+          const newPlayingState = [...prev];
+          newPlayingState[index] = !newPlayingState[index];
+          return newPlayingState;
+        });
+        toggleControls(index); // Show controls when playing/pausing
+        }catch(error){
+          console.error('Error playing/pausing video:', error);
+        }
+    }
   };
 
   // Function to handle fastforward a video
@@ -182,7 +185,7 @@ const DisplayMedia = () => {
           <View style={styles.videoWrapper}>
           {/* For pausing and playing videos */}
               <Video
-                ref={(el)=>(videoRefs.current[index] = el)}
+                ref={ref => (videoRefs.current[index] = ref)}
                 source={{uri: item.uri}}
                 style={styles.media}
                 useNativeControls={false}
@@ -233,6 +236,7 @@ const DisplayMedia = () => {
      router.push('/share/forms')
      return true; 
     }else{
+      Alert.alert('Kindly add more Photos/Videos')
       return false;
     }
     

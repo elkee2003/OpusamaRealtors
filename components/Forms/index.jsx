@@ -31,6 +31,7 @@ const Forms = () => {
       value={apartmentType}
       onChangeText={setApartmentType}
       placeholder='Apartment Type'
+      multiline
       />
       <Text style={styles.label}>Location:</Text>
       <TextInput
@@ -38,6 +39,7 @@ const Forms = () => {
       value={location}
       onChangeText={setLocation}
       placeholder='Location'
+      multiline
       />
 
       <Text style={styles.label}>Rent (₦):</Text>
@@ -73,6 +75,7 @@ const Forms = () => {
       value={buildingParts}
       onChangeText={setBuildingParts}
       placeholder='eg: 2 parlours, 3 kitchens'
+      multiline
       />
       <Text style={styles.label}>Description of Apartment:</Text>
       <TextInput

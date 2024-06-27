@@ -51,20 +51,27 @@ const ReviewUpload = () => {
     // Function to handle play/pause, fastward and rewind below
 
     // Function to handle play/pause a video
-    const handlePlayPause = async (index)=>{
-      const videoRef = videoRefs.current[index];
-      if (isPlaying[index]){
-        await videoRef.pauseAsync();
-      }else {
-        await videoRef.playAsync();
-      }
-      setIsPlaying((prev)=>{
-        const newPlayingState = [...prev];
-        newPlayingState[index] = !newPlayingState[index];
-        return newPlayingState;
-      });
-      toggleControls(); // Show controls when playing/pausing
-    };
+    // Function to handle play/pause a video
+  const handlePlayPause = async (index)=>{
+    const videoRef = videoRefs.current[index];
+    if(videoRef){
+      try {
+        if (isPlaying[index]){
+          await videoRef.pauseAsync();
+        }else {
+          await videoRef.playAsync();
+        }
+        setIsPlaying((prev)=>{
+          const newPlayingState = [...prev];
+          newPlayingState[index] = !newPlayingState[index];
+          return newPlayingState;
+        });
+        toggleControls(index); // Show controls when playing/pausing
+        }catch(error){
+          console.error('Error playing/pausing video:', error);
+        }
+    }
+  };
 
     // Function to handle fastforward a video
     const handleFastForward = async (index) => {
@@ -125,7 +132,7 @@ const ReviewUpload = () => {
           <View style={styles.videoWrapper}>
           {/* For pausing and playing videos */}
               <Video
-                ref={(el)=>(videoRefs.current[index] = el)}
+                ref={ref => (videoRefs.current[index] = ref)}
                 source={{uri: item.uri}}
                 style={styles.media}
                 useNativeControls={false}
@@ -149,7 +156,7 @@ const ReviewUpload = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
 
       {/* Header */}
       <Text style={styles.header}>Review</Text>
@@ -158,44 +165,81 @@ const ReviewUpload = () => {
         <Ionicons name="arrow-back" style={styles.icon} />
       </TouchableOpacity>
 
-      {<FlatList
-        data={media}
-        keyExtractor={(item, index)=>index.toString()}
-        renderItem={renderItem}
-        horizontal={true}
-        showsVerticalScrollIndicator={false}  
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.mediaFullDisplayContainer}
-      />}
+      <ScrollView horizontal 
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.mediaFullDisplayContainer}>
+        {
+          media.map((item, index)=>(
+            <View key={index} style={styles.mediaContainer}>
+              {item.type && item.type.includes('image') && (
+                <Image source={{uri:item.uri}} style={styles.media}/>
+              )}
+              {item.type && item.type.includes('video') && (
+                <View style={styles.videoWrapper}>
+                  <Video
+                    ref={(ref)=>(videoRefs.current[index]= ref)}
+                    source={{uri:item.uri}}
+                    style={styles.media}
+                    useNativeControls={false}
+                    resizeMode='contain'
+                    isLooping
+                  />
+                  {/* Controls container */}
+                  <View style={styles.videoOverlayContainer}>
+                    <TouchableOpacity style={styles.videoOverlayLeft} onPress={() => handleRewind(index)} />
+                    <TouchableOpacity style={styles.videoOverlayCenter} onPress={() => handlePlayPause(index)} />
+                    <TouchableOpacity style={styles.videoOverlayRight} onPress={() => handleFastForward(index)} />
+                  </View>
+                </View>
+              )}
+            </View>
+          ))
+        }
+      </ScrollView>
 
       {/* Displaying Input Data */}
-      <ScrollView style={styles.inputDisplay}>
+      <View style={styles.inputDisplay}>
+        <View style={styles.row}>
           <Text style={styles.displayLabel}>Apartment Type:</Text>
           <Text style={styles.inputReview}>{apartmentType}</Text>
-          
+        </View>
+
+        <View style={styles.row}>  
           <Text style={styles.displayLabel}>Location:</Text>
           <Text style={styles.inputReview}>{location}</Text>
+        </View>
 
+        <View style={styles.row}>
           <Text style={styles.displayLabel}>Rent:</Text>
           <Text style={styles.inputReview}>{rent}</Text>
+        </View>
           
+        <View style={styles.row}>
           <Text style={styles.displayLabel}>Total Rent:</Text>
           <Text style={styles.inputReview}>{totalRent}</Text>
-          
+        </View>
+
+        <View style={styles.row}>  
           <Text style={styles.displayLabel}>Number of Rooms:</Text>
           <Text style={styles.inputReview}>{roomNumbers}</Text>
+        </View>
           
+        <View style={styles.row}>
           <Text style={styles.displayLabel}>Building Parts:</Text>
           <Text style={styles.inputReview}>{buildingParts}</Text>
-          
+        </View>
+
+        <View style={styles.row}>  
           <Text style={styles.displayLabel}>Description:</Text>
           <Text style={styles.inputReview}>{description}</Text>
-      </ScrollView>
+        </View>
+        
+      </View>
 
         <Pressable onPress={onUpload} style={styles.btnUpload}>
           <Text style={styles.uploadTxt}>Upload!</Text>
         </Pressable>
-    </View>
+    </ScrollView>
   )
 }
 

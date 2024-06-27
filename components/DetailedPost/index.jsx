@@ -8,14 +8,14 @@ const DetailedPost = ({post}) => {
 
   return (
       <View style={styles.container}>
-        {/* <Link href={`/search/${post.id}`} asChild> */}
-          <Pressable onPress={()=>console.warn('Check Post')}>
+        <Link href={`/fullView/${post.id}`} asChild>
+          <Pressable>
             <View style={styles.imageContainer}>
               {/* Image */}
               <Image source={{uri: post.image[0]}} style={styles.image}/>
             </View>
           </Pressable>
-        {/* </Link> */}
+        </Link>
 
         <View style={styles.sub}>
           {/* Bed & Bedrooms */}
