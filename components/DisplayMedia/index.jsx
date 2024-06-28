@@ -14,6 +14,13 @@ const DisplayMedia = () => {
 
   const {media, removeMedia} = useUploadContext()
   const videoRefs = useRef([]);  // Array to hold references to Video components
+
+  // Initialize videoRefs based on media length
+  useEffect(() => {
+    videoRefs.current = Array(media.length).fill(null).map((_, index) => videoRefs.current[index] || React.createRef());
+  }, [media]);
+
+
   const [isPlaying, setIsPlaying] = useState([]);
   const [showControlsState, setShowControlsState] = useState([]);
   const [videoDurations, setVideoDurations] = useState([]);
@@ -87,6 +94,8 @@ const DisplayMedia = () => {
         }catch(error){
           console.error('Error playing/pausing video:', error);
         }
+    }else {
+      console.error('Video ref not assigned for index:', index);
     }
   };
 
@@ -123,9 +132,14 @@ const DisplayMedia = () => {
 
   // Function to update video position and duration
   const updateVideoStatus = async (index) => {
-    const videoRef = videoRefs.current[index];
+    const videoRef = videoRefs.current[index].current;
+    if(!videoRef){
+      console.error("Video ref not assigned:", index);
+      return;
+    }
     try{
         const status = await videoRef.getStatusAsync();
+        console.log('Video status:', status)
         if (status.isLoaded) {
           setVideoPositions((prev) => {
             const newVideoPositions = [...prev];
@@ -139,6 +153,7 @@ const DisplayMedia = () => {
           });
       }
     }catch(error){
+      console.log('this is video Ref:', videoRef)
       console.error('Error updating video status:', error)
     }
   };
@@ -185,7 +200,8 @@ const DisplayMedia = () => {
           <View style={styles.videoWrapper}>
           {/* For pausing and playing videos */}
               <Video
-                ref={ref => (videoRefs.current[index] = ref)}
+                ref={(ref) => (videoRefs.current[index] = ref)}
+                // ref={videoRefs.current[index]}
                 source={{uri: item.uri}}
                 style={styles.media}
                 useNativeControls={false}
@@ -193,9 +209,6 @@ const DisplayMedia = () => {
                 isLooping
                 onTouchStart={()=> toggleControls(index)}
               />
-
-              {/* If I want to use an Icon to control the Pause and Play */}
-              {/* <MaterialIcons style={styles.controlbtn} name={isPlaying[index] ? "pause" : "play-arrow"} /> */}
 
               {/* Controls container */}
             {showControlsState[index] && <View style={styles.videoOverlayContainer}>
@@ -213,11 +226,11 @@ const DisplayMedia = () => {
             </View>}
 
             {/* Progress bar */}
-            {showControlsState[index] && (
+            {/* {showControlsState[index] && (
                 <View style={styles.progressBar}>
                     <View style={[styles.progress, { width: (videoPositions[index] / videoDurations[index]) * 100 + '%' }]} />
                 </View>
-            )}
+            )} */}
           </View>
           {/* For the cancel button */}
           <TouchableOpacity onPress={handleRemove}>
