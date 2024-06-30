@@ -13,6 +13,8 @@ const Forms = () => {
       rent, setRent,
       totalRent, setTotalRent,
       location, setLocation,
+      state, setState,
+      city, setCity,
       errors, onValidate
       } = useUploadContext()
 
@@ -40,6 +42,22 @@ const Forms = () => {
       onChangeText={setLocation}
       placeholder='Location'
       multiline
+      />
+
+      <Text style={styles.label}>State:</Text>
+      <TextInput
+      style={styles.input}
+      value={state}
+      onChangeText={setState}
+      placeholder='State'
+      />
+
+      <Text style={styles.label}>City:</Text>
+      <TextInput
+      style={styles.input}
+      value={city}
+      onChangeText={setCity}
+      placeholder='State'
       />
 
       <Text style={styles.label}>Rent (₦):</Text>

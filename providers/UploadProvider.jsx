@@ -15,6 +15,8 @@ const UploadContextProvider = ({children}) => {
     const [media, setMedia] = useState([])
     const [coverPhoto, setCoverPhoto] = useState('')
     const [location, setLocation]= useState('')
+    const [state, setState]= useState('')
+    const [city, setCity] = useState('')
 
     const [errors, setErrors] = useState('')
 
@@ -101,6 +103,8 @@ const UploadContextProvider = ({children}) => {
         media, setMedia,
         coverPhoto, setCoverPhoto,
         location, setLocation,
+        state, setState,
+        city, setCity,
         errors, setErrors,
         onUpload, onValidate, 
         onImageUploadValidation, removeMedia

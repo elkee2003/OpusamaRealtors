@@ -19,10 +19,10 @@
     "@aws-amplify/ui-react-native": "^2.2.2",
     "@expo/vector-icons": "^14.0.0",
     "@react-native-async-storage/async-storage": "^1.23.1",
-    "@react-native-community/netinfo": "^11.3.2",
+    "@react-native-community/netinfo": "11.3.1",
     "@react-navigation/native": "^6.0.2",
     "aws-amplify": "^6.3.8",
-    "expo": "^51.0.16",
+    "expo": "~51.0.17",
     "expo-av": "~14.0.6",
     "expo-constants": "~16.0.2",
     "expo-font": "~12.0.7",
@@ -59,7 +59,7 @@
     "jest-expo": "~51.0.3",
     "react-test-renderer": "18.2.0",
     "tsx": "^4.15.7",
-    "typescript": "^5.5.2"
+    "typescript": "~5.3.3"
   },
   "private": true
 }

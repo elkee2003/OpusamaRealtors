@@ -17,7 +17,7 @@ const ReviewUpload = () => {
         rent, 
         totalRent, 
         media, 
-        location, onUpload
+        location, state, city, onUpload
     } = useUploadContext()
 
     const videoRefs = useRef([]);  // Array to hold references to Video components
@@ -207,6 +207,16 @@ const ReviewUpload = () => {
         <View style={styles.row}>  
           <Text style={styles.displayLabel}>Location:</Text>
           <Text style={styles.inputReview}>{location}</Text>
+        </View>
+
+        <View style={styles.row}>  
+          <Text style={styles.displayLabel}>State:</Text>
+          <Text style={styles.inputReview}>{state}</Text>
+        </View>
+
+        <View style={styles.row}>  
+          <Text style={styles.displayLabel}>City:</Text>
+          <Text style={styles.inputReview}>{city}</Text>
         </View>
 
         <View style={styles.row}>
