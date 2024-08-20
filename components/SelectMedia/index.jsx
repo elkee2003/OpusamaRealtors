@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native'
+import React, {useState} from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useUploadContext } from '../../providers/UploadProvider';
@@ -9,6 +9,7 @@ import styles from './styles'
 const SelectMedia = () => {
 
   const {onImageUploadValidation, errors, setMedia, media} = useUploadContext()
+  const [selectedMedia, setSelectedMedia] = useState(media);
 
   // Pick Multiple Media Function (Images and Videos)
   const pickMediaAsync = async () => {
@@ -25,16 +26,18 @@ const SelectMedia = () => {
       });
 
       if (!result.canceled) {
-        const selectedMedia = result.assets.map(asset => ({
+        const newMedia = result.assets.map(asset => ({
           uri: asset.uri,
           type: asset.type,
         }));
-        const updatedMedia = [...media, ...selectedMedia];
-        setMedia(updatedMedia);
+        const updatedMedia = [...selectedMedia, ...newMedia];
+        setSelectedMedia(updatedMedia);
+        setMedia(updatedMedia); // Update the context state
 
         // Check the length immediately after setting state
         if (updatedMedia.length >= 3) {
-          router.push('/share/displayedmedia');        
+          // router.push('/share/displayedmedia'); 
+          console.log('hello')       
         } else {
           // Alert if less than 3 media files are selected
           alert('Select at least 3 media files');
@@ -42,8 +45,24 @@ const SelectMedia = () => {
       }
     };
 
+    // Render Media Items
+    const renderItem = ({ item }) => (
+      <View style={styles.mediaContainer}>
+        <Image source={{ uri: item.uri }} style={styles.media} />
+      </View>
+    );
+
   return (
     <View style={styles.container}>
+      <FlatList
+        data={selectedMedia}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={renderItem}
+        horizontal={true}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.mediaFullDisplayContainer}
+      />
       <TouchableOpacity onPress={pickMediaAsync}>
         <MaterialIcons style={styles.icon} name="add-a-photo" />
         <Text style={styles.txt}>Upload Images of Property</Text>

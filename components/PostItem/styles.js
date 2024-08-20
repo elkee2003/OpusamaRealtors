@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
         width: '100%',
         objectFit:'contain'
     },
-    sub:{
-        marginTop:5,
-        flexDirection:'row',
-        justifyContent:'space-between'
-    },
+    // sub:{
+    //     marginTop:5,
+    //     flexDirection:'row',
+    //     justifyContent:'space-between'
+    // },
     bedroom:{
         fontSize:14,
         color:'#413b3b',

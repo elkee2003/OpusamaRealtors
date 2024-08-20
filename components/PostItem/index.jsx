@@ -1,5 +1,5 @@
 import { View, Text, Image, SafeAreaView, Pressable } from 'react-native'
-import { Link } from 'expo-router'
+import { router } from 'expo-router'
 import React from 'react'
 import styles from './styles'
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -10,7 +10,7 @@ const PostItem = ({post}) => {
   return (
       <View style={styles.container}>
         {/* <Link href={`/search/${post.id}`} asChild> */}
-          <Pressable onPress={()=>console.warn('Check Post')}>
+          <Pressable onPress={()=>router.push('/share/forms')}>
             <View style={styles.imageContainer}>
               {/* Image */}
               <Image source={{uri: post.image[0]}} style={styles.image}/>
@@ -20,7 +20,7 @@ const PostItem = ({post}) => {
 
         <View style={styles.sub}>
           {/* Bed & Bedrooms */}
-          <Text style={styles.bedroom}>A {post.bed} Bedroom Apartment</Text>
+          <Text style={styles.bedroom}>{post.bed} Bedroom Apartment</Text>
 
           {/* Location */}
           <Text style={styles.location}>{post.location}</Text>

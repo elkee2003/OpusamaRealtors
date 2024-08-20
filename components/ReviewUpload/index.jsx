@@ -10,14 +10,24 @@ import { useUploadContext } from '../../providers/UploadProvider'
 
 const ReviewUpload = () => {
 
-    const {apartmentType, 
-        roomNumbers,
-        buildingParts, 
+    const {
+        propertyType,
+        type,
+        availableDocs, 
+        bedroom,
+        beds,
+        accommodationParts, 
         description, 
-        rent, 
-        totalRent, 
-        media, 
-        location, state, city, onUpload
+        price, 
+        totalPrice, 
+        country,
+        state,
+        location,
+        city,
+        media,
+        policies,
+        amenities, 
+        onUpload
     } = useUploadContext()
 
     const videoRefs = useRef([]);  // Array to hold references to Video components
@@ -200,13 +210,28 @@ const ReviewUpload = () => {
       {/* Displaying Input Data */}
       <View style={styles.inputDisplay}>
         <View style={styles.row}>
-          <Text style={styles.displayLabel}>Apartment Type:</Text>
-          <Text style={styles.inputReview}>{apartmentType}</Text>
+          <Text style={styles.displayLabel}>Property Type:</Text>
+          <Text style={styles.inputReview}>{propertyType}</Text>
         </View>
+
+        <View style={styles.row}>
+          <Text style={styles.displayLabel}>Property Sub Type:</Text>
+          <Text style={styles.inputReview}>{type}</Text>
+        </View>
+
+        {availableDocs && <View style={styles.row}>
+          <Text style={styles.displayLabel}>Available Documents:</Text>
+          <Text style={styles.inputReview}>{availableDocs}</Text>
+        </View>}
 
         <View style={styles.row}>  
           <Text style={styles.displayLabel}>Location:</Text>
           <Text style={styles.inputReview}>{location}</Text>
+        </View>
+
+        <View style={styles.row}>  
+          <Text style={styles.displayLabel}>City:</Text>
+          <Text style={styles.inputReview}>{city}</Text>
         </View>
 
         <View style={styles.row}>  
@@ -215,33 +240,48 @@ const ReviewUpload = () => {
         </View>
 
         <View style={styles.row}>  
-          <Text style={styles.displayLabel}>City:</Text>
-          <Text style={styles.inputReview}>{city}</Text>
+          <Text style={styles.displayLabel}>Country:</Text>
+          <Text style={styles.inputReview}>{country}</Text>
         </View>
 
         <View style={styles.row}>
-          <Text style={styles.displayLabel}>Rent:</Text>
-          <Text style={styles.inputReview}>{rent}</Text>
+          <Text style={styles.displayLabel}>Price:</Text>
+          <Text style={styles.inputReview}>₦{price}</Text>
         </View>
           
         <View style={styles.row}>
-          <Text style={styles.displayLabel}>Total Rent:</Text>
-          <Text style={styles.inputReview}>{totalRent}</Text>
+          <Text style={styles.displayLabel}>Total Price:</Text>
+          <Text style={styles.inputReview}>₦{totalPrice}</Text>
         </View>
 
-        <View style={styles.row}>  
+        {bedroom && <View style={styles.row}>  
           <Text style={styles.displayLabel}>Number of Rooms:</Text>
-          <Text style={styles.inputReview}>{roomNumbers}</Text>
-        </View>
+          <Text style={styles.inputReview}>{bedroom}</Text>
+        </View>}
+
+        {beds && <View style={styles.row}>  
+          <Text style={styles.displayLabel}>Number of Beds:</Text>
+          <Text style={styles.inputReview}>{beds}</Text>
+        </View>}
           
-        <View style={styles.row}>
-          <Text style={styles.displayLabel}>Building Parts:</Text>
-          <Text style={styles.inputReview}>{buildingParts}</Text>
-        </View>
+        {accommodationParts && <View style={styles.row}>
+          <Text style={styles.displayLabel}>Accommodation Parts:</Text>
+          <Text style={styles.inputReview}>{accommodationParts}</Text>
+        </View>}
 
         <View style={styles.row}>  
           <Text style={styles.displayLabel}>Description:</Text>
           <Text style={styles.inputReview}>{description}</Text>
+        </View>
+
+        <View style={styles.row}>  
+          <Text style={styles.displayLabel}>Amenities:</Text>
+          <Text style={styles.inputReview}>{amenities}</Text>
+        </View>
+
+        <View style={styles.row}>  
+          <Text style={styles.displayLabel}>Policies:</Text>
+          <Text style={styles.inputReview}>{policies}</Text>
         </View>
         
       </View>

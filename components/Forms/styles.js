@@ -1,4 +1,10 @@
-import { StyleSheet, } from 'react-native'
+import { StyleSheet, Dimensions} from 'react-native'
+
+const {width} = Dimensions.get('window')
+numInputs = 2
+margin = 5;
+totalSpacing = (numInputs + 5) * margin;
+inputSize = (width - totalSpacing ) / numInputs
 
 const styles = StyleSheet.create({
     container:{
@@ -24,11 +30,23 @@ const styles = StyleSheet.create({
         marginTop:10,
     },
     input:{
+        padding:8,
+        borderWidth:2,
+        borderColor:'#02061b', 
+        borderRadius:20, 
+        fontSize:16,
+    },
+    generalRow:{
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    genInput:{
         padding:10,
-        borderWidth:3,
+        borderWidth:2,
         borderColor:'#02061b', 
         borderRadius:20, 
         fontSize:15,
+        width:inputSize
     },
     btnReview:{
         padding:10,
@@ -40,7 +58,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor:'rgba(0,0,0,0.1)'
     },
-    reviewTxt:{
+    btnReviewTxt:{
         fontWeight:'bold',
         fontSize:20,
         textAlign:'center',

@@ -14,6 +14,23 @@ const styles = StyleSheet.create({
     txt:{
         fontSize:16,
     },
+    mediaFullDisplayContainer:{
+        justifyContent:'center',
+        alignItems:'center',
+        gap:5,
+    },
+    mediaContainer:{
+        position:'relative',
+        height:350,
+        width:220,
+        backgroundColor:'#aeaebb',
+        borderRadius:20,
+    },
+    media:{
+        height:"100%",
+        width:"100%",
+        borderRadius:20,
+    },
 })
 
 export default styles

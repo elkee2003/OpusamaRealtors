@@ -1,22 +1,52 @@
 import { View, Text, ScrollView, TextInput, Pressable,} from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import { useUploadContext } from '../../providers/UploadProvider';
+import AccommodationDropDown from '../DropDown/AccommodationDropDown';
+import CountryDropDown from '../DropDown/CountryDropDown';
+import PropertySale from '../DropDown/PropertySale';
+import WriteDescription from '../DropDown/Description';
+import OfficeSpace from '../DropDown/OfficeSpace';
+import Shop from '../DropDown/Shop';
 import { router} from 'expo-router';
 import styles from './styles'
 
 const Forms = () => {
-
-    const {apartmentType, setApartmentType,
-      roomNumbers, setRoomNumbers,
-      buildingParts, setBuildingParts,
+    
+    const {
+      propertyType, setPropertyType,
+      type, setType,
+      availableDocs, setAvailableDocs,
+      accommodationParts, setAccommodationParts,
       description, setDescription,
-      rent, setRent,
-      totalRent, setTotalRent,
-      location, setLocation,
+      bedroom, setBedroom,
+      beds, setBeds,
+      price, setPrice,
+      totalPrice, setTotalPrice,
+      country, setCountry,
       state, setState,
       city, setCity,
+      location, setLocation,
+      amenities, setAmenities,
+      policies, setPolicies,
       errors, onValidate
       } = useUploadContext()
+
+    // Function to format numbers with commas
+    const formatNumberWithCommas = (value) => {
+      // Remove any non-digit characters
+      const numericValue = value.replace(/\D/g, '');
+      // Format the number with commas
+      return numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
+
+    const handleRentChange = (value) => {
+      const formattedValue = formatNumberWithCommas(value);
+      setRent(formattedValue);
+    };
+    const handleTotalRentChange = (value) => {
+      const formattedValue = formatNumberWithCommas(value);
+      setTotalRent(formattedValue);
+    };
 
   return (
     <ScrollView 
@@ -24,17 +54,44 @@ const Forms = () => {
       contentContainerStyle={styles.contentContainer}
       showsVerticalScrollIndicator={false}
     >
-
+  
       <Text style={styles.header}>Property Details</Text>
 
-      <Text style={styles.label}>Apartment Type:</Text>
-      <TextInput
-      style={styles.input}
-      value={apartmentType}
-      onChangeText={setApartmentType}
-      placeholder='Apartment Type'
-      multiline
-      />
+      <AccommodationDropDown/>
+
+      {propertyType === 'Land Sale' && <PropertySale/>}
+
+      {propertyType === 'House Sale' && <PropertySale/>}
+
+      {propertyType === 'Office Space' && <OfficeSpace/>}
+
+      {propertyType === 'Shop' && <Shop/>}
+      
+      {/* General Info for Price */}
+      <View style={styles.generalRow}>
+        <View>
+          <Text style={styles.label}>Price:</Text>
+          <TextInput
+          style={styles.genInput}
+          value={price}
+          onChangeText={setPrice}
+          placeholder='Price'
+          multiline
+          />
+        </View>
+
+        <View>
+          <Text style={styles.label}>Total Price:</Text>
+          <TextInput
+          style={styles.genInput}
+          value={totalPrice}
+          onChangeText={setTotalPrice}
+          placeholder='Total Price'
+          multiline
+          />
+        </View>
+      </View>
+      
       <Text style={styles.label}>Location:</Text>
       <TextInput
       style={styles.input}
@@ -43,73 +100,21 @@ const Forms = () => {
       placeholder='Location'
       multiline
       />
+      {/* Country and State */}
+      <CountryDropDown/>
 
-      <Text style={styles.label}>State:</Text>
-      <TextInput
-      style={styles.input}
-      value={state}
-      onChangeText={setState}
-      placeholder='State'
-      />
+      <WriteDescription/>
+   
+      
 
-      <Text style={styles.label}>City:</Text>
-      <TextInput
-      style={styles.input}
-      value={city}
-      onChangeText={setCity}
-      placeholder='State'
-      />
+      <Text style={styles.error}>
+        {errors}
+      </Text>
 
-      <Text style={styles.label}>Rent (₦):</Text>
-      <TextInput
-      style={styles.input}
-      value={rent}
-      onChangeText={setRent}
-      placeholder='Rent Amount'
-      keyboardType='numeric'
-      />
-
-      <Text style={styles.label}>Total Rent (₦):</Text>
-      <TextInput
-      style={styles.input}
-      value={totalRent}
-      onChangeText={setTotalRent}
-      keyboardType='numeric'
-      placeholder='Amount of Additional Things (Optional)'
-      />
-
-      <Text style={styles.label}>Number of Rooms:</Text>
-      <TextInput
-      style={styles.input}
-      value={roomNumbers}
-      onChangeText={setRoomNumbers}
-      placeholder='Number Of Rooms'
-      keyboardType='numeric'
-      />
-
-      <Text style={styles.label}>Building Parts:</Text> 
-      <TextInput
-      style={styles.input}
-      value={buildingParts}
-      onChangeText={setBuildingParts}
-      placeholder='eg: 2 parlours, 3 kitchens'
-      multiline
-      />
-      <Text style={styles.label}>Description of Apartment:</Text>
-      <TextInput
-      style={styles.input}
-      value={description}
-      onChangeText={setDescription}
-      placeholder='Kindly describe the Apartment'
-      multiline
-    />
-
-    <Text style={styles.error}>{errors}</Text>
-
-    {/* Button */}
-    <Pressable onPress={onValidate} style={styles.btnReview}>
-        <Text style={styles.reviewTxt}>Review</Text>
-    </Pressable>
+      {/* Button */}
+      <Pressable onPress={onValidate} style={styles.btnReview}>
+          <Text style={styles.btnReviewTxt}>Review</Text>
+      </Pressable>
 
     </ScrollView>
   )

@@ -2,6 +2,9 @@ export default [
   {
     id: '0',
     username:'Elky',
+    phoneNumber:'08034536627',
+    email:'opusivan@opus.com',
+    mydescription:'Our proven track record of successful transactions and satisfied clients speaks to our commitment to excellence and results.',
     image: [
       'https://media.istockphoto.com/id/1026205392/photo/beautiful-luxury-home-exterior-at-twilight.jpg?s=612x612&w=0&k=20&c=HOCqYY0noIVxnp5uQf1MJJEVpsH_d4WtVQ6-OwVoeDo=',
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg', 
@@ -24,6 +27,9 @@ export default [
   {
     id: '1',
     username:'Akundu',
+    phoneNumber:'08034536627',
+    email:'opusivan@opus.com',
+    mydescription:'Our deep understanding of the local market trends and conditions ensures that you make informed decisions, maximizing your investment potential.',
     image: [
       'https://img.freepik.com/premium-photo/modern-beautiful-house-view-modern-home-modern-house-exterior_1004791-4933.jpg?w=360',
       'https://static.vecteezy.com/system/resources/thumbnails/022/718/559/small_2x/evening-view-of-a-luxurious-modern-house-generated-ai-photo.jpeg',
@@ -48,6 +54,9 @@ export default [
   {
     id: '2',
     username:'Daniel',
+    phoneNumber:'08034536627',
+    email:'opusivan@opus.com',
+    mydescription:'With access to an extensive database of properties, we offer a wide variety of homes to suit every taste and budget, ensuring you find your perfect match.',
     image: [
       'https://static.vecteezy.com/system/resources/thumbnails/023/308/330/small_2x/ai-generative-exterior-of-modern-luxury-house-with-garden-and-beautiful-sky-photo.jpg',
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg',
@@ -70,6 +79,9 @@ export default [
   {
     id: '3',
     username:'Clever',
+    phoneNumber:'08034536627',
+    email:'opusivan@opus.com',
+    mydescription:'Our team of seasoned professionals provides expert guidance to help you navigate the complex real estate market with confidence and ease.',
     image: [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXilJBtxIROgSiuYi_isQiFxnNF7hzf9jDAA&s',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxJxraFPwHdaM5Rlnv8FJB5H7wRfYCHY-Eig&s',
@@ -92,6 +104,9 @@ export default [
   {
     id: '4',
     username:'Anthony',
+    phoneNumber:'08034536627',
+    email:'opusivan@opus.com',
+    mydescription:'Our proven track record of successful transactions and satisfied clients speaks to our commitment to excellence and results.',
     image: [
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg',
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
@@ -113,6 +128,9 @@ export default [
   {
     id: '5',
     username:'Lilian',
+    phoneNumber:'08034536627',
+    email:'opusivan@opus.com',
+    mydescription:'From initial consultation to closing, we offer comprehensive support and advice, making your real estate journey as smooth and stress-free as possible.',
     image: [
       'https://d1ja9tyo8nbkbc.cloudfront.net/49560341_S0024/S0024/S0024-R0100/5249387/5249387-0.jpg?version=1697025084&width=640',
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
@@ -121,7 +139,7 @@ export default [
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg',
     ],
     type: 'Entire Flat',
-    description: 'It is a four bedroom apartment located at Odili Road, fully furnished. It also has a pool and the rooms are airy. Great ambiance and neighbours always willing to help. Security is top notch and you have different services around you, ranging from banks, filling stations, fastfoods etc.',
+    description: 'Our deep understanding of the local market trends and conditions ensures that you make informed decisions, maximizing your investment potential.',
     bedroom: 8,
     rent: '900,000.00',
     totalRent: '1,000,000.00',
@@ -134,6 +152,9 @@ export default [
   {
     id: '6',
     username:'Josh',
+    phoneNumber:'08034536627',
+    email:'opusivan@opus.com',
+    mydescription:'We pride ourselves on delivering personalized service, taking the time to understand your unique needs and preferences to match you with the ideal property.',
     image: [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5LG34jN9m74kx-HmXz-78IVRUb6h2HUl3sg&s',
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
@@ -155,6 +176,9 @@ export default [
   {
     id: '7',
     username:'Damiete',
+    phoneNumber:'08034536627',
+    email:'opusivan@opus.com',
+    mydescription:'Utilizing the latest technology and market insights, we provide cutting-edge tools and resources to streamline your buying or selling process.',
     image: [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThIY4pUpSvWx4l8oyWBtWv2MVSN6UENsPz2g&s',
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',

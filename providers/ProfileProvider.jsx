@@ -12,30 +12,30 @@ const ProfileContextProvider = ({children}) => {
     const [phoneNumber, setPhoneNumber]= useState("")
     const [errorMessage, setErrorMessage] = useState('')
 
-    const validateInput = () =>{
-      setErrorMessage('')
-      if(!firstName){
-        setErrorMessage('First Name is Required')
-        return false;
-      }
-      if(!address){
-        setErrorMessage('Address is required')
-        return false;
-      }
-      if(phoneNumber.length < 10){
-        setErrorMessage('Kindly fill in Phone Number')
-        return false;
-      }
-      return true;
-    }
-
-    const onValidateInput = () =>{
-      if(validateInput()){
+      const validateInput = () =>{
+        setErrorMessage('')
+        if(!firstName){
+          setErrorMessage('First Name is Required')
+          return false;
+        }
+        if(!address){
+          setErrorMessage('Address is required')
+          return false;
+        }
+        if(phoneNumber.length < 10){
+          setErrorMessage('Kindly fill in Phone Number')
+          return false;
+        }
         return true;
-      }else {
-        return false;
       }
-    }
+
+      const onValidateInput = () =>{
+        if(validateInput()){
+          return true;
+        }else {
+          return false;
+        }
+      }
 
 
   return (
