@@ -39,13 +39,13 @@ const Forms = () => {
       return numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     };
 
-    const handleRentChange = (value) => {
+    const handlePriceChange = (value) => {
       const formattedValue = formatNumberWithCommas(value);
-      setRent(formattedValue);
+      setPrice(formattedValue);
     };
-    const handleTotalRentChange = (value) => {
+    const handleTotalPriceChange = (value) => {
       const formattedValue = formatNumberWithCommas(value);
-      setTotalRent(formattedValue);
+      setTotalPrice(formattedValue);
     };
 
   return (
@@ -74,8 +74,9 @@ const Forms = () => {
           <TextInput
           style={styles.genInput}
           value={price}
-          onChangeText={setPrice}
+          onChangeText={handlePriceChange}
           placeholder='Price'
+          keyboardType='numeric'
           multiline
           />
         </View>
@@ -85,8 +86,9 @@ const Forms = () => {
           <TextInput
           style={styles.genInput}
           value={totalPrice}
-          onChangeText={setTotalPrice}
+          onChangeText={handleTotalPriceChange}
           placeholder='Total Price'
+          keyboardType='numeric'
           multiline
           />
         </View>

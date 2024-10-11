@@ -24,6 +24,13 @@ const TabsLayout= () => {
         }}
         />
         <Tabs.Screen 
+        name='alert'
+        options={{
+            tabBarLabel:'Alert',
+            tabBarIcon:({color})=><Ionicons name="notifications" size={24} color={color} />
+        }}
+        />
+        <Tabs.Screen 
         name='profile'
         options={{
             tabBarLabel:'Profile',

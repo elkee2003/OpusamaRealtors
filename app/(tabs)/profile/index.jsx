@@ -7,9 +7,9 @@ import LocationDropDown from '../../../components/DropDown/CountryDropDown'
 const Profile = () => {
   return (
     <ScrollView style={{flex:1,}}>
-      {/* <ProfilePage/>
-      <PostList/> */}
-      <LocationDropDown/>
+      <ProfilePage/>
+      <PostList/>
+      {/* <LocationDropDown/> */}
     </ScrollView>
   )
 }

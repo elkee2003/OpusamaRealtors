@@ -36,7 +36,7 @@ const SelectMedia = () => {
 
         // Check the length immediately after setting state
         if (updatedMedia.length >= 3) {
-          // router.push('/share/displayedmedia'); 
+          router.push('/share/displayedmedia'); 
           console.log('hello')       
         } else {
           // Alert if less than 3 media files are selected

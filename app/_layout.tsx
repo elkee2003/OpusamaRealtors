@@ -1,8 +1,16 @@
 import { Stack } from "expo-router";
 import UploadProvider from '../providers/UploadProvider'
 import ProfileProvider from '../providers/ProfileProvider'
+import {
+  withAuthenticator,
+  useAuthenticator
+} from '@aws-amplify/ui-react-native';
+import { Amplify } from 'aws-amplify';
+import amplifyconfig from '../src/amplifyconfiguration.json'
 
-export default function RootLayout() {
+Amplify.configure(amplifyconfig);
+
+function RootLayout() {
   return (
     <ProfileProvider>
       <UploadProvider>
@@ -16,3 +24,6 @@ export default function RootLayout() {
     
   );
 }
+
+// export default withAuthenticator(RootLayout);
+export default RootLayout;
