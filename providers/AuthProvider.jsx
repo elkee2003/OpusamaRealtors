@@ -28,7 +28,7 @@ const AuthProvider = ({children}) => {
     const dbCurrentUser = async () =>{
         try{
           const dbusercurrent = await DataStore.query(Realtor, (realtor)=>realtor.sub.eq(sub))
-          // DataStore.delete(User, Predicates.ALL)
+          // DataStore.delete(Realtor, Predicates.ALL)
           // DataStore.clear()
           
           setDbUser(dbusercurrent[0])

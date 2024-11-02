@@ -749,11 +749,10 @@ export const schema = {
                 },
                 "media": {
                     "name": "media",
-                    "isArray": true,
+                    "isArray": false,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true
+                    "attributes": []
                 },
                 "description": {
                     "name": "description",
@@ -807,14 +806,14 @@ export const schema = {
                 "bed": {
                     "name": "bed",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
                 "bedrooms": {
                     "name": "bedrooms",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -859,14 +858,14 @@ export const schema = {
                     "name": "state",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "city": {
                     "name": "city",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "realtorID": {
@@ -941,5 +940,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "d04154a39396c1ff24962f627b988778"
+    "version": "f95b11b00ba8d2ddcacd63d4db1b5bb5"
 };

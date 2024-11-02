@@ -21,13 +21,16 @@ const UploadProperty = () => {
 
     const handleUpload = async () =>{
         try{
-            const post = await DataStore.clear(new Post({
+
+            const mediaUris = media.assets ? media.assets.map(item => item.uri) : [];
+
+            const post = await DataStore.save(new Post({
                 propertyType,
                 type,
                 nameOfType,
                 availableDocs,
                 accommodationParts,
-                media,
+                media: mediaUris,
                 description,
                 available:true,
                 address,

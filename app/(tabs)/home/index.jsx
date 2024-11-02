@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import React, {useEffect} from 'react'
 import PostList from '../../../components/MyPostsComs/PostList';
 import { router } from 'expo-router'
