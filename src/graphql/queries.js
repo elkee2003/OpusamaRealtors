@@ -7,6 +7,7 @@ export const getRealtorReview = /* GraphQL */ `
       id
       rating
       review
+      userID
       createdAt
       updatedAt
       _version
@@ -27,6 +28,7 @@ export const listRealtorReviews = /* GraphQL */ `
         id
         rating
         review
+        userID
         createdAt
         updatedAt
         _version
@@ -57,6 +59,40 @@ export const syncRealtorReviews = /* GraphQL */ `
         id
         rating
         review
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const realtorReviewsByUserID = /* GraphQL */ `
+  query RealtorReviewsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelRealtorReviewFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    realtorReviewsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        rating
+        review
+        userID
         createdAt
         updatedAt
         _version
@@ -77,6 +113,7 @@ export const getPostReview = /* GraphQL */ `
       rating
       review
       postID
+      userID
       createdAt
       updatedAt
       _version
@@ -98,6 +135,7 @@ export const listPostReviews = /* GraphQL */ `
         rating
         review
         postID
+        userID
         createdAt
         updatedAt
         _version
@@ -129,6 +167,7 @@ export const syncPostReviews = /* GraphQL */ `
         rating
         review
         postID
+        userID
         createdAt
         updatedAt
         _version
@@ -162,11 +201,240 @@ export const postReviewsByPostID = /* GraphQL */ `
         rating
         review
         postID
+        userID
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const postReviewsByUserID = /* GraphQL */ `
+  query PostReviewsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelPostReviewFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    postReviewsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        rating
+        review
+        postID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const getBooking = /* GraphQL */ `
+  query GetBooking($id: ID!) {
+    getBooking(id: $id) {
+      id
+      adults
+      kids
+      infants
+      guestFirstName
+      guestLastName
+      guestPhoneNumber
+      purpose
+      duration
+      checkInDate
+      checkOutDate
+      propertyType
+      Realtor {
+        id
+        sub
+        firstName
+        lastName
+        myDescription
+        profilePic
+        email
+        address
+        phoneNumber
+        bankname
+        accountName
+        accountNumber
+        push_token
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      accommodationType
+      nameOfType
+      totalPrice
+      realtorPrice
+      bookingLat
+      bookingLng
+      status
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      bookingRealtorId
+      __typename
+    }
+  }
+`;
+export const listBookings = /* GraphQL */ `
+  query ListBookings(
+    $filter: ModelBookingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBookings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        adults
+        kids
+        infants
+        guestFirstName
+        guestLastName
+        guestPhoneNumber
+        purpose
+        duration
+        checkInDate
+        checkOutDate
+        propertyType
+        accommodationType
+        nameOfType
+        totalPrice
+        realtorPrice
+        bookingLat
+        bookingLng
+        status
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        bookingRealtorId
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const syncBookings = /* GraphQL */ `
+  query SyncBookings(
+    $filter: ModelBookingFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncBookings(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        adults
+        kids
+        infants
+        guestFirstName
+        guestLastName
+        guestPhoneNumber
+        purpose
+        duration
+        checkInDate
+        checkOutDate
+        propertyType
+        accommodationType
+        nameOfType
+        totalPrice
+        realtorPrice
+        bookingLat
+        bookingLng
+        status
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        bookingRealtorId
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const bookingsByUserID = /* GraphQL */ `
+  query BookingsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelBookingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    bookingsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        adults
+        kids
+        infants
+        guestFirstName
+        guestLastName
+        guestPhoneNumber
+        purpose
+        duration
+        checkInDate
+        checkOutDate
+        propertyType
+        accommodationType
+        nameOfType
+        totalPrice
+        realtorPrice
+        bookingLat
+        bookingLng
+        status
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        bookingRealtorId
         __typename
       }
       nextToken
@@ -183,37 +451,29 @@ export const getUser = /* GraphQL */ `
       firstName
       lastName
       profilePic
-      comment
-      RealtorReview {
-        id
-        rating
-        review
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+      phoneNumber
+      Bookings {
+        nextToken
+        startedAt
         __typename
       }
-      PostReview {
-        id
-        rating
-        review
-        postID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+      address
+      PostReviews {
+        nextToken
+        startedAt
         __typename
       }
+      RealtorReviews {
+        nextToken
+        startedAt
+        __typename
+      }
+      push_token
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      userRealtorReviewId
-      userPostReviewId
       __typename
     }
   }
@@ -231,14 +491,14 @@ export const listUsers = /* GraphQL */ `
         firstName
         lastName
         profilePic
-        comment
+        phoneNumber
+        address
+        push_token
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        userRealtorReviewId
-        userPostReviewId
         __typename
       }
       nextToken
@@ -266,14 +526,14 @@ export const syncUsers = /* GraphQL */ `
         firstName
         lastName
         profilePic
-        comment
+        phoneNumber
+        address
+        push_token
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        userRealtorReviewId
-        userPostReviewId
         __typename
       }
       nextToken
@@ -302,6 +562,7 @@ export const getRealtor = /* GraphQL */ `
         startedAt
         __typename
       }
+      push_token
       createdAt
       updatedAt
       _version
@@ -331,6 +592,7 @@ export const listRealtors = /* GraphQL */ `
         bankname
         accountName
         accountNumber
+        push_token
         createdAt
         updatedAt
         _version
@@ -370,6 +632,7 @@ export const syncRealtors = /* GraphQL */ `
         bankname
         accountName
         accountNumber
+        push_token
         createdAt
         updatedAt
         _version
@@ -389,10 +652,12 @@ export const getPost = /* GraphQL */ `
       id
       propertyType
       type
+      nameOfType
       availableDocs
       accommodationParts
       media
       description
+      available
       address
       lat
       lng
@@ -403,13 +668,13 @@ export const getPost = /* GraphQL */ `
       amenities
       policies
       country
-      state
-      city
       PostReviews {
         nextToken
         startedAt
         __typename
       }
+      state
+      city
       realtorID
       createdAt
       updatedAt
@@ -431,10 +696,12 @@ export const listPosts = /* GraphQL */ `
         id
         propertyType
         type
+        nameOfType
         availableDocs
         accommodationParts
         media
         description
+        available
         address
         lat
         lng
@@ -478,10 +745,12 @@ export const syncPosts = /* GraphQL */ `
         id
         propertyType
         type
+        nameOfType
         availableDocs
         accommodationParts
         media
         description
+        available
         address
         lat
         lng
@@ -527,10 +796,12 @@ export const postsByRealtorID = /* GraphQL */ `
         id
         propertyType
         type
+        nameOfType
         availableDocs
         accommodationParts
         media
         description
+        available
         address
         lat
         lng

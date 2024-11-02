@@ -2,7 +2,12 @@ import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled, AsyncItem, AsyncCollection } from "@aws-amplify/datastore";
 
-
+export enum BookingStatus {
+  PENDING = "PENDING",
+  ACCEPTED = "ACCEPTED",
+  CANCELLED = "CANCELLED",
+  DENIED = "DENIED"
+}
 
 
 
@@ -14,6 +19,7 @@ type EagerRealtorReview = {
   readonly id: string;
   readonly rating?: number | null;
   readonly review?: string | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -26,6 +32,7 @@ type LazyRealtorReview = {
   readonly id: string;
   readonly rating?: number | null;
   readonly review?: string | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -45,6 +52,7 @@ type EagerPostReview = {
   readonly rating?: number | null;
   readonly review?: string | null;
   readonly postID: string;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -58,6 +66,7 @@ type LazyPostReview = {
   readonly rating?: number | null;
   readonly review?: string | null;
   readonly postID: string;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -66,6 +75,74 @@ export declare type PostReview = LazyLoading extends LazyLoadingDisabled ? Eager
 
 export declare const PostReview: (new (init: ModelInit<PostReview>) => PostReview) & {
   copyOf(source: PostReview, mutator: (draft: MutableModel<PostReview>) => MutableModel<PostReview> | void): PostReview;
+}
+
+type EagerBooking = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Booking, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly adults?: string | null;
+  readonly kids?: string | null;
+  readonly infants?: string | null;
+  readonly guestFirstName?: string | null;
+  readonly guestLastName?: string | null;
+  readonly guestPhoneNumber?: string | null;
+  readonly purpose?: string | null;
+  readonly duration?: string | null;
+  readonly checkInDate?: string | null;
+  readonly checkOutDate?: string | null;
+  readonly propertyType?: string | null;
+  readonly Realtor?: Realtor | null;
+  readonly accommodationType?: string | null;
+  readonly nameOfType?: string | null;
+  readonly totalPrice?: number | null;
+  readonly realtorPrice?: number | null;
+  readonly bookingLat?: number | null;
+  readonly bookingLng?: number | null;
+  readonly status?: BookingStatus | keyof typeof BookingStatus | null;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly bookingRealtorId?: string | null;
+}
+
+type LazyBooking = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Booking, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly adults?: string | null;
+  readonly kids?: string | null;
+  readonly infants?: string | null;
+  readonly guestFirstName?: string | null;
+  readonly guestLastName?: string | null;
+  readonly guestPhoneNumber?: string | null;
+  readonly purpose?: string | null;
+  readonly duration?: string | null;
+  readonly checkInDate?: string | null;
+  readonly checkOutDate?: string | null;
+  readonly propertyType?: string | null;
+  readonly Realtor: AsyncItem<Realtor | undefined>;
+  readonly accommodationType?: string | null;
+  readonly nameOfType?: string | null;
+  readonly totalPrice?: number | null;
+  readonly realtorPrice?: number | null;
+  readonly bookingLat?: number | null;
+  readonly bookingLng?: number | null;
+  readonly status?: BookingStatus | keyof typeof BookingStatus | null;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly bookingRealtorId?: string | null;
+}
+
+export declare type Booking = LazyLoading extends LazyLoadingDisabled ? EagerBooking : LazyBooking
+
+export declare const Booking: (new (init: ModelInit<Booking>) => Booking) & {
+  copyOf(source: Booking, mutator: (draft: MutableModel<Booking>) => MutableModel<Booking> | void): Booking;
 }
 
 type EagerUser = {
@@ -78,13 +155,14 @@ type EagerUser = {
   readonly firstName: string;
   readonly lastName?: string | null;
   readonly profilePic?: string | null;
-  readonly comment?: string | null;
-  readonly RealtorReview?: RealtorReview | null;
-  readonly PostReview?: PostReview | null;
+  readonly phoneNumber?: string | null;
+  readonly Bookings?: (Booking | null)[] | null;
+  readonly address?: string | null;
+  readonly PostReviews?: (PostReview | null)[] | null;
+  readonly RealtorReviews?: (RealtorReview | null)[] | null;
+  readonly push_token?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly userRealtorReviewId?: string | null;
-  readonly userPostReviewId?: string | null;
 }
 
 type LazyUser = {
@@ -97,13 +175,14 @@ type LazyUser = {
   readonly firstName: string;
   readonly lastName?: string | null;
   readonly profilePic?: string | null;
-  readonly comment?: string | null;
-  readonly RealtorReview: AsyncItem<RealtorReview | undefined>;
-  readonly PostReview: AsyncItem<PostReview | undefined>;
+  readonly phoneNumber?: string | null;
+  readonly Bookings: AsyncCollection<Booking>;
+  readonly address?: string | null;
+  readonly PostReviews: AsyncCollection<PostReview>;
+  readonly RealtorReviews: AsyncCollection<RealtorReview>;
+  readonly push_token?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly userRealtorReviewId?: string | null;
-  readonly userPostReviewId?: string | null;
 }
 
 export declare type User = LazyLoading extends LazyLoadingDisabled ? EagerUser : LazyUser
@@ -130,6 +209,7 @@ type EagerRealtor = {
   readonly accountName?: string | null;
   readonly accountNumber?: string | null;
   readonly Post?: (Post | null)[] | null;
+  readonly push_token?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -152,6 +232,7 @@ type LazyRealtor = {
   readonly accountName?: string | null;
   readonly accountNumber?: string | null;
   readonly Post: AsyncCollection<Post>;
+  readonly push_token?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -170,10 +251,12 @@ type EagerPost = {
   readonly id: string;
   readonly propertyType: string;
   readonly type: string;
+  readonly nameOfType?: string | null;
   readonly availableDocs?: (string | null)[] | null;
   readonly accommodationParts?: string | null;
   readonly media?: (string | null)[] | null;
   readonly description: string;
+  readonly available?: boolean | null;
   readonly address: string;
   readonly lat?: number | null;
   readonly lng?: number | null;
@@ -184,9 +267,9 @@ type EagerPost = {
   readonly amenities?: string | null;
   readonly policies?: string | null;
   readonly country: string;
+  readonly PostReviews?: (PostReview | null)[] | null;
   readonly state: string;
   readonly city: string;
-  readonly PostReviews?: (PostReview | null)[] | null;
   readonly realtorID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -200,10 +283,12 @@ type LazyPost = {
   readonly id: string;
   readonly propertyType: string;
   readonly type: string;
+  readonly nameOfType?: string | null;
   readonly availableDocs?: (string | null)[] | null;
   readonly accommodationParts?: string | null;
   readonly media?: (string | null)[] | null;
   readonly description: string;
+  readonly available?: boolean | null;
   readonly address: string;
   readonly lat?: number | null;
   readonly lng?: number | null;
@@ -214,9 +299,9 @@ type LazyPost = {
   readonly amenities?: string | null;
   readonly policies?: string | null;
   readonly country: string;
+  readonly PostReviews: AsyncCollection<PostReview>;
   readonly state: string;
   readonly city: string;
-  readonly PostReviews: AsyncCollection<PostReview>;
   readonly realtorID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

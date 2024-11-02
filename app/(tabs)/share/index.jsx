@@ -1,6 +1,6 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import SelectMedia from '../../../components/SelectMedia'
+import { View, Text } from 'react-native';
+import React from 'react';
+import SelectMedia from '../../../components/UploadCom/SelectMedia';
 
 const Share = () => {
   return (

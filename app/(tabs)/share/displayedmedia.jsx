@@ -1,6 +1,6 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import DisplayMedia from '../../../components/DisplayMedia'
+import { View, Text } from 'react-native';
+import React from 'react';
+import DisplayMedia from '../../../components/UploadCom/DisplayMedia';
 
 const DisplayedMedia = () => {
   return (
@@ -10,4 +10,4 @@ const DisplayedMedia = () => {
   )
 }
 
-export default DisplayedMedia
+export default DisplayedMedia;

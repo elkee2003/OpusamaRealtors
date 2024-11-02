@@ -1,6 +1,6 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import Forms from '../../../components/Forms'
+import { View, Text } from 'react-native';
+import React from 'react';
+import Forms from '../../../components/UploadCom/Forms';
 
 const PickedMedia = () => {
   return (
@@ -10,4 +10,4 @@ const PickedMedia = () => {
   )
 }
 
-export default PickedMedia
+export default PickedMedia;

@@ -1,6 +1,7 @@
 import { Stack } from "expo-router";
-import UploadProvider from '../providers/UploadProvider'
-import ProfileProvider from '../providers/ProfileProvider'
+import AuthProvider from "@/providers/AuthProvider";
+import ProfileProvider from '@/providers/ProfileProvider';
+import UploadProvider from '@/providers/UploadProvider';
 import {
   withAuthenticator,
   useAuthenticator
@@ -12,18 +13,18 @@ Amplify.configure(amplifyconfig);
 
 function RootLayout() {
   return (
-    <ProfileProvider>
-      <UploadProvider>
-        <Stack screenOptions={{
-        headerShown:false
-        }}>
-          <Stack.Screen name="(tabs)" />
-        </Stack>
-      </UploadProvider>
-    </ProfileProvider>
-    
+    <AuthProvider>
+      <ProfileProvider>
+        <UploadProvider>
+          <Stack screenOptions={{
+          headerShown:false
+          }}>
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+        </UploadProvider>
+      </ProfileProvider>
+    </AuthProvider>
   );
 }
 
-// export default withAuthenticator(RootLayout);
 export default RootLayout;

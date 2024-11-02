@@ -1,6 +1,6 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import ReviewUpload from '../../../components/ReviewUpload'
+import { View, Text } from 'react-native';
+import React from 'react';
+import ReviewUpload from '../../../components/ReviewUpload';
 
 const Review = () => {
   return (
@@ -10,4 +10,4 @@ const Review = () => {
   )
 }
 
-export default Review
+export default Review;

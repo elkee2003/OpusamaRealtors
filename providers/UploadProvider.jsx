@@ -8,6 +8,7 @@ const UploadContextProvider = ({children}) => {
 
     const [propertyType, setPropertyType]= useState('')
     const [type, setType] = useState('')
+    const [nameOfType, setNameOfType] = useState('')
     const [availableDocs, setAvailableDocs] = useState('')
     const [customInput, setCustomInput] = useState('');
     const [accommodationParts, setAccommodationParts] = useState('')
@@ -147,8 +148,7 @@ const UploadContextProvider = ({children}) => {
 
     const onValidate = ()=>{
         if (validateInput()) {
-            router.push('/share/review')
-            return true;
+          return true;
         }else{
           return false;
         }
@@ -167,6 +167,7 @@ const UploadContextProvider = ({children}) => {
     <UploadContext.Provider value={{
         propertyType, setPropertyType,
         type, setType,
+        nameOfType, setNameOfType,
         availableDocs, setAvailableDocs,
         customInput, setCustomInput,
         accommodationParts, setAccommodationParts,

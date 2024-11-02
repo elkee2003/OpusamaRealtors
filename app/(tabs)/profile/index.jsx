@@ -1,16 +1,21 @@
-import { View, Text, ScrollView } from 'react-native'
-import React from 'react'
-import ProfilePage from '../../../components/ProfilePage'
-import PostList from '../../../components/PostList'
-import LocationDropDown from '../../../components/DropDown/CountryDropDown'
+import { View,} from 'react-native';
+import React from 'react';
+import EditProfile from '../../../components/ProfileComs/EditProfile';
+import ProfileMain from '../../../components/ProfileComs/ProfileMain/ProfileComplete';
+import {useAuthContext} from '@/providers/AuthProvider';
 
 const Profile = () => {
+
+  const {dbUser} = useAuthContext();
+
   return (
-    <ScrollView style={{flex:1,}}>
-      <ProfilePage/>
-      <PostList/>
-      {/* <LocationDropDown/> */}
-    </ScrollView>
+    <View style={{flex:1}}>
+      {dbUser ?
+        <ProfileMain/>
+      :
+        <EditProfile/>
+      }
+    </View>
   )
 }
 
