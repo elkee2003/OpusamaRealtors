@@ -735,11 +735,10 @@ export const schema = {
                 },
                 "availableDocs": {
                     "name": "availableDocs",
-                    "isArray": true,
+                    "isArray": false,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true
+                    "attributes": []
                 },
                 "accommodationParts": {
                     "name": "accommodationParts",
@@ -942,5 +941,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "93aa4c42f182a49d27f1921628bf31db"
+    "version": "d04154a39396c1ff24962f627b988778"
 };

@@ -1,6 +1,6 @@
-import { View, Text, ScrollView, TextInput, Pressable,} from 'react-native'
-import React, {useState} from 'react'
-import { useUploadContext } from '../../../providers/UploadProvider';
+import { View, Text, ScrollView, TextInput, Pressable,} from 'react-native';
+import React, {useState} from 'react';
+import { useUploadContext } from '@/providers/UploadProvider';
 import AccommodationDropDown from '../DropDown/AccommodationDropDown';
 import CountryDropDown from '../DropDown/CountryDropDown';
 import PropertySale from '../DropDown/PropertySale';
@@ -18,14 +18,14 @@ const Forms = () => {
       availableDocs, setAvailableDocs,
       accommodationParts, setAccommodationParts,
       description, setDescription,
-      bedroom, setBedroom,
-      beds, setBeds,
+      bedrooms, setBedrooms,
+      bed, setBed,
       price, setPrice,
       totalPrice, setTotalPrice,
       country, setCountry,
       state, setState,
       city, setCity,
-      location, setLocation,
+      address, setAddress,
       amenities, setAmenities,
       policies, setPolicies,
       errors, onValidate, media,
@@ -100,12 +100,12 @@ const Forms = () => {
         </View>
       </View>
       
-      <Text style={styles.label}>Location:</Text>
+      <Text style={styles.label}>Address:</Text>
       <TextInput
       style={styles.input}
-      value={location}
-      onChangeText={setLocation}
-      placeholder='Location'
+      value={address}
+      onChangeText={setAddress}
+      placeholder='Address'
       multiline
       />
       {/* Country and State */}
@@ -128,4 +128,4 @@ const Forms = () => {
   )
 }
 
-export default Forms
+export default Forms;

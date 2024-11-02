@@ -4,23 +4,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         position:'relative',
-        marginTop:35,
-        marginHorizontal:15,
-    },
-    backIconContainer:{
-        position:'absolute',
-        left:0,
-        top:10,
-    },
-    icon:{
-        color:'#020216',
-        fontSize:40,
-    },
-    header:{
-        fontSize:34,
-        fontWeight:'bold',
-        textAlign:'center',
-        marginBottom:10
+        marginHorizontal:10,
     },
     row:{
         flexDirection:'column',
@@ -29,13 +13,17 @@ const styles = StyleSheet.create({
         marginTop:15,
     },
     inputReview:{
-        fontSize:22,
-        fontWeight: 'bold',
+        color:'#d1cfcf',
+        padding:7,
+        fontSize:18,
         marginBottom:5,
+        backgroundColor:'#0b0b29',
+        borderRadius:15,
     },
     displayLabel: {
         marginTop: 10,
-        fontSize:18,
+        fontSize:20,
+        fontWeight:'bold',
         fontStyle:'italic',
     },
     btnUpload:{
@@ -61,7 +49,8 @@ const styles = StyleSheet.create({
     media:{
         height:"100%",
         width:"100%",
-
+        resiz:'contain',
+        overflow:'hidden',
     },
     mediaFullDisplayContainer:{
         justifyContent:'center',

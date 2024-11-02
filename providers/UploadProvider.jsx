@@ -14,16 +14,17 @@ const UploadContextProvider = ({children}) => {
     const [accommodationParts, setAccommodationParts] = useState('')
     const [media, setMedia] = useState([])
     const [description, setDescription] = useState('')
-    const [bedroom, setBedroom] = useState('')
-    const [beds, setBeds] = useState('')
+    const [address, setAddress] = useState('')
+    const [bedrooms, setBedrooms] = useState('')
+    const [bed, setBed] = useState('')
     const [price, setPrice] = useState('')
     const [totalPrice, setTotalPrice] = useState('')
     const [country, setCountry] = useState('')
     const [state, setState]= useState('')
     const [city, setCity] = useState('')
-    const [location, setLocation]= useState('')
     const [amenities, setAmenities]= useState('')
     const [policies, setPolicies] = useState('')
+    const [uploadPost, setUploadPost] = useState(null);
 
     const [errors, setErrors] = useState('')
 
@@ -60,8 +61,8 @@ const UploadContextProvider = ({children}) => {
           setErrors('City is Required');
           return false;
         }
-        if (!location) {
-          setErrors('Location is Required');
+        if (!address) {
+          setErrors('Address is Required');
           return false;
         }
         if (!description) {
@@ -79,16 +80,16 @@ const UploadContextProvider = ({children}) => {
 
         // Specific validations for each property type
         if (propertyType === 'House') {
-          if (!bedroom) {
+          if (!bedrooms) {
             setErrors('Number of Bedrooms is Required');
             return false;
           }
         } else if (propertyType === 'Hotel / Shortlet') {
-          if (!bedroom) {
+          if (!bedrooms) {
             setErrors('Number of Bedrooms is Required');
             return false;
           }
-          if (!beds) {
+          if (!bed) {
             setErrors('Number of Beds is Required');
             return false;
           }
@@ -97,7 +98,7 @@ const UploadContextProvider = ({children}) => {
             setErrors('Available Documents are Required');
             return false;
           }
-          if (!bedroom) {
+          if (!bedrooms) {
             setErrors('Number of Bedrooms is Required');
             return false;
           }
@@ -142,10 +143,6 @@ const UploadContextProvider = ({children}) => {
       return true;
     }
 
-    const onUpload = () => {
-        console.warn('Uploading...')
-    }
-
     const onValidate = ()=>{
         if (validateInput()) {
           return true;
@@ -173,18 +170,19 @@ const UploadContextProvider = ({children}) => {
         accommodationParts, setAccommodationParts,
         media, setMedia,
         description, setDescription,
-        bedroom, setBedroom,
-        beds, setBeds,
+        address, setAddress,
+        bedrooms, setBedrooms,
+        bed, setBed,
         price, setPrice,
         totalPrice, setTotalPrice,
         country, setCountry,
         state, setState,
         city, setCity,
-        location, setLocation,
         errors, setErrors,
         amenities, setAmenities,
         policies, setPolicies,
-        onUpload, onValidate, 
+        uploadPost, setUploadPost,
+        onValidate, 
         onImageUploadValidation, removeMedia
     }}>
       {children}

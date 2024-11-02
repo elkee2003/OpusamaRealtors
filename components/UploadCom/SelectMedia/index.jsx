@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity, Image, FlatList, Alert } from 'react-native'
-import React, {useState} from 'react'
+import { View, Text, TouchableOpacity, Image, FlatList, Alert } from 'react-native';
+import React, {useState} from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useUploadContext } from '../../../providers/UploadProvider';
+import { useUploadContext } from '@/providers/UploadProvider';
 import { router} from 'expo-router';
-import styles from './styles'
+import styles from './styles';
 
 const SelectMedia = () => {
 
@@ -56,4 +56,4 @@ const SelectMedia = () => {
   )
 }
 
-export default SelectMedia
+export default SelectMedia;

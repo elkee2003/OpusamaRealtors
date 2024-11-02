@@ -3,7 +3,7 @@ import React, {useState,useRef, useCallback, useEffect} from 'react'
 import { useFocusEffect } from '@react-navigation/native';
 import styles from './styles'
 import { Video } from 'expo-av';
-import { useUploadContext } from '../../providers/UploadProvider'
+import { useUploadContext } from '@/providers/UploadProvider'
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';

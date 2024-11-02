@@ -1,8 +1,8 @@
-import { View, Text, TextInput } from 'react-native'
-import React, {useState} from 'react'
-import styles from './styles'
+import { View, Text, TextInput } from 'react-native';
+import React, {useState} from 'react';
+import styles from './styles';
 import { Dropdown } from 'react-native-element-dropdown';
-import { useUploadContext } from '../../../../providers/UploadProvider'
+import { useUploadContext } from '@/providers/UploadProvider';
 
 const index = () => {
 
@@ -174,4 +174,4 @@ const index = () => {
   )
 }
 
-export default index
+export default index;

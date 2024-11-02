@@ -80,7 +80,7 @@ type Post @model @auth(rules: [{allow: public}]) {
   propertyType: String!
   type: String!
   nameOfType: String
-  availableDocs: [String]
+  availableDocs: String
   accommodationParts: String
   media: [String]
   description: String!

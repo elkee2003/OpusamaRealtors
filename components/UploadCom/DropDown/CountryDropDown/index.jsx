@@ -1,8 +1,8 @@
-import { View, Text, Pressable } from 'react-native'
-import React, {useState, useEffect} from 'react'
+import { View, Text, Pressable } from 'react-native';
+import React, {useState, useEffect} from 'react';
 import { Dropdown } from 'react-native-element-dropdown';
-import { useUploadContext } from '../../../../providers/UploadProvider'
-import styles from './styles'
+import { useUploadContext } from '@/providers/UploadProvider';
+import styles from './styles';
 
 const LocationDropDown = () => {
 

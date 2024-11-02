@@ -252,7 +252,7 @@ type EagerPost = {
   readonly propertyType: string;
   readonly type: string;
   readonly nameOfType?: string | null;
-  readonly availableDocs?: (string | null)[] | null;
+  readonly availableDocs?: string | null;
   readonly accommodationParts?: string | null;
   readonly media?: (string | null)[] | null;
   readonly description: string;
@@ -284,7 +284,7 @@ type LazyPost = {
   readonly propertyType: string;
   readonly type: string;
   readonly nameOfType?: string | null;
-  readonly availableDocs?: (string | null)[] | null;
+  readonly availableDocs?: string | null;
   readonly accommodationParts?: string | null;
   readonly media?: (string | null)[] | null;
   readonly description: string;

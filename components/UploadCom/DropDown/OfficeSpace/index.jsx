@@ -1,8 +1,8 @@
-import { View, Text, TextInput } from 'react-native'
-import React, {useState} from 'react'
+import { View, Text, TextInput } from 'react-native';
+import React, {useState} from 'react';
 import { Dropdown } from 'react-native-element-dropdown';
-import styles from './styles'
-import { useUploadContext } from '../../../../providers/UploadProvider'
+import styles from './styles';
+import { useUploadContext } from '@/providers/UploadProvider';
 
 const OfficeSpace = () => {
 

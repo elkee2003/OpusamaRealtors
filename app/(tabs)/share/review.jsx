@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import ReviewUpload from '../../../components/ReviewUpload';
+import UploadProperty from '../../../components/UploadCom/UploadProperty';
 
 const Review = () => {
   return (
     <View style={{flex:1}}>
-      <ReviewUpload/>
+      <UploadProperty/>
     </View>
   )
 }

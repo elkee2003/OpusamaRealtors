@@ -1,8 +1,8 @@
-import { View, Text, TextInput } from 'react-native'
-import React, {useState, useEffect} from 'react'
+import { View, Text, TextInput } from 'react-native';
+import React, {useState, useEffect} from 'react';
 import { Dropdown } from 'react-native-element-dropdown';
-import { useUploadContext } from '../../../../providers/UploadProvider'
-import styles from './styles'
+import { useUploadContext } from '@/providers/UploadProvider';
+import styles from './styles';
 
 const AccommodationDropDown = () => {
 
@@ -11,8 +11,8 @@ const AccommodationDropDown = () => {
       nameOfType, setNameOfType,
       customInput, setCustomInput,
       accommodationParts, setAccommodationParts,
-      bedroom, setBedroom,
-      beds, setBeds,
+      bedrooms, setBedrooms,
+      bed, setBed,
     } = useUploadContext()
 
     const [isFocus, setIsFocus] = useState(false);
@@ -168,8 +168,8 @@ const AccommodationDropDown = () => {
               <Text style={styles.labelTxt}>Bedrooms:</Text>
               <TextInput
               style={styles.input}
-              value={bedroom}
-              onChangeText={setBedroom}
+              value={bedrooms}
+              onChangeText={setBedrooms}
               placeholder='Number of Bedrooms'
               />
             </View>
@@ -236,8 +236,8 @@ const AccommodationDropDown = () => {
                 <Text style={styles.labelTxt}>Bedrooms:</Text>
                 <TextInput
                 style={styles.genInput}
-                value={bedroom}
-                onChangeText={setBedroom}
+                value={bedrooms}
+                onChangeText={setBedrooms}
                 placeholder='Number of Bedrooms'
                 />
               </View>
@@ -246,8 +246,8 @@ const AccommodationDropDown = () => {
                 <Text style={styles.labelTxt}>Beds:</Text>
                 <TextInput
                 style={styles.genInput}
-                value={beds}
-                onChangeText={setBeds}
+                value={bed}
+                onChangeText={setBed}
                 placeholder='Number of Beds'
                 />
               </View>

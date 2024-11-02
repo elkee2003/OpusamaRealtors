@@ -1,7 +1,7 @@
-import { View, Text, TextInput } from 'react-native'
-import React from 'react'
-import styles from './styles'
-import { useUploadContext } from '../../../../providers/UploadProvider'
+import { View, Text, TextInput } from 'react-native';
+import React from 'react';
+import styles from './styles';
+import { useUploadContext } from '@/providers/UploadProvider';
 
 const WriteDescription = () => {
     const {
