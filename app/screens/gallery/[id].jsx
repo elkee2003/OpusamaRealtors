@@ -1,16 +1,17 @@
-import { View, Text, Alert, ActivityIndicator } from 'react-native'
-import React, { useState, useEffect } from 'react'
-import { useLocalSearchParams } from 'expo-router';
-import DetailedPost from '../../../components/PostDetailsCom/DetailedPost';
+import { View, FlatList, ActivityIndicator} from 'react-native'
+import React, {useState, useEffect} from 'react'
+import PostGallery from '../../../components/PostDetailsCom/PostGallery'
+import { useLocalSearchParams } from 'expo-router'
 import { DataStore } from 'aws-amplify/datastore';
 import {Post} from '@/src/models';
 
-const DetaildePostScreen = () => {
+
+const Gallery = () => {
 
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const {id}= useLocalSearchParams();
+  const {id}= useLocalSearchParams()
 
   const fetchPost = async (id) => {
     setLoading(true)
@@ -36,10 +37,15 @@ const DetaildePostScreen = () => {
   }
 
   return (
-    <View>
-      <DetailedPost post={post}/>
+    <View style={{flex:1,}} >
+        <FlatList
+        data={post.media}
+        renderItem={({item})=><PostGallery media={item}/>}
+        horizontal
+        pagingEnabled
+        />
     </View>
   )
 }
 
-export default DetaildePostScreen;
+export default Gallery;

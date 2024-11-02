@@ -1,5 +1,5 @@
-import { View, Text, Image, SafeAreaView, Pressable } from 'react-native'
-import { Link } from 'expo-router'
+import { View, Text, Image, SafeAreaView, TouchableOpacity } from 'react-native'
+import {router} from 'expo-router'
 import React from 'react'
 import styles from './styles'
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -8,14 +8,12 @@ const DetailedPost = ({post}) => {
 
   return (
       <View style={styles.container}>
-        <Link href={`/fullView/${post.id}`} asChild>
-          <Pressable>
-            <View style={styles.imageContainer}>
-              {/* Image */}
-              <Image source={{uri: post.image[0]}} style={styles.image}/>
-            </View>
-          </Pressable>
-        </Link>
+        <TouchableOpacity onPress={()=>router.push(`/screens/fullview/${post.id}`)}>
+          <View style={styles.imageContainer}>
+            {/* Image */}
+            <Image source={{uri: post.media[0]}} style={styles.image}/>
+          </View>
+        </TouchableOpacity>
 
         <View style={styles.sub}>
           {/* Bed & Bedrooms */}

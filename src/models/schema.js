@@ -749,10 +749,11 @@ export const schema = {
                 },
                 "media": {
                     "name": "media",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "description": {
                     "name": "description",
@@ -940,5 +941,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "f95b11b00ba8d2ddcacd63d4db1b5bb5"
+    "version": "21b2040a4a6bc5fedd9b9a3318d060c4"
 };

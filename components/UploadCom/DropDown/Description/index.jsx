@@ -34,7 +34,7 @@ const WriteDescription = () => {
                 />
                 <Text style={styles.label}>Policies:</Text>
                 <TextInput
-                style={styles.input}
+                style={styles.inputLast}
                 value={policies}
                 onChangeText={setPolicies}
                 placeholder='Lawn must be mowed every 2 weeks, Paint building every year,'
@@ -64,7 +64,7 @@ const WriteDescription = () => {
                 />
                 <Text style={styles.label}>Policies:</Text>
                 <TextInput
-                style={styles.input}
+                style={styles.inputLast}
                 value={policies}
                 onChangeText={setPolicies}
                 placeholder='No guns allowed, Caution fees applicable, Paint building every year, Not more than 5 Guests'
@@ -94,7 +94,7 @@ const WriteDescription = () => {
                 />
                 <Text style={styles.label}>Policies:</Text>
                 <TextInput
-                style={styles.input}
+                style={styles.inputLast}
                 value={policies}
                 onChangeText={setPolicies}
                 placeholder='Gate closes at 8:00pm, Not more than 2 Guests'
@@ -124,7 +124,7 @@ const WriteDescription = () => {
                 />
                 <Text style={styles.label}>Policies:</Text>
                 <TextInput
-                style={styles.input}
+                style={styles.inputLast}
                 value={policies}
                 onChangeText={setPolicies}
                 placeholder='What potential buyer needs for purchase'
@@ -154,7 +154,7 @@ const WriteDescription = () => {
                 />
                 <Text style={styles.label}>Policies:</Text>
                 <TextInput
-                style={styles.input}
+                style={styles.inputLast}
                 value={policies}
                 onChangeText={setPolicies}
                 placeholder='What potential buyer needs'
@@ -183,7 +183,7 @@ const WriteDescription = () => {
                 />
                 <Text style={styles.label}>Policies:</Text>
                 <TextInput
-                style={styles.input}
+                style={styles.inputLast}
                 value={policies}
                 onChangeText={setPolicies}
                 placeholder='What potential clients need to get Office Space'
@@ -212,7 +212,7 @@ const WriteDescription = () => {
                 />
                 <Text style={styles.label}>Policies:</Text>
                 <TextInput
-                style={styles.input}
+                style={styles.inputLast}
                 value={policies}
                 onChangeText={setPolicies}
                 placeholder='What potential client needs to get shop'

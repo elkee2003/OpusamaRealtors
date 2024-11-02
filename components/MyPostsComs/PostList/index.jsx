@@ -1,5 +1,6 @@
 import { View, Text, Alert, FlatList, ActivityIndicator } from 'react-native';
 import React, {useState, useEffect} from 'react';
+import PostSingle from '../PostSingle';
 import { useAuthContext } from '@/providers/AuthProvider';
 import { DataStore } from 'aws-amplify/datastore';
 import {Realtor, Post} from '../../../src/models';

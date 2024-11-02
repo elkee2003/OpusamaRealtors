@@ -8,7 +8,7 @@ import styles from './styles';
 
 const SelectMedia = () => {
 
-  const {onImageUploadValidation, errors, setMedia, media} = useUploadContext();
+  const {setMedia, media} = useUploadContext();
 
   // Pick Multiple Media Function (Images and Videos)
   const pickMediaAsync = async () => {

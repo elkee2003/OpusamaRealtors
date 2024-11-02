@@ -4,7 +4,8 @@ import {Colors} from '../../../constants/Colors'
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        marginTop:35,
+        marginVertical:35,
+
     },
     noListings:{
         textAlign:'center',

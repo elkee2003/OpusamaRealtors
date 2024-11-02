@@ -4,16 +4,16 @@ import styles from './styles'
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
-const SpecificPhoto = ({photo}) => {
+const PostGallery = ({media}) => {
 
   return (
     <View style={styles.container}>
       <Pressable onPress={()=>router.back()} style={styles.backIconContainer}>
         <Ionicons style={styles.backIcon} name="arrow-back-sharp" size={24} color="black" />
       </Pressable>
-      <Image source={{uri: photo}} style={styles.image}/>
+      <Image source={{uri: media}} style={styles.image}/>
     </View>
   )
 }
 
-export default SpecificPhoto;
+export default PostGallery;

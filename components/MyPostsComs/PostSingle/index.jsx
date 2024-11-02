@@ -8,27 +8,25 @@ const PostSingle = ({post}) => {
 
   return (
       <View style={styles.container}>
-        {/* <Link href={`/search/${post.id}`} asChild> */}
-          <Pressable onPress={()=>router.push('/share/forms')}>
+          <Pressable onPress={()=>router.push(`/profile/${post.id}`)}>
             <View style={styles.imageContainer}>
               {/* Image */}
-              <Image source={{uri: post.image[0]}} style={styles.image}/>
+              <Image source={{uri: post.media[0]}} style={styles.image}/>
             </View>
           </Pressable>
-        {/* </Link> */}
 
         <View style={styles.sub}>
           {/* Bed & Bedrooms */}
           <Text style={styles.bedroom}>{post.bed} Bedroom Apartment</Text>
 
           {/* Location */}
-          <Text style={styles.location}>{post.location}</Text>
+          <Text style={styles.location}>{post.address}</Text>
         </View>
 
         {/* Username */}
         <View style={styles.contact}>
           <FontAwesome6 name="person" size={24} color="black" />
-          <Text style={styles.name}>{post.username}</Text>
+          <Text style={styles.name}>{post.firstName}</Text>
         </View>
 
         {/* Type & Description */}
@@ -36,9 +34,9 @@ const PostSingle = ({post}) => {
 
         {/* Rent */}
         <View style={styles.priceRow}>
-          <Text style={styles.sub}>Rent: </Text>
+          <Text style={styles.sub}>Price: </Text>
           <Text style={styles.price}> 
-            ₦{post.rent} / year
+            ₦{post.price} / year
           </Text>
         </View>
 
@@ -46,7 +44,7 @@ const PostSingle = ({post}) => {
         <View style={styles.priceRowTotal}>
           <Text style={styles.sub}>Total:</Text>
           <Text style={styles.totalPrice}>
-             {''}₦{post.totalRent}
+             {''}₦{post.totalPrice}
           </Text>
         </View>
       </View>

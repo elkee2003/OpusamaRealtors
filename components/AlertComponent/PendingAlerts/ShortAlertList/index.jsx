@@ -57,7 +57,7 @@ const ShortAlertList = () => {
                 renderItem={({item})=> <ShortAlert alert={item}/>}
             />
         ): (
-            <Text style={styles.noListings}>You have no Alerts</Text>
+            <Text style={styles.noListings}>You have no alert</Text>
         )}
         
     </View>

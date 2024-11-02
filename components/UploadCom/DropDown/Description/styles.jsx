@@ -15,6 +15,14 @@ const styles = StyleSheet.create({
         borderRadius:20, 
         fontSize:16,
     },
+    inputLast:{
+        padding:8,
+        borderWidth:2,
+        borderColor:'#02061b', 
+        borderRadius:20, 
+        fontSize:16,
+        marginBottom:45,
+    },
 })
 
 export default styles

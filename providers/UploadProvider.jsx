@@ -11,22 +11,24 @@ const UploadContextProvider = ({children}) => {
     const [nameOfType, setNameOfType] = useState('')
     const [availableDocs, setAvailableDocs] = useState('')
     const [customInput, setCustomInput] = useState('');
-    const [accommodationParts, setAccommodationParts] = useState('')
-    const [media, setMedia] = useState([])
-    const [description, setDescription] = useState('')
-    const [address, setAddress] = useState('')
-    const [bedrooms, setBedrooms] = useState('')
-    const [bed, setBed] = useState('')
-    const [price, setPrice] = useState('')
-    const [totalPrice, setTotalPrice] = useState('')
-    const [country, setCountry] = useState('')
-    const [state, setState]= useState('')
-    const [city, setCity] = useState('')
-    const [amenities, setAmenities]= useState('')
-    const [policies, setPolicies] = useState('')
+    const [accommodationParts, setAccommodationParts] = useState('');
+    const [media, setMedia] = useState([]);
+    const [description, setDescription] = useState('');
+    const [address, setAddress] = useState('');
+    const [lat, setLat] = useState(null);
+    const [lng, setLng] = useState(null);
+    const [bedrooms, setBedrooms] = useState('');
+    const [bed, setBed] = useState('');
+    const [price, setPrice] = useState('');
+    const [totalPrice, setTotalPrice] = useState('');
+    const [country, setCountry] = useState('');
+    const [state, setState]= useState('');
+    const [city, setCity] = useState('');
+    const [amenities, setAmenities]= useState('');
+    const [policies, setPolicies] = useState('');
     const [uploadPost, setUploadPost] = useState(null);
 
-    const [errors, setErrors] = useState('')
+    const [errors, setErrors] = useState('');
 
     // Validation of Inputs
     const validateInput = ()=>{
@@ -134,30 +136,12 @@ const UploadContextProvider = ({children}) => {
       setMedia((prevMedia) => prevMedia.filter((_, idx) => idx !== index));
     };
 
-    // Function for imageUpload Validation
-    const imageUploadValidattion = ()=>{
-      if (media.length <= 2) {
-        setErrors('Kindly Upload At least 3 images');
-        return false;
-      }
-      return true;
-    }
-
     const onValidate = ()=>{
         if (validateInput()) {
           return true;
         }else{
           return false;
         }
-    }
-
-    const onImageUploadValidation= ()=>{
-      if (imageUploadValidattion()){
-        console.warn('image validated')
-        return true;
-      }else{
-        return false;
-      }
     }
 
   return (
@@ -171,6 +155,7 @@ const UploadContextProvider = ({children}) => {
         media, setMedia,
         description, setDescription,
         address, setAddress,
+        lat, setLat, lng, setLng,
         bedrooms, setBedrooms,
         bed, setBed,
         price, setPrice,
@@ -183,7 +168,7 @@ const UploadContextProvider = ({children}) => {
         policies, setPolicies,
         uploadPost, setUploadPost,
         onValidate, 
-        onImageUploadValidation, removeMedia
+        removeMedia
     }}>
       {children}
     </UploadContext.Provider>

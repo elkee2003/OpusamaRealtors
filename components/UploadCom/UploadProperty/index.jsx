@@ -16,13 +16,13 @@ const UploadProperty = () => {
     const {
         propertyType, setPropertyType, type, setType, nameOfType, setNameOfType, availableDocs, setAvailableDocs, 
         // customInput, setCustomInput,
-        accommodationParts, setAccommodationParts, media, setMedia, description, setDescription, bedrooms, setBedrooms, bed, setBed, price, setPrice, totalPrice, setTotalPrice, country, setCountry, state, setState, city, setCity, address, setAddress, amenities, setAmenities, policies, setPolicies, uploadPost, setUploadPost
+        accommodationParts, setAccommodationParts, media, setMedia, description, setDescription, bedrooms, setBedrooms, bed, setBed, price, setPrice, totalPrice, setTotalPrice, country, setCountry, state, setState, city, setCity, address, setAddress, lat, setLat, lng, setLng, amenities, setAmenities, policies, setPolicies, uploadPost, setUploadPost
     } = useUploadContext();
 
     const handleUpload = async () =>{
         try{
 
-            const mediaUris = media.assets ? media.assets.map(item => item.uri) : [];
+            const mediaUris = media.map((item) => item.uri);
 
             const post = await DataStore.save(new Post({
                 propertyType,
@@ -34,10 +34,10 @@ const UploadProperty = () => {
                 description,
                 available:true,
                 address,
-                // lat: parseFloat(lat), 
-                // lng: parseFloat(lng),
-                lat: 2.2,
-                lng:3.4,
+                lat: parseFloat(lat), 
+                lng: parseFloat(lng),
+                // lat: 2.2,
+                // lng:3.4,
                 price: parseFloat(price),
                 totalPrice:parseFloat(totalPrice),
                 bed,
@@ -57,6 +57,8 @@ const UploadProperty = () => {
             setMedia([])
             setDescription('')
             setAddress('')
+            setLat(null)
+            setLng(null)
             setBedrooms('')
             setBed('')
             setPrice('')
@@ -66,8 +68,10 @@ const UploadProperty = () => {
             setCity('')
             setPolicies('')
             setAmenities('')
+
+            router.push('/home')
         }catch(e){
-            Alert.alert('Error uploading', e.message)
+            Alert.alert('Error Uploading', e.message)
         }
     }
 

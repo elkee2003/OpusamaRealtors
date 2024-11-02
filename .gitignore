@@ -46,5 +46,8 @@ amplifytools.xcconfig
 **.sample
 #amplify-do-not-edit-end
 
+# api key
+/keys.jsx
+
 # Google services
 ./google-services.json

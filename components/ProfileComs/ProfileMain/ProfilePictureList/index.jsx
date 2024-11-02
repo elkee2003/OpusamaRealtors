@@ -1,15 +1,45 @@
-import { View, ScrollView } from 'react-native';
-import React from 'react';
-import feed from '../../../../assets/data/feed';
+import { View, ScrollView, ActivityIndicator, Alert, } from 'react-native';
+import React, {useState, useEffect} from 'react';
 import ProfileImageGrid from '../ProfileImageGrid';
+import { useAuthContext } from '@/providers/AuthProvider';
+import { DataStore } from 'aws-amplify/datastore';
+import {Realtor, Post} from '@/src/models';
 import styles from './styles';
 
 const ProfilePictureList = () => {
-  // Group data into rows of three
-  const rows = [];
-  for (let i = 0; i < feed.length; i += 3) {
-    rows.push(feed.slice(i, i + 3));
-  }
+
+    const {dbUser} = useAuthContext()
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchPosts = async () =>{
+      setLoading(true);
+      try{
+        const realtorPosts = await DataStore.query(Post, (p)=>p.realtorID.eq(dbUser.id));
+
+        const sortedPosts = realtorPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        // const postsWithRealtor = await Promise.all(
+        //   sortedPosts.map(async(post)=>{
+        //     if(post.realtorID){
+        //       const realtor = await DataStore.query(Realtor, (r)=>r.id.eq(post.realtorID));
+        //       return {...post, realtor:realtor[0] || null};
+        //     }
+        //     return {...post, realtor:null};
+        //   })
+        // )
+        // setPosts(postsWithRealtor);
+      }catch(e){
+        Alert.alert('Error fetching posts', e.message)
+      }
+    }
+
+
+    // Group data into rows of three
+    const rows = [];
+    for (let i = 0; i < posts.length; i += 3) {
+      rows.push(feed.slice(i, i + 3));
+    }
 
   return (
     <View contentContainerStyle={styles.container}>

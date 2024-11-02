@@ -70,6 +70,38 @@ const styles = StyleSheet.create({
         color:'red',
         fontStyle:'italic'
     },
+
+    // googleplaces style
+    clearIconContainer:{
+        position:'absolute',
+        right:10,
+        top:15,
+        zIndex:3,
+    },
+    clearIcon:{
+        fontSize:35,
+        color:'grey'
+    }, 
+    gContainer:{
+        position:'relative',
+        height:'8%',
+        zIndex:2,
+        marginBottom:10,
+    },
+    gContainerFocused: {
+        height: '40%',
+        zIndex: 2,
+    },
+    gTextInput: {
+        height: 60,
+        borderWidth:2,
+        borderRadius:20,
+        backgroundColor:'transparent',
+    },
+
+    gPoweredContainer:{
+        display:'none'
+    },
 })
 
 export default styles
