@@ -71,4 +71,4 @@ const DisplayMedia = () => {
   )
 }
 
-export default DisplayMedia
+export default DisplayMedia;

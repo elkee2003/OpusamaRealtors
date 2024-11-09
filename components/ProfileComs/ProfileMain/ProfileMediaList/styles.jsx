@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
     marginHorizontal: margin,
     marginBottom: 20,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -25,7 +30,7 @@ const styles = StyleSheet.create({
     width: imageSize,
     aspectRatio: 3 / 4,
     margin: margin / 10, // Ensure the empty view takes up space
-    backgroundColor: 'blue', // Make it invisible
+    backgroundColor: 'transparent', // Make it invisible
   },
   image: {
     flex: 1,
@@ -36,20 +41,3 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
-
-
-
-
-
-
-// import { StyleSheet, } from 'react-native'
-
-// const styles = StyleSheet.create({
-//     container:{
-//         marginHorizontal:5,
-//         marginBottom:20,
-//         flexDirection:'row'
-//     },
-// })
-
-// export default styles

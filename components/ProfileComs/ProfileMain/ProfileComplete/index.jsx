@@ -1,13 +1,16 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import ProfileHead from '../ProfileHead';
-import ProfilePictureList from '../ProfilePictureList';
+import ProfileMediaList from '../ProfileMediaList';
+import styles from './styles';
 
 const ProfileMain = () => {
   return (
-    <View style={{flex:1}}>
+    <View style={styles.container}>
       <ProfileHead/>
-      <ProfilePictureList/>
+      <View style={{ flex: 1 }}>
+        <ProfileMediaList/>
+      </View>
     </View>
   )
 }

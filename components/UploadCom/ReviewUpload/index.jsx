@@ -29,6 +29,12 @@ const ReviewUpload = () => {
         policies,
         amenities, 
     } = useUploadContext()
+
+     const displayPrice = price;
+     const displayTotalPrice = totalPrice;
+
+     const formattedPrice = Number(displayPrice).toLocaleString();
+     const formattedTotalPrice = Number(displayTotalPrice).toLocaleString();
     
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
@@ -91,12 +97,12 @@ const ReviewUpload = () => {
 
         <View style={styles.row}>
           <Text style={styles.displayLabel}>Price:</Text>
-          <Text style={styles.inputReview}>₦{price}</Text>
+          <Text style={styles.inputReview}>₦{formattedPrice}</Text>
         </View>
           
         <View style={styles.row}>
           <Text style={styles.displayLabel}>Total Price:</Text>
-          <Text style={styles.inputReview}>₦{totalPrice}</Text>
+          <Text style={styles.inputReview}>₦{formattedTotalPrice}</Text>
         </View>
 
         {bedrooms && <View style={styles.row}>  

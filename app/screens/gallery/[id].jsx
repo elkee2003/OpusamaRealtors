@@ -1,5 +1,5 @@
-import { View, FlatList, ActivityIndicator} from 'react-native'
-import React, {useState, useEffect} from 'react'
+import { View, FlatList, ActivityIndicator} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import PostGallery from '../../../components/PostDetailsCom/PostGallery'
 import { useLocalSearchParams } from 'expo-router'
 import { DataStore } from 'aws-amplify/datastore';
@@ -36,6 +36,8 @@ const Gallery = () => {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
+  // const media = post.media ? post.media.map((uri) => ({ url: uri })) : [];
+
   return (
     <View style={{flex:1,}} >
         <FlatList
@@ -44,6 +46,7 @@ const Gallery = () => {
         horizontal
         pagingEnabled
         />
+        {/* <PostGallery media={media} /> */}
     </View>
   )
 }

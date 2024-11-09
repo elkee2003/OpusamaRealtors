@@ -10,7 +10,7 @@ const index = () => {
         propertyType, setPropertyType,
         type, setType,
         accommodationParts, setAccommodationParts,
-        bedroom, setBedroom,
+        bedrooms, setBedrooms,
         availableDocs, setAvailableDocs,
         customInput, setCustomInput,
     } = useUploadContext()
@@ -95,11 +95,11 @@ const index = () => {
                 {/* Available Docs */}
                 <Text style={styles.labelTxt}>Available Documents:</Text>
                 <TextInput
-                style={styles.input}
-                value={availableDocs}
-                onChangeText={setAvailableDocs}
-                placeholder='Kindly input necessary and available documents'
-                multiline
+                    style={styles.input}
+                    value={availableDocs}
+                    onChangeText={setAvailableDocs}
+                    placeholder='Kindly input necessary and available documents'
+                    multiline
                 />
             </>
         )}
@@ -140,11 +140,11 @@ const index = () => {
                 {/* Accomodation Parts House */}
                 <Text style={styles.labelTxt}>Accommodation Parts:</Text>
                 <TextInput
-                style={styles.input}
-                value={accommodationParts}
-                onChangeText={setAccommodationParts}
-                placeholder='eg: 2 parlours, 3 kitchens (optional)'
-                multiline
+                    style={styles.input}
+                    value={accommodationParts}
+                    onChangeText={setAccommodationParts}
+                    placeholder='eg: 2 parlours, 3 kitchens (optional)'
+                    multiline
                 />
 
                 {/* General Info for Bedroom */}
@@ -152,21 +152,22 @@ const index = () => {
                 <View>
                 <Text style={styles.labelTxt}>Bedrooms:</Text>
                 <TextInput
-                style={styles.input}
-                value={bedroom}
-                onChangeText={setBedroom}
-                placeholder='Number of Bedrooms'
+                    style={styles.input}
+                    value={bedrooms}
+                    onChangeText={setBedrooms}
+                    placeholder='Number of Bedrooms'
+                    keyboardType='numeric'
                 />
                 </View>
 
                 {/* Available Docs */}
                 <Text style={styles.labelTxt}>Available Documents:</Text>
                 <TextInput
-                style={styles.input}
-                value={availableDocs}
-                onChangeText={setAvailableDocs}
-                placeholder='Kindly input necessary and available documents'
-                multiline
+                    style={styles.input}
+                    value={availableDocs}
+                    onChangeText={setAvailableDocs}
+                    placeholder='Kindly input necessary and available documents'
+                    multiline
                 />
             </>
         )}

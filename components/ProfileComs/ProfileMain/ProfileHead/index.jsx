@@ -1,18 +1,25 @@
-import { View, Text, TouchableOpacity, Image, Alert } from 'react-native'
-import React, { useState } from 'react';
-import styles from './styles'
+import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import styles from './styles';
+import Placeholder from '../../../../assets/images/placeholder.png';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useProfileContext } from '@/providers/ProfileProvider';
+import {useAuthContext} from '@/providers/AuthProvider';
+import { getUrl } from 'aws-amplify/storage';
 
 const ProfileHead = () => {
 
-  const {firstName, lastName, address, phoneNumber, profilePic,} = useProfileContext()
+  const {firstName, lastName, address, phoneNumber, profilePic, setProfilePic} = useProfileContext();
 
-  const maxLength = 30
-  const locationText = address
+  const {dbUser} = useAuthContext();
+
+  const [loading, setLoading]= useState(true);
+
+  const maxLength = 30;
+  const locationText = address;
 
   const truncatedText = address.length > maxLength 
   ? `${locationText.substring(0, maxLength)}...` 
@@ -20,13 +27,45 @@ const ProfileHead = () => {
 
   const comingSoon =()=>{
     Alert.alert('Soon', 'Functionality will soon be available')
-  }
+  };
+
+  // Fetch signed URL for profile picture
+  const fetchImageUrl = async () => {
+    setLoading(true);
+    try {
+      const result = await getUrl({
+        path: dbUser.profilePic,
+        options: {
+          validateObjectExistence: true, 
+          expiresIn: null, // No expiration limit
+        },
+      });
+
+      if (result.url) {
+        setProfilePic(result.url.toString());
+      }
+    } catch (error) {
+      console.error('Error fetching profile pic URL:', error);
+    }finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (dbUser.profilePic) {
+      fetchImageUrl();
+    }
+  }, [dbUser.profilePic]);
 
   return (
     <View style={styles.container}>
       <View style={styles.profileDetails}>
         <TouchableOpacity style={styles.profilePicContainer} onPress={()=>router.push('/profile/editprofile')}>
-          <Image source={{ uri: profilePic }} style={styles.img} />
+          {profilePic ? (
+            <Image source={{ uri: profilePic }} style={styles.img} />
+          ) : (
+            <Image source={Placeholder} style={styles.img} />
+          )}
         </TouchableOpacity>
     
         <View style={styles.details}>

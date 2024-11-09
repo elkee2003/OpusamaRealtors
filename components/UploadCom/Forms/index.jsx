@@ -1,4 +1,5 @@
 import { View, Text, ScrollView, TextInput, Pressable, TouchableOpacity} from 'react-native';
+// import { ScrollView } from 'react-native-virtualized-view';
 import React, {useState, useRef} from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_API_KEY } from '@/keys';
@@ -74,23 +75,6 @@ const Forms = () => {
 
   };
 
-    // Function to format numbers with commas
-    const formatNumberWithCommas = (value) => {
-      // Remove any non-digit characters
-      const numericValue = value.replace(/\D/g, '');
-      // Format the number with commas
-      return numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    };
-
-    const handlePriceChange = (value) => {
-      const formattedValue = formatNumberWithCommas(value);
-      setPrice(formattedValue);
-    };
-    const handleTotalPriceChange = (value) => {
-      const formattedValue = formatNumberWithCommas(value);
-      setTotalPrice(formattedValue);
-    };
-
   return (
     <View 
       style={styles.container}
@@ -100,7 +84,9 @@ const Forms = () => {
   
       <Text style={styles.header}>Property Details</Text>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView 
+        showsVerticalScrollIndicator={false}  
+      >
         <AccommodationDropDown/>
 
         {propertyType === 'Land Sale' && <PropertySale/>}
@@ -118,7 +104,7 @@ const Forms = () => {
             <TextInput
             style={styles.genInput}
             value={price}
-            onChangeText={handlePriceChange}
+            onChangeText={setPrice}
             placeholder='Price'
             keyboardType='numeric'
             multiline
@@ -130,7 +116,7 @@ const Forms = () => {
             <TextInput
             style={styles.genInput}
             value={totalPrice}
-            onChangeText={handleTotalPriceChange}
+            onChangeText={setTotalPrice}
             placeholder='Total Price'
             keyboardType='numeric'
             multiline

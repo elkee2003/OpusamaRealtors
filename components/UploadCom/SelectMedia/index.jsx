@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, FlatList, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, Alert, ActivityIndicator } from 'react-native';
 import React, {useState} from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -35,19 +35,12 @@ const SelectMedia = () => {
       }
     }
   };
+
+        
   
 
   return (
     <View style={styles.container}>
-      {/* <FlatList
-        data={selectedMedia}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={renderItem}
-        horizontal={true}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.mediaFullDisplayContainer}
-      /> */}
       <TouchableOpacity onPress={pickMediaAsync}>
         <MaterialIcons style={styles.icon} name="add-a-photo" />
         <Text style={styles.txt}>Upload Images of Property</Text>

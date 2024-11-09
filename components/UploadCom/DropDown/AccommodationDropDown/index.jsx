@@ -171,6 +171,7 @@ const AccommodationDropDown = () => {
               value={bedrooms}
               onChangeText={setBedrooms}
               placeholder='Number of Bedrooms'
+              keyboardType='numeric'
               />
             </View>
           </>
@@ -239,6 +240,7 @@ const AccommodationDropDown = () => {
                 value={bedrooms}
                 onChangeText={setBedrooms}
                 placeholder='Number of Bedrooms'
+                keyboardType='numeric'
                 />
               </View>
 
@@ -249,6 +251,7 @@ const AccommodationDropDown = () => {
                 value={bed}
                 onChangeText={setBed}
                 placeholder='Number of Beds'
+                keyboardType='numeric'
                 />
               </View>
             </View>

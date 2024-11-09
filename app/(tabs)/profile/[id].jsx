@@ -29,6 +29,21 @@ const DetaildePostScreen = () => {
 
   useEffect(()=>{
     fetchPost(id);
+
+    // I would have used the commented out function but it makes my page re-render
+    // const subscription = DataStore.observe(Post, id).subscribe(({opType, element})=>{
+    //   if(opType === 'UPDATE'){
+    //     fetchPost(element.id);
+    //   }
+    // });
+
+    const subscription = DataStore.observe(Post, id).subscribe(({opType, element})=>{
+      if(opType === 'UPDATE'){
+        setPost(element);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, [id]);
 
   if (loading) {

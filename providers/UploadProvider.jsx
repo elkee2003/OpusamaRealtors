@@ -15,8 +15,8 @@ const UploadContextProvider = ({children}) => {
     const [media, setMedia] = useState([]);
     const [description, setDescription] = useState('');
     const [address, setAddress] = useState('');
-    const [lat, setLat] = useState(null);
-    const [lng, setLng] = useState(null);
+    const [lat, setLat] = useState(0);
+    const [lng, setLng] = useState(0);
     const [bedrooms, setBedrooms] = useState('');
     const [bed, setBed] = useState('');
     const [price, setPrice] = useState('');
@@ -57,10 +57,6 @@ const UploadContextProvider = ({children}) => {
         }
         if (!state) {
           setErrors('State is Required');
-          return false;
-        }
-        if (!city) {
-          setErrors('City is Required');
           return false;
         }
         if (!address) {
@@ -144,6 +140,54 @@ const UploadContextProvider = ({children}) => {
         }
     }
 
+    const validateUpload = () =>{
+      if(!propertyType){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      if(!type){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      if(!media){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      if(!description){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      if(!address){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      if(!price){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      if(!totalPrice){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      if(!country){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      if(!state){
+        alert('Cannot upload empty fields');
+        return false;
+      }
+      return true;
+    }
+
+    const onValidateUpload = () =>{
+      if (validateUpload()){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
   return (
     <UploadContext.Provider value={{
         propertyType, setPropertyType,
@@ -167,7 +211,7 @@ const UploadContextProvider = ({children}) => {
         amenities, setAmenities,
         policies, setPolicies,
         uploadPost, setUploadPost,
-        onValidate, 
+        onValidate, onValidateUpload,
         removeMedia
     }}>
       {children}

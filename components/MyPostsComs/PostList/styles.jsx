@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
         top:'40%',
         marginHorizontal:10,
     },
+    loading:{
+        color:' #050525',
+    },
 })
 
 export default styles;

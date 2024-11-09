@@ -10,7 +10,7 @@ const ShortAlertList = () => {
 
     const {dbUser} = useAuthContext()
 
-    const [alerts, setAlerts] = useState(alert)
+    const [alerts, setAlerts] = useState([])
     const [loading, setLoading] = useState(true)
 
     const fetchBookings = async () =>{

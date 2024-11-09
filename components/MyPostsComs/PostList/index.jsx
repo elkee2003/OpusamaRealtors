@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import PostSingle from '../PostSingle';
 import { useAuthContext } from '@/providers/AuthProvider';
 import { DataStore } from 'aws-amplify/datastore';
-import {Realtor, Post} from '../../../src/models';
+import {Post} from '../../../src/models';
 import styles from './styles';
 
 const PostList = () => {
@@ -14,16 +14,21 @@ const PostList = () => {
     const [loading, setLoading] = useState(false);
 
     const fetchMyPosts = async() =>{
+        setLoading(true);
+
         try{
-            setLoading(true);
-            
             const myPosts = await DataStore.query(Post, (p)=>p.realtorID.eq(dbUser.id));
 
-            setMyPostList(myPosts);
+            // Sort posts by createdAt in descending order (most recent first)
+            const sortedPosts = myPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            setMyPostList(sortedPosts);
         }catch(e){
             Alert.alert('Error fetching posts', e.message)
+        }finally {
+          setLoading(false);
         }
-    }
+    };
 
     useEffect(()=>{
         fetchMyPosts();
@@ -35,7 +40,7 @@ const PostList = () => {
         });
 
         return () => subscription.unsubscribe();
-    },[myPostList])
+    },[])
 
     if(loading){
         <ActivityIndicator size={'large'} style={styles.loading}/>
