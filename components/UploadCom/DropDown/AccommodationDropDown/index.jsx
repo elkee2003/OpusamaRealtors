@@ -20,7 +20,7 @@ const AccommodationDropDown = () => {
 
     const propertyTypes = [
       { label: 'House', value: 'House' },
-      { label: 'Hotel / Shorlet', value: 'Hotel / Shorlet' },
+      { label: 'Hotel / Shortlet', value: 'Hotel / Shortlet' },
       { label: 'House Sale', value: 'House Sale' },
       { label: 'Land Sale', value: 'Land Sale' },
       { label: 'Office Space', value: 'Office Space' },
@@ -178,7 +178,7 @@ const AccommodationDropDown = () => {
         )}
 
         {/* Hotel & Shortlet */}
-        {propertyType === 'Hotel / Shorlet' && (
+        {propertyType === 'Hotel / Shortlet' && (
           <>
             <Text style={styles.labelTxt}>Accommodation Type</Text>
             <Dropdown
@@ -192,7 +192,7 @@ const AccommodationDropDown = () => {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder={!isFocus ? 'Select Hotel/Shorlet Type' : '...'}
+                placeholder={!isFocus ? 'Select Hotel/Shortlet Type' : '...'}
                 searchPlaceholder="Search..."
                 value={type}
                 onFocus={() => setIsFocus(true)}

@@ -11,6 +11,7 @@ const ProfileContextProvider = ({children}) => {
     const [profilePic, setProfilePic] = useState(null)
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [myDescription, setMyDescription] = useState("")
     const [address, setAddress] = useState( "")
     const [phoneNumber, setPhoneNumber]= useState("")
     const [bankname, setBankname]= useState("")
@@ -64,6 +65,7 @@ const ProfileContextProvider = ({children}) => {
             setProfilePic(dbUser?.profilePic);
             setFirstName(dbUser.firstName || "");
             setLastName(dbUser.lastName || "");
+            setMyDescription(dbUser.myDescription || "");
             setAddress(dbUser.address || "");
             setPhoneNumber(dbUser.phoneNumber || "");
             setBankname(dbUser.bankname || "");
@@ -74,7 +76,7 @@ const ProfileContextProvider = ({children}) => {
 
 
   return (
-    <ProfileContext.Provider value={{firstName,setFirstName, lastName, setLastName, address, setAddress, phoneNumber, setPhoneNumber, bankname, setBankname, accountName, setAccountName, accountNumber, setAccountNumber, errorMessage, setErrorMessage, profilePic, setProfilePic, onValidateInput}}>
+    <ProfileContext.Provider value={{firstName,setFirstName, lastName, setLastName, address, setAddress, phoneNumber, setPhoneNumber, bankname, setBankname, accountName, setAccountName, accountNumber, setAccountNumber, errorMessage, setErrorMessage, profilePic, setProfilePic, myDescription, setMyDescription, onValidateInput}}>
         {children}
     </ProfileContext.Provider>
   )

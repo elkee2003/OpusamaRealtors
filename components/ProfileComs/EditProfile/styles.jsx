@@ -58,6 +58,12 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 5,
     },
+    inputdescription: {
+        marginVertical: 10,
+        backgroundColor: "white",
+        padding: 20,
+        borderRadius: 5,
+    },
     error:{
         color:'#d80b0b',
         fontSize:13,
@@ -107,6 +113,14 @@ const styles = StyleSheet.create({
     },
     inputReview:{
         padding:5,
+        fontSize:18,
+        letterSpacing:0.5,
+        color:"white",
+        backgroundColor:'#3b3b3b',
+        borderRadius:20,
+    },
+    inputReviewDesc:{
+        padding:10,
         fontSize:18,
         letterSpacing:0.5,
         color:"white",

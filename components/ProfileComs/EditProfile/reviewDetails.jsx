@@ -12,7 +12,7 @@ import {Realtor} from '@/src/models';
 
 const ReviewDetails = () => {
 
-    const {firstName, lastName, profilePic, address, phoneNumber, bankname, accountName, accountNumber,} = useProfileContext()
+    const {firstName, lastName, profilePic, address, phoneNumber, bankname, accountName, accountNumber, myDescription} = useProfileContext()
 
     const {dbUser, setDbUser, sub} = useAuthContext()
 
@@ -49,9 +49,10 @@ const ReviewDetails = () => {
         setUploading(true);
         try{
             const uploadedImagePath = await uploadImage();  // Upload image first
+
             const user = await DataStore.save(new Realtor({
                 profilePic: uploadedImagePath,
-                firstName, lastName, address, phoneNumber, bankname, accountName, accountNumber,
+                firstName, lastName, myDescription, address, phoneNumber, bankname, accountName, accountNumber,
                 sub
             }))
             setDbUser(user)
@@ -67,9 +68,11 @@ const ReviewDetails = () => {
         setUploading(true);
         try{
             const uploadedImagePath = await uploadImage();  // Upload image first
+
             const user = await DataStore.save(Realtor.copyOf(dbUser, (updated)=>{
                 updated.firstName = firstName;
                 updated.lastName = lastName;
+                updated.myDescription = myDescription;
                 updated.profilePic = uploadedImagePath;
                 updated.address = address;
                 updated.phoneNumber = phoneNumber;
@@ -88,10 +91,18 @@ const ReviewDetails = () => {
     const handleSave = async () => {
         if(dbUser){
             await updateRealtor()
-            router.push('/home')
+            router.push('/profile');
+
+            setTimeout(() => {
+                router.push('/home');
+            }, 1000);
         }else {
             await createRealtor ()
-            router.push('/home')
+            router.push('/profile');
+
+            setTimeout(() => {
+                router.push('/home');
+            }, 1000);
         }
     }
 
@@ -114,22 +125,25 @@ const ReviewDetails = () => {
             }
 
             <Text style={styles.subHeader}>First Name:</Text>
-            <Text style={styles.inputReview}>{firstName}</Text>
+            <Text style={styles.inputReview}>{firstName?.trim()}</Text>
 
             <Text style={styles.subHeader}>Last Name:</Text>
-            <Text style={styles.inputReview}>{lastName}</Text>
+            <Text style={styles.inputReview}>{lastName?.trim()}</Text>
+
+            <Text style={styles.subHeader}>My Description:</Text>
+            <Text style={styles.inputReviewDesc}>{myDescription?.trim()}</Text>
 
             <Text style={styles.subHeader}>Address:</Text>
-            <Text style={styles.inputReview}>{address}</Text>
+            <Text style={styles.inputReview}>{address?.trim()}</Text>
 
             <Text style={styles.subHeader}>Phone Number:</Text>
             <Text style={styles.inputReview}>{phoneNumber}</Text>
 
             <Text style={styles.subHeader}>Bank Name:</Text>
-            <Text style={styles.inputReview}>{bankname}</Text>
+            <Text style={styles.inputReview}>{bankname?.trim()}</Text>
 
             <Text style={styles.subHeader}>Account Name:</Text>
-            <Text style={styles.inputReview}>{accountName}</Text>
+            <Text style={styles.inputReview}>{accountName?.trim()}</Text>
 
             <Text style={styles.subHeader}>Account Number:</Text>
             <Text style={styles.inputReviewLast}>{accountNumber}</Text>
@@ -142,4 +156,4 @@ const ReviewDetails = () => {
   )
 }
 
-export default ReviewDetails
+export default ReviewDetails;

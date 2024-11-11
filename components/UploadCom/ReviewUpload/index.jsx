@@ -72,12 +72,12 @@ const ReviewUpload = () => {
 
         {availableDocs && <View style={styles.row}>
           <Text style={styles.displayLabel}>Available Documents:</Text>
-          <Text style={styles.inputReview}>{availableDocs}</Text>
+          <Text style={styles.inputReview}>{availableDocs?.trim()}</Text>
         </View>}
 
         <View style={styles.row}>  
           <Text style={styles.displayLabel}>Address:</Text>
-          <Text style={styles.inputReview}>{address}</Text>
+          <Text style={styles.inputReview}>{address?.trim()}</Text>
         </View>
 
         <View style={styles.row}>  
@@ -122,17 +122,17 @@ const ReviewUpload = () => {
 
         <View style={styles.row}>  
           <Text style={styles.displayLabel}>Description:</Text>
-          <Text style={styles.inputReview}>{description}</Text>
+          <Text style={styles.inputReview}>{description?.trim()}</Text>
         </View>
 
         <View style={styles.row}>  
           <Text style={styles.displayLabel}>Amenities:</Text>
-          <Text style={styles.inputReview}>{amenities}</Text>
+          <Text style={styles.inputReview}>{amenities?.trim()}</Text>
         </View>
 
         <View style={styles.row}>  
           <Text style={styles.displayLabel}>Policies:</Text>
-          <Text style={styles.inputReview}>{policies}</Text>
+          <Text style={styles.inputReview}>{policies?.trim()}</Text>
         </View>
         
       </ScrollView>

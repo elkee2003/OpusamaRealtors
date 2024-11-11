@@ -15,6 +15,9 @@ const DetailedPost = ({post}) => {
 
   const [imageUris, setImageUris] = useState([]);
   const [isAvailable, setIsAvailable] = useState(post.available);
+  const [readMore, setReadMore] = useState(false);
+  const [readMoreLux, setReadMoreLux] = useState(false);
+  const [readMorePol, setReadMorePol] = useState(false);
 
   // Function to handle post deletion
   const handleDeletePost = async () => {
@@ -116,116 +119,169 @@ const DetailedPost = ({post}) => {
         </View>
 
         {/* Username */}
-        <View style={styles.contact}>
-          <FontAwesome6 name="person" size={30} color="black" />
-          <Text style={styles.name}>
-            {firstName}
-            <Text style={{color:'red'}}>firstName</Text>
-          </Text>
-        </View>
+        {firstName && (
+          <View style={styles.contact}>
+            <FontAwesome6 name="person" size={30} color="black" />
+            <Text style={styles.name}>
+              {firstName}
+            </Text>
+          </View>
+        )}
 
         {/* Card */}
         <View style={styles.card}>
 
-          <View style={styles.propertyDetails}>
-            <Text style={styles.details}>
+          {post.propertyType && (
+            <Text style={styles.propertyType}>
               {post.propertyType}
-              <Text style={{color:'red'}}>propertype</Text>
             </Text>
+          )}
 
+          {post.type && (
             <Text style={styles.details}>
               {post.type}
-              <Text style={{color:'red'}}>type</Text>
             </Text>
-          </View>
+          )}
 
 
-          <Text style={styles.details}>
-            {post.nameOfType}
-            <Text style={{color:'red'}}>nameOfType</Text>
-          </Text>
+          {post.nameOfType && (
+            <Text style={styles.details}>
+              {post.nameOfType}
+            </Text>
+          )}
 
 
-          <Text style={styles.details}>
-            {post.availableDocs}
-            <Text style={{color:'red'}}>availableDocs</Text>
-          </Text>
+          {post.availableDocs && (
+            <>
+              <Text style={styles.subheader}>Available Documents:</Text>
+              <Text style={styles.details}>
+                {post.availableDocs}
+              </Text>
+            </>
+          )}
 
         </View>
 
         {/* Card */}
         <View style={styles.card}>
-          <Text style={styles.details}>
-            {post.accommodationParts}
-            <Text style={{color:'red'}}>accommodationParts</Text>
-          </Text>
 
-          <View style={styles.bedroomRow}>
-            {/* Bed & Bedrooms */}
-            <Text style={styles.details}>A {post.bedrooms} Bedroom
-              <Text style={{color:'red'}}>bedrooms</Text>
+          {/* Accommodation Parts */}
+          {post.accommodationParts && (
+            <>
+              <Text style={styles.subheader}>Accommodation Parts</Text>
+              <Text style={styles.details}>
+                {post.accommodationParts}
+              </Text>
+            </>
+          )}
+
+          {/* Bed & Bedrooms */}
+          {post.bedrooms && (
+              <Text style={styles.details}>A {post.bedrooms} Bedroom
             </Text>
+          )}
 
+          {post.bed && (
             <Text style={styles.details}> 
               {post.bed} bed(s)
-              <Text style={{color:'red'}}>Bed</Text>
             </Text>
-          </View>
+          )}
         </View>
 
         <View style={styles.card}>
           <Text style={styles.header}>Location</Text>
+
           {/* Address */}
-          <Text style={styles.details}>
-            {post.address}
-            <Text style={{color:'red'}}>address</Text>
-          </Text>
+          {post.address && (
+            <Text style={styles.details}>
+              {post.address}
+            </Text>
+          )}
           
-          {/* Country, State, City */}
+          {/* City, State, Country, */}
           <View>
-            <Text style={styles.details}>
-              {post.country}
-              <Text style={{color:'red'}}>country</Text>
-            </Text>
+            {post.city && (
+              <Text style={styles.details}>
+                {post.city}
+              </Text>
+            )}
+            
+            {post.state && (
+              <Text style={styles.details}>
+                {post.state}
+              </Text>
+            )}
 
-            <Text style={styles.details}>
-              {post.state}
-              <Text style={{color:'red'}}>state</Text>
-            </Text>
-
-            <Text style={styles.details}>
-              {post.city}
-              <Text style={{color:'red'}}>city</Text>
-            </Text>
+            {post.country && (
+              <Text style={styles.details}>
+                {post.country}
+              </Text>
+            )}
           </View>
         </View>
 
         {/* Type & Description */}
-        <View style={styles.card}>
-        <Text style={styles.header}>Description</Text>
-          <Text style={styles.description} >
-            {post.description}
-            <Text style={{color:'red'}}>description</Text>
-          </Text>
-        </View>
+        {post.description && (
+          <View style={styles.card}>
+            <Text style={styles.header}>Description</Text>
+            <Text style={styles.description} >
+              {readMore || post.description.length <= 150 ? post.description : `${post.description.substring(0, 150)}...`}
+
+              {/* Button to toggle */}
+              { post.description.length > 150 &&(readMore ?
+                <Text onPress={()=>setReadMore(false)} style={[{...styles.readMoreLess, color:"#c2021b"}]}>
+                  {' '}show less
+                </Text>
+                :
+                <Text style={styles.readMoreLess} onPress={()=>setReadMore(true)}>
+                  {' '}read more
+                </Text>)
+              }
+            </Text>
+          </View>
+        )}
 
         {/* Amenities and Policies */}
-        <View style={styles.card}>
+        {post.amenities && (
+          <View style={styles.card}>
           
-          <Text style={styles.header}>Luxuries</Text>
-            <Text style={styles.details}>
-              {post.amenities}
-              <Text style={{color:'red'}}>amenities</Text>
-            </Text>
-        </View>
+            <Text style={styles.header}>Luxuries</Text>
+              <Text style={styles.details}>
+                {readMoreLux ||post.amenities.length <= 150 ? post.amenities : `${post.amenities.substring(0, 100)}...`}
 
-        <View style={styles.card}>
+                {/* Button to toggle */}
+                {  post.amenities.length > 100 &&(readMoreLux ?
+                  <Text onPress={()=>setReadMoreLux(false)} style={[{...styles.readMoreLess, color:"#c2021b"}]}>
+                    {' '}show less
+                  </Text>
+                  :
+                  <Text style={styles.readMoreLess} onPress={()=>setReadMoreLux(true)}>
+                    {' '}read more
+                  </Text>)
+                }
+              </Text>
+          </View>
+        )}
+
+        {post.policies && (
+          <View style={styles.card}>
             <Text style={styles.header}>Policies</Text>
             <Text style={styles.details}>
-              {post.policies}
-              <Text style={{color:'red'}}>policies</Text>
+              {readMorePol || post.policies.length <= 100 ? post.policies : `${post.policies.substring(0,100)}...`}
+
+              {/* Button to toggle */}
+              { post.policies.length > 100 &&(readMorePol ?
+                <Text onPress={()=>setReadMorePol(false)} style={[{...styles.readMoreLess, color:"#c2021b"}]}>
+                  {' '}show less
+                </Text>
+                :
+                <Text style={styles.readMoreLess} onPress={()=>setReadMorePol(true)}>
+                  {' '}read more
+                </Text>)
+              }
             </Text>
-        </View>
+          </View>
+        )}
 
         <View style={styles.card}>
           {/* Rent */}
@@ -233,7 +289,6 @@ const DetailedPost = ({post}) => {
             <Text style={styles.sub}>Price: </Text>
             <Text style={styles.price}> 
               ₦{post.price.toLocaleString()} / year
-              <Text style={{color:'red'}}>price</Text>
             </Text>
           </View>
 
@@ -242,7 +297,6 @@ const DetailedPost = ({post}) => {
             <Text style={styles.sub}>Total:</Text>
             <Text style={styles.totalPrice}>
               {''}₦{post.totalPrice.toLocaleString()}
-              <Text style={{color:'red'}}>totalprice</Text>
             </Text>
           </View>
         </View>

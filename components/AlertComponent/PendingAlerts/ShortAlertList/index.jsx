@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import ShortAlert from '../ShortAlert';
 import styles from './styles';
 import { DataStore } from 'aws-amplify/datastore';
-import {Booking} from '@/src/models';
+import {Booking, User} from '@/src/models';
 import { useAuthContext } from '@/providers/AuthProvider';
 
 const ShortAlertList = () => {
@@ -18,11 +18,11 @@ const ShortAlertList = () => {
       try{
         const fetchedBookings = await DataStore.query(Booking, (b)=> b.bookingRealtorId.eq(dbUser.id));
 
-        const filteredBookings = fetchedBookings.filter((booking)=>booking.status === 'ACCEPTED').sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt));
+        const filteredBookings = fetchedBookings.filter((booking)=>booking.status === 'PENDING').sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt));
 
         const bookingwithUserID = await Promise.all(filteredBookings.map(async (booking)=>{
           if(booking.userID){
-            const bookedUser = await DataStore.query(User, (u)=>u.userID.eq(booking.userID));
+            const bookedUser = await DataStore.query(User, (u)=>u.id.eq(booking.userID));
             return {...booking, user: bookedUser[0] || null};
           }
           return {...booking, user: null};
@@ -54,10 +54,10 @@ const ShortAlertList = () => {
             <FlatList
                 showsVerticalScrollIndicator={false} 
                 data={alerts}
-                renderItem={({item})=> <ShortAlert alert={item}/>}
+                renderItem={({item})=> <ShortAlert notification={item}/>}
             />
         ): (
-            <Text style={styles.noListings}>You have no alert</Text>
+            <Text style={styles.noListings}>You have no pending alert</Text>
         )}
         
     </View>

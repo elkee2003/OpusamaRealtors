@@ -12,7 +12,7 @@ import { getUrl } from 'aws-amplify/storage';
 
 const ProfileHead = () => {
 
-  const {firstName, lastName, address, phoneNumber, profilePic, setProfilePic} = useProfileContext();
+  const {firstName, lastName, address, phoneNumber, profilePic, setProfilePic, myDescription} = useProfileContext();
 
   const {dbUser} = useAuthContext();
 
@@ -61,10 +61,10 @@ const ProfileHead = () => {
     <View style={styles.container}>
       <View style={styles.profileDetails}>
         <TouchableOpacity style={styles.profilePicContainer} onPress={()=>router.push('/profile/editprofile')}>
-          {profilePic ? (
-            <Image source={{ uri: profilePic }} style={styles.img} />
+          {loading ? (
+            <Image source={Placeholder} style={styles.img} /> // Show placeholder while loading
           ) : (
-            <Image source={Placeholder} style={styles.img} />
+            <Image source={{ uri: profilePic }} style={styles.img} onError={() => setProfilePic(null)} />
           )}
         </TouchableOpacity>
     
@@ -86,6 +86,13 @@ const ProfileHead = () => {
           <View style={styles.row}>
             <Entypo name="location" size={24} color="black" />
             <Text style={styles.txt}>{truncatedText}</Text>
+          </View>
+
+          {/* Description */}
+          <View style={styles.row}>
+            <Text style={styles.txtDesc}>
+             {myDescription} 
+            </Text>
           </View>
         </View>
       </View>

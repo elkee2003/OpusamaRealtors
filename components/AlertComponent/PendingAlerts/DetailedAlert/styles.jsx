@@ -16,7 +16,80 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     details:{
+        color:'white',
+        padding:8,
+        borderRadius:10,
+        fontSize:17,
+        marginBottom:15,
+        backgroundColor:'#0b0b29'
+    },
+    guestUnit:{
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    unitTxt:{
+        textAlign:'center',
+        borderRadius:20,
+        padding:10,
+        color:'white',
+        backgroundColor:'#0b0b29',
+    },
+    statusRow:{
+        flexDirection:'row',
+        alignItems:'center',
+        gap:10,
+        marginBottom:5,
+    },
+    status:{
         fontSize:16,
+        fontWeight:'bold',
+    },
+    greenIcon:{
+        width:10,
+        height:10,
+        borderRadius:5,
+        backgroundColor:'#03eb03',
+    },
+    redIcon:{
+        width:10,
+        height:10,
+        borderRadius:5,
+        backgroundColor:'#eb1e03',
+    },
+    bookedBy:{
+        fontSize:17,
+        fontStyle:'italic',
+        marginBottom:15,
+    },
+
+    // Buttons
+    acceptDenyRow:{
+        flexDirection:'row',
+        gap:30,
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop:15,
+        marginBottom:40,
+    },
+    accept:{
+        padding:10,
+        width:150,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#0ac00a',
+        borderRadius:20,
+    },
+    deny:{
+        padding:10,
+        width:150,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#df2007',
+        borderRadius:20,
+    },
+    btnTxt:{
+        fontSize:20,
+        fontWeight:'bold',
     },
 })
 

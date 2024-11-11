@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
         fontSize:15,
         color:'#01011b'
     },
+    txtDesc:{
+        flex:1,
+        fontSize:15,
+        fontWeight:'bold',
+        color:'#484849'
+    },
     profileSubrow:{
         marginVertical:15,
         flexDirection:'row',

@@ -11,7 +11,7 @@ import {useProfileContext} from '@/providers/ProfileProvider';
 
 const EditProfile = () => {
 
-    const {firstName,setFirstName, lastName, setLastName, profilePic, setProfilePic, address, setAddress, phoneNumber, setPhoneNumber, bankname, setBankname, accountName, setAccountName, accountNumber, setAccountNumber, errorMessage, onValidateInput,} = useProfileContext()
+    const {firstName,setFirstName, lastName, setLastName, myDescription, setMyDescription, profilePic, setProfilePic, address, setAddress, phoneNumber, setPhoneNumber, bankname, setBankname, accountName, setAccountName, accountNumber, setAccountNumber, errorMessage, onValidateInput,} = useProfileContext()
 
     const pickImage = async () => {
       // No permissions request is necessary for launching the image library
@@ -94,6 +94,14 @@ const EditProfile = () => {
           onChangeText={setLastName}
           placeholder='Surname (Optional)'
           style={styles.input}
+        />
+
+        <TextInput 
+          value={myDescription}
+          onChangeText={setMyDescription}
+          placeholder='A description of yourself(Optional)'
+          style={styles.inputdescription}
+          multiline
         />
 
         <TextInput

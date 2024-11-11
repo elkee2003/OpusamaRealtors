@@ -43,15 +43,15 @@ const WriteDescription = () => {
             </>
         )}
 
-        {/* Hotel/Shorlet */}
-        {propertyType === 'Hotel / Shorlet' && ( 
+        {/* Hotel/Shortlet */}
+        {propertyType === 'Hotel / Shortlet' && ( 
             <>
                 <Text style={styles.label}>Hotel / Shortlet Description:</Text>
                 <TextInput
                 style={styles.input}
                 value={description}
                 onChangeText={setDescription}
-                placeholder='Kindly describe Hotel / Shorlet'
+                placeholder='Kindly describe Hotel / Shortlet'
                 multiline
                 />
                 <Text style={styles.label}>Amenities:</Text>

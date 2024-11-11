@@ -11,18 +11,18 @@ const ShortAlertList = () => {
     const {dbUser} = useAuthContext()
 
     const [alerts, setAlerts] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false);
 
     const fetchBookings = async () =>{
       setLoading(true);
       try{
-        const fetchedBookings = await DataStore.query(Booking, (b)=> b.bookingRealtorId.eq(dbUser.id));
+        const fetchedBookings = await DataStore.query(Booking, (b)=> b.bookingRealtorId.eq(dbUser.id));      
 
-        const filteredBookings = fetchedBookings.filter((booking)=>booking.status === 'PENDING').sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt));
+        const filteredBookings = fetchedBookings.filter((booking)=>booking.status === 'ACCEPTED' || booking.status === 'VIEWING' || booking.status === 'VIEWED' || booking.status === 'SOLD').sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt));
 
         const bookingwithUserID = await Promise.all(filteredBookings.map(async (booking)=>{
           if(booking.userID){
-            const bookedUser = await DataStore.query(User, (u)=>u.userID.eq(booking.userID));
+            const bookedUser = await DataStore.query(User, (u)=>u.id.eq(booking.userID));
             return {...booking, user: bookedUser[0] || null};
           }
           return {...booking, user: null};
@@ -37,16 +37,18 @@ const ShortAlertList = () => {
     }
 
     useEffect(()=>{
-      fetchBookings();
+      if(dbUser?.id){
+        fetchBookings();
 
-      const subscription = DataStore.observe(Booking).subscribe(({opType})=>{
-        if(opType === 'INSERT' || opType === 'UPDATE' || opType === 'DELETE'){
-          fetchBookings();
-        }
-      });
-  
-      return () => subscription.unsubscribe();
-    },[])
+        const subscription = DataStore.observe(Booking).subscribe(({opType})=>{
+          if(opType === 'INSERT' || opType === 'UPDATE' || opType === 'DELETE'){
+            fetchBookings();
+          }
+        });
+    
+        return () => subscription.unsubscribe();
+    }
+    },[dbUser?.id])
 
   return (
     <View style={styles.container}>
@@ -54,10 +56,10 @@ const ShortAlertList = () => {
             <FlatList
                 showsVerticalScrollIndicator={false} 
                 data={alerts}
-                renderItem={({item})=> <ShortAlert alert={item}/>}
+                renderItem={({item})=> <ShortAlert notification={item}/>}
             />
         ): (
-            <Text style={styles.noListings}>You have no alert</Text>
+            <Text style={styles.noListings}>You have no accepted alert</Text>
         )}
         
     </View>

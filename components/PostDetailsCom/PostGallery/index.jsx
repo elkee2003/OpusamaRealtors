@@ -11,8 +11,6 @@ const PostGallery = ({media}) => {
 
   const [mediaUri, setMediaUri] = useState();
 
-  console.log('Media from gallery array:', media)
-
   const fetchMediaUrl = async () => {
     try {
       const result = await getUrl({
@@ -42,7 +40,9 @@ const PostGallery = ({media}) => {
       <Pressable onPress={()=>router.back()} style={styles.backIconContainer}>
         <Ionicons style={styles.backIcon} name="arrow-back-sharp" size={24} color="black" />
       </Pressable>
-      <Image source={{uri: mediaUri}} style={styles.image}/>
+      {mediaUri && (
+        <Image source={{uri: mediaUri}} style={styles.image}/>
+      )}
 
       {/* <ImageZoomViewer
         imageUrls={imageUris}

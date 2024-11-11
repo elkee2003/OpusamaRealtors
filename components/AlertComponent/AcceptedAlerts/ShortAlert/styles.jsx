@@ -20,6 +20,27 @@ const styles = StyleSheet.create({
     detailsSub:{
         fontWeight:'bold',
     },
+    statusRow:{
+        flexDirection:'row',
+        alignItems:'center',
+        gap:10,
+    },
+    status:{
+        fontSize:16,
+        fontWeight:'bold',
+    },
+    greenIcon:{
+        width:10,
+        height:10,
+        borderRadius:5,
+        backgroundColor:'#03eb03',
+    },
+    redIcon:{
+        width:10,
+        height:10,
+        borderRadius:5,
+        backgroundColor:'#eb1e03',
+    },
     accOwner:{
         color:'#464545',
         fontStyle:'italic'

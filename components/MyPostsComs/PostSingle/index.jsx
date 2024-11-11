@@ -44,7 +44,7 @@ const PostSingle = ({post}) => {
 
   return (
       <View style={styles.container}>
-          <Pressable onPress={()=>router.push(`/profile/${post.id}`)}>
+          <Pressable onPress={()=>router.push(`/home/${post.id}`)}>
             <View style={styles.imageContainer}>
               {/* Image */}
               {imageUris[0] ? ( 
@@ -57,7 +57,9 @@ const PostSingle = ({post}) => {
 
         <View style={styles.sub}>
           {/* Bed & Bedrooms */}
-          <Text style={styles.bedroom}>{post.bed} Bedroom Apartment</Text>
+          {post.bed && (
+            <Text style={styles.bedroom}>{post.bed} Bedroom Apartment</Text>
+          )}
 
           {/* Location */}
           <Text style={styles.location}>{post.address}</Text>
@@ -76,7 +78,10 @@ const PostSingle = ({post}) => {
         <View style={styles.priceRow}>
           <Text style={styles.sub}>Price: </Text>
           <Text style={styles.price}> 
-            ₦{post.price.toLocaleString()} / year
+           { post.propertyType === 'Hotel / Shortlet' ? (`₦ ${post.price.toLocaleString()} / night`
+           ) : (
+            `₦ ${post.price.toLocaleString()} / year`
+           )}
           </Text>
         </View>
 

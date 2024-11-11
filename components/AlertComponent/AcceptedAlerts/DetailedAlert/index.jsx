@@ -1,8 +1,37 @@
-import { View, Text, Image, ScrollView } from 'react-native'
-import React from 'react'
-import styles from './styles'
+import { View, Text, Image, ScrollView, Alert, TouchableOpacity } from 'react-native';
+import React from 'react';
+import styles from './styles';
+import * as Clipboard from 'expo-clipboard';
+import { router } from 'expo-router';
 
-const DetailedAlert = ({alert, user}) => {
+const DetailedAlert = ({notification, onStatusChange}) => {
+
+  const getStatusText = (status) =>{
+    if (status === 'PENDING') return 'Pending';
+    if (status === 'ACCEPTED') return 'Accepted';
+    if (status === 'VIEWING') return 'Viewing';
+    if (status === 'VIEWED') return 'Viewed';
+    if(status === 'SOLD') return 'Sold';
+    if(status === 'CANCELLED') return 'Cancelled';
+    if (status === 'DENIED') return 'Denied';
+    return 'Pending';
+  }
+
+  const handleCopyPhoneNumber = async () => {
+    const phoneNumber = notification?.clientPhoneNumber;
+    
+    if (phoneNumber) {
+      try {
+        await Clipboard.setStringAsync(phoneNumber);
+        Alert.alert('Phone Number Copied', 'You can paste it into the dialer to make a call.');
+      } catch (error) {
+        console.error("Error copying phone number:", error);
+        Alert.alert('Error', 'Failed to copy the phone number.');
+      }
+    } else {
+      Alert.alert('Error', 'Phone number is not available.');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -10,64 +39,232 @@ const DetailedAlert = ({alert, user}) => {
 
         {/* Details */}
         <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.details}>
-            <Text style={styles.subHeader}>Name(s):</Text>
-            {alert.guestFirstName}
-          </Text>
+          
+          {/* Guest units */}
+          <View style={styles.guestUnit}>
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Last Name(s):</Text>
-            {alert.guestLastName}
-          </Text>
+            {/* Adults */}
+            {notification?.adults && (
+              <View>
+                <Text style={styles.subHeader}>Adults:</Text>
+                <Text style={styles.unitTxt}>{notification.adults}</Text>
+              </View>
+            )}
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Phone Number:</Text> 
-            {alert.guestPhonenumber}
-          </Text>
+            {/* Children */}
+            {notification?.kids && (
+              <View>
+                <Text style={styles.subHeader}>Children:</Text>
+                <Text style={styles.unitTxt}>{notification.kids}</Text>
+              </View>
+            )}
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Purpose:</Text> 
-            {alert.purpose}
-          </Text>
+            {/* Infants */}
+            {notification?.infants && (
+              <View>
+                <Text style={styles.subHeader}>Infants:</Text>
+                <Text style={styles.unitTxt}>{notification.infants}</Text>
+              </View>
+            )}
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Duration:</Text> 
-            {alert.duration}
-          </Text>
+          </View>
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Check-in:</Text> 
-            {alert.checkInDate}
-          </Text>
+          {/* FirstName */}
+          {notification?.clientFirstName && (
+            <>
+              <Text style={styles.subHeader}>
+                Name(s):
+              </Text>
+              <Text style={styles.details}>
+                {notification?.clientFirstName}
+              </Text>
+            </>
+          )}
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Check-out:</Text> 
-            {alert.checkOutDate}
-          </Text>
+          {/* LastName */}
+          { notification?.clientLastName && (
+            <>
+              <Text style={styles.subHeader}>
+              Last Name(s):
+              </Text>
+              <Text style={styles.details}>
+                {notification?.clientLastName}
+              </Text>
+            </>
+          )}
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Accommodation Type:</Text> 
-            {alert.propertyType}
-          </Text>
+          {/* Phone Number */}
+          {notification?.clientPhoneNumber && (
+            <>
+              <Text style={styles.subHeader}>
+                Phone Number:
+              </Text>
+              <TouchableOpacity onPress={handleCopyPhoneNumber}>
+                <Text style={styles.details}>
+                  {notification?.clientPhoneNumber}
+                </Text>
+              </TouchableOpacity> 
+            </>
+          )}
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Room Type:</Text> 
-            {alert.accommodationType}
-          </Text>
+          {/* Note */}
+          {notification?.purpose && (
+            <>
+              <Text style={styles.subHeader}>
+                Purpose:
+              </Text> 
+              <Text style={styles.details}>
+                {notification?.purpose}
+              </Text>
+            </>
+          )}
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Room Name:</Text> 
-            {alert.nameOfType}
-          </Text>
+          {/* Duration */}
+          {notification?.duration && (
+            <>
+              <Text style={styles.subHeader}>
+              Duration:
+              </Text> 
+              <Text style={styles.details}>    
+                {notification?.duration}
+              </Text>
+            </>
+          )}
 
-          <Text style={styles.details}>
-            <Text style={styles.subHeader}>Price:</Text> 
-            {alert.realtorPrice}
-          </Text>
-          <Text style={styles.details}>
-            by: Damini Zeus
+          {/* Check-in */}
+          {notification?.checkInDate && (
+            <>
+              <Text style={styles.subHeader}>
+              Check-in:
+              </Text>
+              <Text style={styles.details}> 
+                {notification?.checkInDate}
+              </Text>
+            </>
+          )}
+
+          {/* Check out date */}
+          {notification.checkOutDate && (
+            <>
+              <Text style={styles.subHeader}>
+                Check-out:
+              </Text> 
+              <Text style={styles.details}>
+                {notification?.checkOutDate}
+              </Text>
+            </>
+          )}
+
+          {/* Accommodation Type */}
+          {notification.propertyType && (
+            <>
+              <Text style={styles.subHeader}>
+              Accommodation Type:
+              </Text> 
+              <Text style={styles.details}>
+                {notification?.propertyType}
+              </Text>
+            </>
+          )}
+
+          {/* Room Type */}
+          {notification.accommodationType && (
+            <>
+              <Text style={styles.subHeader}>
+              {notification.propertyType === 'Hotel / Shortlet' ? 'Room Type:' : 'Property Type'}
+              </Text> 
+              <Text style={styles.details}>
+                {notification?.accommodationType}
+              </Text>
+            </>
+          )}
+
+          {/* Room name */}
+          {notification.nameOfType && (
+            <>
+              <Text style={styles.subHeader}>
+              Room Name:
+              </Text> 
+              <Text style={styles.details}>
+                {notification?.nameOfType}
+              </Text>
+            </>
+          )}
+
+          {/* Realtor Price */}
+          {notification.realtorPrice && (
+            <>
+              <Text style={styles.subHeader}>
+              Price:
+              </Text>
+              <Text style={styles.details}> 
+                ₦{Number(notification.realtorPrice).toLocaleString()}
+              </Text>
+            </>
+          )}
+
+          {/* Status */}
+          <View style={styles.statusRow}>
+              <Text style={styles.status}>
+              {getStatusText(notification.status)}
+              </Text>
+              {(notification.status === 'ACCEPTED') ? (
+                  <View style={styles.greenIcon}/>
+              ):(
+                  <View style={styles.redIcon}/>
+              )}
+          </View>
+
+          {/* By Account */}
+          <Text style={styles.bookedBy}>
+            by: {notification?.user?.firstName}
           </Text>
         </ScrollView>
+
+        {/* Buttons - Only show if propertyType is not 'Hotel / Shortlet' */}
+
+        { notification.propertyType !== 'Hotel / Shortlet' && (
+          <>
+            {/* Viewing */}
+            {notification.status === 'ACCEPTED' && (
+              <TouchableOpacity 
+                style={styles.view}
+                onPress={() => {
+                  onStatusChange('VIEWING');
+                  router.back();
+                }}
+              >
+                <Text style={styles.btnTxt}>Viewing</Text>
+              </TouchableOpacity>
+            )}
+
+            {/* Viewed */}
+            {notification.status === 'VIEWING' && (
+              <TouchableOpacity 
+                style={styles.view}
+                onPress={() => {
+                  onStatusChange('VIEWED');
+                  router.back();
+                }}
+              >
+                <Text style={styles.btnTxt}>Viewed</Text>
+              </TouchableOpacity>
+            )}
+
+            {/* Sold */}
+            {notification.status === 'VIEWED' && (
+              <TouchableOpacity 
+                style={styles.sold}
+                onPress={() => {
+                  onStatusChange('SOLD');
+                  router.back();
+                }}
+              >
+                <Text style={styles.btnTxt}>Sold</Text>
+              </TouchableOpacity>
+            )}
+          </>
+        )}
     </View>
   )
 }

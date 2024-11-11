@@ -44,29 +44,33 @@ const styles = StyleSheet.create({
         marginBottom:10,
         color:'#707070'
     },
-    // header:{
-    //     fontSize:25.888,
-    //     fontWeight:'bold',
-    //     marginBottom:10,
-    //     color:'#707070'
-    // },
+    readMoreLess:{
+        color:'#009b0f',
+    },
+    propertyType:{
+        fontSize:18,
+        fontWeight:'bold',
+        lineHeight:25,
+        justifyContent:'center',
+    },
+    subheader:{
+        fontSize:19,
+        fontWeight:'bold',
+        color:'#707070',
+        lineHeight:25,
+        marginTop:5,
+        justifyContent:'center',
+    },
     details:{
         fontSize:17,
         lineHeight:25,
+        justifyContent:'center',
     },
     card:{
         backgroundColor:'#fcfcfc',
         padding:10,
         borderRadius:20,
         marginBottom:7,
-    },
-    propertyDetails:{
-        flexDirection:'row',
-        justifyContent: 'space-between',
-    },
-    bedroomRow:{
-        flexDirection:'row',
-        justifyContent: 'space-between',
     },
     description:{
         fontSize:19,
