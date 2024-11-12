@@ -26,6 +26,8 @@ const AuthProvider = ({children}) => {
     }
 
     const dbCurrentUser = async () =>{
+      if(!sub) return; // Ensure sub is available before querying DataStore
+
         try{
           const dbusercurrent = await DataStore.query(Realtor, (realtor)=>realtor.sub.eq(sub))
           // DataStore.delete(Realtor, Predicates.ALL)

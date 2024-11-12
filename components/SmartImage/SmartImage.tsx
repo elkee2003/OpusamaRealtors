@@ -28,8 +28,10 @@ export default function SmartImage({imgKey, width, height, ...imageProps}: Smart
 
       const encoded = Buffer.from (imageRequest).toString('base64');
 
-      return URL + encoded;
-    },[imgKey]);
+      const finalUrl = URL + encoded;
+      console.log("Image URI:", finalUrl); // Log URL for debugging
+      return finalUrl;
+    },[imgKey, width, height]);
       
     return <Image source={{uri}} {...imageProps} />;
 }

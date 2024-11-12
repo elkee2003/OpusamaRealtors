@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     image:{
         flex: 1,
         width: '100%',
-        objectFit:'contain'
+        objectFit:'cover'
     },
     availabilityContainer: {
         marginHorizontal: 10,

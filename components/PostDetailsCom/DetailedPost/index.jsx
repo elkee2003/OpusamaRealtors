@@ -7,7 +7,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { DataStore } from 'aws-amplify/datastore';
 import {useProfileContext} from '@/providers/ProfileProvider';
 import { Post } from '@/src/models';
-import { getUrl } from 'aws-amplify/storage';
+import { getUrl, remove } from 'aws-amplify/storage';
 
 const DetailedPost = ({post}) => {
 
@@ -31,6 +31,20 @@ const DetailedPost = ({post}) => {
           style: "destructive",
           onPress: async () => {
             try {
+
+              // Delete media files from S3
+              if (post.media && post.media.length > 0) {
+                await Promise.all(
+                  post.media.map(async (path) => {
+                    try {
+                      await remove({ path });
+                    } catch (error) {
+                      console.error(`Failed to delete ${path} from S3: `, error);
+                    }
+                  })
+                );
+              }
+              
               // Ensure the post exists before deleting
               const postToDelete = await DataStore.query(Post, post.id);
               if (postToDelete) {

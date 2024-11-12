@@ -27,11 +27,13 @@ const SelectMedia = () => {
       const selectedImages = result.assets.map((asset) => ({ uri: asset.uri }));
 
       // Check the length immediately after setting state
-      if (selectedImages.length >= 3) {
-        setMedia(selectedImages);
-        router.push('/share/displayedmedia');     
-      } else {
+      if (selectedImages.length < 3) {
         Alert.alert('Error', 'Select at least 3 media files');
+      } else if (selectedImages.length > 9) {
+        Alert.alert('Error', 'You can only select up to 9 media files');
+      } else {
+        setMedia(selectedImages);
+        router.push('/share/displayedmedia');
       }
     }
   };

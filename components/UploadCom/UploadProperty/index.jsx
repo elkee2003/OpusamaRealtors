@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import React, {useState} from 'react';
 import * as Crypto from 'expo-crypto';
+import * as ImageManipulator from 'expo-image-manipulator';
 import ReviewUpload from '../ReviewUpload';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
@@ -47,12 +48,20 @@ const UploadProperty = () => {
     };
 
     const uploadImages = async () => {
-        try{
-            const uploadPromises = media.map(async (item)=>{
-                const response = await (fetch(item.uri));
+        try {
+            const uploadPromises = media.map(async (item) => {
+                // Resize and compress image
+                const manipulatedImage = await ImageManipulator.manipulateAsync(
+                    item.uri,
+                    [{ resize: { width: 800 } }],  // Adjust width as needed
+                    { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG } // Compress quality between 0 and 1
+                );
+    
+                const response = await fetch(manipulatedImage.uri);
                 const blob = await response.blob();
-                fileKey = `public/media/${Crypto.randomUUID()}.png`;
-
+    
+                const fileKey = `public/media/${Crypto.randomUUID()}.jpg`;
+    
                 const result = await uploadData({
                     path: fileKey,
                     data: blob,
@@ -64,20 +73,20 @@ const UploadProperty = () => {
                             }
                         }
                     }
-                }).result
-
+                }).result;
+    
                 return result.path;
             });
-
+    
             // Wait for all upload promises to complete
             const mediaUrls = await Promise.all(uploadPromises);
             return mediaUrls;
-        }catch(e){
+        } catch (e) {
             console.log('Error uploading files:', e);
             Alert.alert('Upload Error', 'Failed to upload media. Please try again.');
             return [];
         }
-    }
+    };
 
     // Handle the upload process for all media and save post in DataStore
     const handleUpload = async () =>{

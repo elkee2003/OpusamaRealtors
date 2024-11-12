@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import Placeholder from '../../../../assets/images/placeholder.png';
@@ -9,6 +9,8 @@ import { router } from 'expo-router';
 import { useProfileContext } from '@/providers/ProfileProvider';
 import {useAuthContext} from '@/providers/AuthProvider';
 import { getUrl } from 'aws-amplify/storage';
+import SmartImage from '../../../SmartImage/SmartImage';
+
 
 const ProfileHead = () => {
 
@@ -62,7 +64,10 @@ const ProfileHead = () => {
       <View style={styles.profileDetails}>
         <TouchableOpacity style={styles.profilePicContainer} onPress={()=>router.push('/profile/editprofile')}>
           {loading ? (
-            <Image source={Placeholder} style={styles.img} /> // Show placeholder while loading
+            <Image 
+              source={Placeholder} 
+              style={styles.img} 
+            /> // Show placeholder while loading
           ) : (
             <Image source={{ uri: profilePic }} style={styles.img} onError={() => setProfilePic(null)} />
           )}
