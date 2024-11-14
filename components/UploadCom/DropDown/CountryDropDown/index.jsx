@@ -1,6 +1,7 @@
 import { View, Text, Pressable } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import { Dropdown } from 'react-native-element-dropdown';
+import {COUNTRY_STATE_CITY_KEY} from '../../../../keys';
 import { useUploadContext } from '@/providers/UploadProvider';
 import styles from './styles';
 
@@ -21,7 +22,7 @@ const LocationDropDown = () => {
 
     const [isFocus, setIsFocus] = useState(false);
     
-    const apiKey = 'TWZ2ZzdWbjFFOGFCOEZGMnNxQ1JrOVNaUzVOUE55RDIwTE1Gekd2cQ=='
+    const apiKey = COUNTRY_STATE_CITY_KEY
 
     useEffect(()=>{
         const fetchCountries = async () => {

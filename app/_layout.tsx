@@ -20,6 +20,7 @@ function RootLayout() {
           headerShown:false
           }}>
             <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="index"/>
           </Stack>
         </UploadProvider>
       </ProfileProvider>

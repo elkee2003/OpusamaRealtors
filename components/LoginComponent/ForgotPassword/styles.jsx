@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         alignSelf:'center',
-        backgroundColor:'#010a01',
+        backgroundColor:'#0a0635',
         borderRadius:10,
         marginTop:20,
     },
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     secBtnTxt:{
         fontSize:18,
         fontWeight:'bold',
-        color:'#010a01'
+        color:'#0a0635'
     },
     errorText: {
         color: 'red',

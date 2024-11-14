@@ -59,10 +59,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     inputdescription: {
-        marginVertical: 10,
+        marginTop: 10,
         backgroundColor: "white",
         padding: 20,
         borderRadius: 5,
+    },
+    wordCount:{
+        textAlign:'right',
+        marginBottom:10,
+        color:'grey',
     },
     error:{
         color:'#d80b0b',
@@ -82,7 +87,7 @@ const styles = StyleSheet.create({
     //     gap:15
     // },
     nxtBtn:{
-        backgroundColor:'#1a1b1a',
+        backgroundColor:'#0b052c',
         marginTop:10,
         padding:2,
         marginHorizontal:80,
@@ -141,7 +146,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#05c405',
         marginTop:10,
         padding:2,
-        marginHorizontal:80,
+        marginHorizontal:55,
         marginBottom:10,
         alignItems:'center',
         borderRadius:30,

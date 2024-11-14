@@ -19,6 +19,12 @@ const ProfileHead = () => {
   const {dbUser} = useAuthContext();
 
   const [loading, setLoading]= useState(true);
+  const [readMoreDescription, setReadMoreDescription] = useState(false);
+
+  const descriptionMaxLength = 80; 
+  const truncatedDescription = myDescription.length > descriptionMaxLength 
+    ? `${myDescription.substring(0, descriptionMaxLength)}...` 
+    : myDescription;
 
   const maxLength = 30;
   const locationText = address;
@@ -96,7 +102,15 @@ const ProfileHead = () => {
           {/* Description */}
           <View style={styles.row}>
             <Text style={styles.txtDesc}>
-             {myDescription} 
+              {readMoreDescription || myDescription.length <= descriptionMaxLength ? myDescription : truncatedDescription}
+              {myDescription.length > descriptionMaxLength && (
+                <Text 
+                  onPress={() => setReadMoreDescription(!readMoreDescription)} 
+                  style={readMoreDescription ? [styles.readMoreLess, { color: "#c2021b" }] : styles.readMoreLess}
+                >
+                  {readMoreDescription ? ' show less' : ' read more'}
+                </Text>
+              )} 
             </Text>
           </View>
         </View>

@@ -1,6 +1,7 @@
 import { View, Text, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import React, {useState} from 'react';
 import * as Crypto from 'expo-crypto';
+import * as ImageManipulator from 'expo-image-manipulator';
 import {useProfileContext} from '@/providers/ProfileProvider';
 import { useAuthContext } from '@/providers/AuthProvider';
 import styles from './styles'
@@ -14,33 +15,44 @@ const ReviewDetails = () => {
 
     const {firstName, lastName, profilePic, address, phoneNumber, bankname, accountName, accountNumber, myDescription} = useProfileContext()
 
-    const {dbUser, setDbUser, sub} = useAuthContext()
+    const {dbUser, setDbUser, sub} = useAuthContext();
 
     const [uploading, setUploading] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
+
 
     async function uploadImage() {
         try {
-          const response = await fetch(profilePic);
-          const blob = await response.blob();
-          const fileKey = `public/profilePhoto/${Crypto.randomUUID()}.png`; // New path format
 
-          const result = await uploadData({
-            path: fileKey,
-            data: blob,
-            options:{
-                contentType:'image/jpeg', // contentType is optional
-                onProgress:({ transferredBytes, totalBytes }) => {
-                    if(totalBytes){
-                        console.log(`Upload progress:${Math.round((transferredBytes / totalBytes) * 100)}%`);
+            const manipulatedImage = await ImageManipulator.manipulateAsync(
+                profilePic,
+                [{ resize: { width: 250 } }],  // Adjust width as needed
+                { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG } // Compress quality between 0 and 1
+            );
+            const response = await fetch(manipulatedImage.uri);
+            const blob = await response.blob();
+
+            const fileKey = `public/profilePhoto/${Crypto.randomUUID()}.jpg`; // New path format
+
+            const result = await uploadData({
+                path: fileKey,
+                data: blob,
+                options:{
+                    contentType:'image/jpeg', // contentType is optional
+                    onProgress:({ transferredBytes, totalBytes }) => {
+                        if(totalBytes){
+                            const progress = Math.round((transferredBytes / totalBytes) * 100);
+                            setUploadProgress(progress); // Update upload progress
+                            console.log(`Upload progress: ${progress}%`);
+                        }
                     }
                 }
-            }
-          }).result
+            }).result
 
-          return result.path;  // Updated to return `path`
-        } catch (err) {
-          console.log('Error uploading file:', err);
-        }
+            return result.path;  // Updated to return `path`
+            } catch (err) {
+            console.log('Error uploading file:', err);
+            }
     }
 
     // Function to create and update realtor
@@ -150,7 +162,7 @@ const ReviewDetails = () => {
         </ScrollView>
         {/* Button */}
         <TouchableOpacity style={styles.saveBtn} disabled={uploading} onPress={handleSave}>
-            <Text style={styles.saveBtnTxt}>{uploading ? 'Saving' : 'Save'}</Text>
+            <Text style={styles.saveBtnTxt}>{uploading ? `Saving... ${uploadProgress}%` : 'Save'}</Text>
         </TouchableOpacity>
     </View>
   )

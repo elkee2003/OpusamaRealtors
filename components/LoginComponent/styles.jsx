@@ -63,11 +63,20 @@ const styles = StyleSheet.create({
         top: 15,  // Adjust as per your design
     },
     policyContainer:{
+        alignItems:'center',
         marginTop:10,
-        marginHorizontal:18,
+        alignSelf:'center',
+        width:300,
+    },
+    policyContainerSignUp:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginTop:10,
+        alignSelf:'center',
     },
     policyTxt:{
         lineHeight:20,
+        fontStyle:'italic'
     },
     policyLink:{
         color:'#c00d0d'
@@ -78,7 +87,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         alignSelf:'center',
-        backgroundColor:'#010a01',
+        backgroundColor:'#0a0635',
         borderRadius:10,
         marginTop:20,
     },
@@ -132,7 +141,7 @@ const styles = StyleSheet.create({
     secBtnTxt:{
         fontSize:18,
         fontWeight:'bold',
-        color:'#010a01'
+        color:'#0a0635'
     },
     secBtn_SECONDARY:{
         width: 150,
@@ -144,7 +153,7 @@ const styles = StyleSheet.create({
     text_SECONDARY:{
         fontSize:18,
         fontWeight:'bold',
-        color:'#010a01',
+        color:'#0a0635',
         marginBottom:20,
     },
 

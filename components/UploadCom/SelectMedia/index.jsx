@@ -46,6 +46,8 @@ const SelectMedia = () => {
       <TouchableOpacity onPress={pickMediaAsync}>
         <MaterialIcons style={styles.icon} name="add-a-photo" />
         <Text style={styles.txt}>Upload Images of Property</Text>
+
+        <Text style={styles.disclaimer}>Only property owners or authorized representatives may upload listings. Misrepresentation may lead to account suspension or deletion.</Text>
       </TouchableOpacity>
     </View>
   )

@@ -106,7 +106,16 @@ const index = () => {
 
             {/* Policy */}
             <View style={styles.policyContainer}>
-                <Text style={styles.policyTxt}>Kindly review the <Text style={styles.policyLink}onPress={()=>router.push('/policies')}>Terms of Use </Text>and <Text style={styles.policyLink}onPress={()=>router.push('/policies')}>Privacy Policy</Text> before going further.</Text>
+                <Text style={styles.policyTxt}>
+                    By signing in you accept the{''} 
+                <Text style={styles.policyLink}onPress={()=>router.push('/screens/termsandconditions')}>
+                    Terms of Use 
+                </Text> and {''}
+                <Text style={styles.policyLink}onPress={()=>router.push('/screens/privacypolicy')}>
+                    Privacy Policy {' '}
+                </Text> 
+                    before going further.
+                </Text>
             </View>
 
             {/* Buttons */}

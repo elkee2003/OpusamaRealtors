@@ -23,6 +23,7 @@ const UploadProperty = () => {
     } = useUploadContext();
 
     const [uploading, setUploading] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
 
     // Reset form fields function:
     const resetFormFields = () => {
@@ -69,7 +70,9 @@ const UploadProperty = () => {
                         contentType: 'image/jpeg',
                         onProgress: ({ transferredBytes, totalBytes }) => {
                             if (totalBytes) {
-                                console.log(`Upload progress for ${fileKey}: ${Math.round((transferredBytes / totalBytes) * 100)}%`);
+                                const progress = Math.round((transferredBytes / totalBytes) * 100);
+                                setUploadProgress(progress); // Update upload progress
+                                console.log(`Upload progress: ${progress}%`);
                             }
                         }
                     }
@@ -168,7 +171,7 @@ const UploadProperty = () => {
 
         {/* Button */}
         <TouchableOpacity style={styles.btnUpload} onPress={handleUpload} disabled={uploading}>
-            <Text style={styles.uploadTxt}>{uploading ? 'Uploading...' : 'Upload!'}</Text>
+            <Text style={styles.uploadTxt}>{uploading ? `Uploading... ${uploadProgress}%` : 'Upload!'}</Text>
         </TouchableOpacity>
     </View>
   )

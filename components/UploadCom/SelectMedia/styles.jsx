@@ -13,6 +13,14 @@ const styles = StyleSheet.create({
     },
     txt:{
         fontSize:16,
+        textAlign:'center',
+    },
+    disclaimer:{
+        marginTop:10,
+        fontSize:17,
+        fontStyle:'italic',
+        fontWeight:'bold',
+        textAlign:'center'
     },
     mediaFullDisplayContainer:{
         justifyContent:'center',

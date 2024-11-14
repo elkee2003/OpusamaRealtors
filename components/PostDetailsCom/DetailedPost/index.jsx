@@ -14,6 +14,7 @@ const DetailedPost = ({post}) => {
   const {firstName} = useProfileContext()
 
   const [imageUris, setImageUris] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [isAvailable, setIsAvailable] = useState(post.available);
   const [readMore, setReadMore] = useState(false);
   const [readMoreLux, setReadMoreLux] = useState(false);
@@ -30,8 +31,8 @@ const DetailedPost = ({post}) => {
           text: "Delete",
           style: "destructive",
           onPress: async () => {
+            setLoading(true);
             try {
-
               // Delete media files from S3
               if (post.media && post.media.length > 0) {
                 await Promise.all(
@@ -56,6 +57,8 @@ const DetailedPost = ({post}) => {
               }
             } catch (e) {
               Alert.alert("Error", `Failed to delete post: ${e.message}`);
+            }finally{
+              setLoading(false);
             }
           },
         },
@@ -316,7 +319,11 @@ const DetailedPost = ({post}) => {
         </View>
 
         {/* Delete Button */}
-        <TouchableOpacity onPress={handleDeletePost} style={styles.deleteButton}>
+        <TouchableOpacity
+          style={styles.deleteButton}
+          onPress={handleDeletePost}
+          disabled={loading}
+        >
           <Text style={styles.deleteButtonText}>Delete Post</Text>
         </TouchableOpacity>
       </ScrollView>

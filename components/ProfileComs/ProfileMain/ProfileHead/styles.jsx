@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'#484849'
     },
+    readMoreLess:{
+        color:'#009b0f',
+    },
     profileSubrow:{
         marginVertical:15,
         flexDirection:'row',

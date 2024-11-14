@@ -1,5 +1,5 @@
 import { View, Text, TextInput,Pressable, Alert, ScrollView, Image, TouchableOpacity} from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import styles from './styles'
 import { router } from 'expo-router'
@@ -11,7 +11,9 @@ import {useProfileContext} from '@/providers/ProfileProvider';
 
 const EditProfile = () => {
 
-    const {firstName,setFirstName, lastName, setLastName, myDescription, setMyDescription, profilePic, setProfilePic, address, setAddress, phoneNumber, setPhoneNumber, bankname, setBankname, accountName, setAccountName, accountNumber, setAccountNumber, errorMessage, onValidateInput,} = useProfileContext()
+    const {firstName,setFirstName, lastName, setLastName, myDescription, setMyDescription, profilePic, setProfilePic, address, setAddress, phoneNumber, setPhoneNumber, bankname, setBankname, accountName, setAccountName, accountNumber, setAccountNumber, errorMessage, onValidateInput,} = useProfileContext();
+
+    const [remainingWords, setRemainingWords] = useState(150);
 
     const pickImage = async () => {
       // No permissions request is necessary for launching the image library
@@ -32,6 +34,19 @@ const EditProfile = () => {
       }
     };
 
+    // Helper function to count words
+    const countWords = (text) => text.trim().length;
+
+    // Handle text change for myDescription with word limit
+    const handleDescriptionChange = (text) => {
+      const words = countWords(text);
+      if (words <= 150) {
+        setMyDescription(text);
+        setRemainingWords(150 - words);
+      }
+    };
+
+    // Signout function
     async function handleSignOut() {
       try {
         const res = await signOut();
@@ -39,8 +54,9 @@ const EditProfile = () => {
       } catch (error) {
         console.log('error signing out: ', error);
       }
-    }
+    };
 
+    // Signout function from amplify
     const onSignout = ()=>{
       Alert.alert(
         'Sign Out',
@@ -98,11 +114,12 @@ const EditProfile = () => {
 
         <TextInput 
           value={myDescription}
-          onChangeText={setMyDescription}
+          onChangeText={handleDescriptionChange}
           placeholder='A description of yourself(Optional)'
           style={styles.inputdescription}
           multiline
         />
+        <Text style={styles.wordCount}> {remainingWords}</Text>
 
         <TextInput
           value={phoneNumber}
