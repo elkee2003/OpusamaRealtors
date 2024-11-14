@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, TextInput, Pressable, TouchableOpacity} from 'react-native';
 // import { ScrollView } from 'react-native-virtualized-view';
-import React, {useState, useRef} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_API_KEY } from '@/keys';
 import { Ionicons } from '@expo/vector-icons';
@@ -23,16 +23,9 @@ const Forms = () => {
     const {
       propertyType, setPropertyType,
       type, setType,
-      availableDocs, setAvailableDocs,
-      accommodationParts, setAccommodationParts,
-      description, setDescription,
-      bedrooms, setBedrooms,
-      bed, setBed,
+      cautionFee, setCautionFee,
       price, setPrice,
       totalPrice, setTotalPrice,
-      country, setCountry,
-      state, setState,
-      city, setCity,
       address, setAddress,
       setLat, setLng,
       amenities, setAmenities,
@@ -75,6 +68,12 @@ const Forms = () => {
 
   };
 
+    // Function to update totalPrice whenever cautionFee or price changes
+    useEffect(() => {
+        const updatedTotalPrice = parseFloat(cautionFee || 0) + parseFloat(price || 0);
+        setTotalPrice(updatedTotalPrice.toFixed(2));
+    }, [cautionFee, price]);
+
   return (
     <View 
       style={styles.container}
@@ -95,33 +94,34 @@ const Forms = () => {
 
         {propertyType === 'Office Space' && <OfficeSpace/>}
 
-        {propertyType === 'Shop' && <Shop/>}
+        {/* {propertyType === 'Shop' && <Shop/>} */}
         
         {/* General Info for Price */}
         <View style={styles.generalRow}>
           <View>
             <Text style={styles.label}>Price:</Text>
             <TextInput
-            style={styles.genInput}
-            value={price}
-            onChangeText={setPrice}
-            placeholder='Price'
-            keyboardType='numeric'
-            multiline
+              style={styles.genInput}
+              value={price}
+              onChangeText={setPrice}
+              placeholder='Price'
+              keyboardType='numeric'
+              multiline
             />
           </View>
-
-          <View>
-            <Text style={styles.label}>Total Price:</Text>
-            <TextInput
-            style={styles.genInput}
-            value={totalPrice}
-            onChangeText={setTotalPrice}
-            placeholder='Total Price'
-            keyboardType='numeric'
-            multiline
-            />
-          </View>
+          {propertyType !== 'House Sale' && propertyType !== 'Land Sale' && (
+            <View>
+              <Text style={styles.label}>Caution Fee:</Text>
+              <TextInput
+                style={styles.genInput}
+                value={cautionFee}
+                onChangeText={setCautionFee}
+                placeholder='Caution Fee'
+                keyboardType='numeric'
+                multiline
+              />
+            </View>
+          )}
         </View>
         
         <Text style={styles.label}>Address:</Text>

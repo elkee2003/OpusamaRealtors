@@ -15,8 +15,6 @@ export default function Index() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true);
 
-  console.log(getCurrentUser)
-
   const checkUser = async () =>{
     try{
       const authUser = await getCurrentUser();

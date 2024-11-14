@@ -24,7 +24,7 @@ const AccommodationDropDown = () => {
       { label: 'House Sale', value: 'House Sale' },
       { label: 'Land Sale', value: 'Land Sale' },
       { label: 'Office Space', value: 'Office Space' },
-      { label: 'Shop', value: 'Shop' },
+      // { label: 'Shop', value: 'Shop' },
       { label: 'Student Accommodation', value: 'Student Accommodation' },
       
     ];

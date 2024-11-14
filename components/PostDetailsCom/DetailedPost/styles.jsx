@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     priceRowTotal:{
-        marginTop:10,
+        marginTop:5,
         flexDirection:'row',
     },
     totalPrice:{

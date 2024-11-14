@@ -56,9 +56,20 @@ const PostSingle = ({post}) => {
           </Pressable>
 
         <View style={styles.sub}>
+          {/* Property Type */}
+          {
+            post.propertyType && (
+              <Text style={styles.bedroom}>
+                {post.propertyType}
+              </Text>
+            )
+          }
+
           {/* Bed & Bedrooms */}
-          {post.bed && (
-            <Text style={styles.bedroom}>{post.bed} Bedroom Apartment</Text>
+          {post.bedrooms && (
+            <Text style={styles.bedroom}>
+              {post.bedrooms} {post.propertyType === 'House' ? 'Bedroom Apartment' : 'Bedroom'} 
+            </Text>
           )}
 
           {/* Location */}
@@ -78,10 +89,12 @@ const PostSingle = ({post}) => {
         <View style={styles.priceRow}>
           <Text style={styles.sub}>Price: </Text>
           <Text style={styles.price}> 
-           { post.propertyType === 'Hotel / Shortlet' ? (`₦ ${post.price.toLocaleString()} / night`
-           ) : (
-            `₦ ${post.price.toLocaleString()} / year`
-           )}
+            { post.propertyType === 'Hotel / Shortlet' 
+              ? `₦ ${post.price.toLocaleString()} / night` 
+              : (post.propertyType === 'House Sale' || post.propertyType === 'Land Sale')
+                ? `₦ ${post.price.toLocaleString()}`
+                : `₦ ${post.price.toLocaleString()} / year`
+            }
           </Text>
         </View>
 

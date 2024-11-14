@@ -19,7 +19,7 @@ const UploadProperty = () => {
     const {
         propertyType, setPropertyType, type, setType, nameOfType, setNameOfType, availableDocs, setAvailableDocs, 
         // customInput, setCustomInput,
-        accommodationParts, setAccommodationParts, media, setMedia, description, setDescription, bedrooms, setBedrooms, bed, setBed, price, setPrice, totalPrice, setTotalPrice, country, setCountry, state, setState, city, setCity, address, setAddress, lat, setLat, lng, setLng, amenities, setAmenities, policies, setPolicies, uploadPost, setUploadPost, onValidateUpload
+        accommodationParts, setAccommodationParts, media, setMedia, description, setDescription, bedrooms, setBedrooms, bed, setBed, cautionFee, setCautionFee, price, setPrice, totalPrice, setTotalPrice, country, setCountry, state, setState, city, setCity, address, setAddress, lat, setLat, lng, setLng, amenities, setAmenities, policies, setPolicies, uploadPost, setUploadPost, onValidateUpload
     } = useUploadContext();
 
     const [uploading, setUploading] = useState(false);
@@ -39,6 +39,7 @@ const UploadProperty = () => {
         setLng(null);
         setBedrooms('');
         setBed('');
+        setCautionFee(''),
         setPrice('');
         setTotalPrice('');
         setCountry('');
@@ -125,6 +126,7 @@ const UploadProperty = () => {
                 lng: parseFloat(lng),
                 // lat: 2.2,
                 // lng:3.4,
+                cautionFee: parseFloat(cautionFee),
                 price: parseFloat(price),
                 totalPrice:parseFloat(totalPrice),
                 bed,

@@ -54,15 +54,15 @@ const styles = StyleSheet.create({
         marginHorizontal:50,
         borderRadius:20,
         borderWidth:2,
-        borderColor:'#020213',
+        borderColor:'#049618',
         alignItems:'center',
-        backgroundColor:'rgba(0,0,0,0.1)'
+        backgroundColor:'#060647'
     },
     btnReviewTxt:{
         fontWeight:'bold',
         fontSize:20,
         textAlign:'center',
-        color:'#020213',
+        color:'#eeeeee',
     },
     error:{
         marginLeft:5,

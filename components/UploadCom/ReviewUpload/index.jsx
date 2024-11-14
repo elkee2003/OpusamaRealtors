@@ -18,7 +18,8 @@ const ReviewUpload = () => {
         bedrooms,
         bed,
         accommodationParts, 
-        description, 
+        description,
+        cautionFee, 
         price, 
         totalPrice, 
         country,
@@ -30,9 +31,11 @@ const ReviewUpload = () => {
         amenities, 
     } = useUploadContext()
 
+     const displayCautionFee = cautionFee;
      const displayPrice = price;
      const displayTotalPrice = totalPrice;
 
+     const formattedCautionFee = Number(displayCautionFee).toLocaleString();
      const formattedPrice = Number(displayPrice).toLocaleString();
      const formattedTotalPrice = Number(displayTotalPrice).toLocaleString();
     
@@ -98,6 +101,11 @@ const ReviewUpload = () => {
         <View style={styles.row}>
           <Text style={styles.displayLabel}>Price:</Text>
           <Text style={styles.inputReview}>₦{formattedPrice}</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.displayLabel}>Caution Fee:</Text>
+          <Text style={styles.inputReview}>₦{formattedCautionFee}</Text>
         </View>
           
         <View style={styles.row}>

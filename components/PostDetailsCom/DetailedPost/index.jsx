@@ -301,11 +301,24 @@ const DetailedPost = ({post}) => {
         )}
 
         <View style={styles.card}>
-          {/* Rent */}
+          {/* Caution Fee */}
+          <View style={styles.priceRow}>
+            <Text style={styles.sub}>Caution fee: </Text>
+            <Text style={styles.price}> 
+              ₦{post.cautionFee.toLocaleString()}
+            </Text>
+          </View>
+
+          {/* Price */}
           <View style={styles.priceRow}>
             <Text style={styles.sub}>Price: </Text>
             <Text style={styles.price}> 
-              ₦{post.price.toLocaleString()} / year
+              { post.propertyType === 'Hotel / Shortlet' 
+                ? `₦ ${post.price.toLocaleString()} / night` 
+                : (post.propertyType === 'House Sale' || post.propertyType === 'Land Sale')
+                  ? `₦ ${post.price.toLocaleString()}`
+                  : `₦ ${post.price.toLocaleString()} / year`
+              }
             </Text>
           </View>
 

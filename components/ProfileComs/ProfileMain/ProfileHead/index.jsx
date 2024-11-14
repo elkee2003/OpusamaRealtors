@@ -8,6 +8,8 @@ import { Entypo } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useProfileContext } from '@/providers/ProfileProvider';
 import {useAuthContext} from '@/providers/AuthProvider';
+import { DataStore } from 'aws-amplify/datastore';
+import {Realtor} from '@/src/models';
 import { getUrl } from 'aws-amplify/storage';
 import SmartImage from '../../../SmartImage/SmartImage';
 
@@ -63,6 +65,14 @@ const ProfileHead = () => {
     if (dbUser.profilePic) {
       fetchImageUrl();
     }
+
+    const subscription = DataStore.observe(Realtor).subscribe(({opType})=>{
+      if(opType === 'INSERT' || opType === 'UPDATE' || opType === 'DELETE'){
+        fetchImageUrl();
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, [dbUser.profilePic]);
 
   return (

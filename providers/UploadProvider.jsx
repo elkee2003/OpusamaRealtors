@@ -19,6 +19,7 @@ const UploadContextProvider = ({children}) => {
     const [lng, setLng] = useState(0);
     const [bedrooms, setBedrooms] = useState('');
     const [bed, setBed] = useState('');
+    const [cautionFee, setCautionFee] = useState(0);
     const [price, setPrice] = useState('');
     const [totalPrice, setTotalPrice] = useState('');
     const [country, setCountry] = useState('');
@@ -165,10 +166,6 @@ const UploadContextProvider = ({children}) => {
         alert('Cannot upload empty fields');
         return false;
       }
-      if(!totalPrice){
-        alert('Cannot upload empty fields');
-        return false;
-      }
       if(!country){
         alert('Cannot upload empty fields');
         return false;
@@ -202,6 +199,7 @@ const UploadContextProvider = ({children}) => {
         lat, setLat, lng, setLng,
         bedrooms, setBedrooms,
         bed, setBed,
+        cautionFee, setCautionFee,
         price, setPrice,
         totalPrice, setTotalPrice,
         country, setCountry,
