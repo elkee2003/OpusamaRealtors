@@ -166,7 +166,7 @@ const DetailedAlert = ({notification, onStatusChange}) => {
               Price:
               </Text>
               <Text style={styles.details}> 
-                ₦{Number(notification.realtorPrice).toLocaleString()}
+                ₦{Number(notification.realtorPrice)?.toLocaleString()}
               </Text>
             </>
           )}

@@ -79,7 +79,7 @@ const ShortAlert = ({notification}) => {
             {notification.realtorPrice &&( 
                 <Text style={styles.details}>
                 <Text style={styles.detailsSub}>Amount:</Text> ₦
-                {Number(notification.realtorPrice).toLocaleString()}
+                {Number(notification.realtorPrice)?.toLocaleString()}
                 </Text>
             )}
 

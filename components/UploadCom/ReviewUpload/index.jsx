@@ -35,9 +35,9 @@ const ReviewUpload = () => {
      const displayPrice = price;
      const displayTotalPrice = totalPrice;
 
-     const formattedCautionFee = Number(displayCautionFee).toLocaleString();
-     const formattedPrice = Number(displayPrice).toLocaleString();
-     const formattedTotalPrice = Number(displayTotalPrice).toLocaleString();
+     const formattedCautionFee = Number(displayCautionFee)?.toLocaleString();
+     const formattedPrice = Number(displayPrice)?.toLocaleString();
+     const formattedTotalPrice = Number(displayTotalPrice)?.toLocaleString();
     
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
