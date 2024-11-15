@@ -326,7 +326,7 @@ const DetailedPost = ({post}) => {
           <View style={styles.priceRowTotal}>
             <Text style={styles.sub}>Total:</Text>
             <Text style={styles.totalPrice}>
-              {''}₦{post.totalPrice.String()}
+              {''}₦{post?.price?.toLocaleString()}
             </Text>
           </View>
         </View>

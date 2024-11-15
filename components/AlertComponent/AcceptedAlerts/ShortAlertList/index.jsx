@@ -16,7 +16,7 @@ const ShortAlertList = () => {
     const fetchBookings = async () =>{
       setLoading(true);
       try{
-        const fetchedBookings = await DataStore.query(Booking, (b)=> b.bookingRealtorId.eq(dbUser.id));      
+        const fetchedBookings = await DataStore.query(Booking, (b)=> b.realtorID.eq(dbUser.id));      
 
         const filteredBookings = fetchedBookings.filter((booking)=>booking.status === 'ACCEPTED' || booking.status === 'VIEWING' || booking.status === 'VIEWED' || booking.status === 'SOLD').sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt));
 
