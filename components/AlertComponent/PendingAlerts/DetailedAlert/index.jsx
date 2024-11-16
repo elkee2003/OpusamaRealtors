@@ -10,7 +10,8 @@ const DetailedAlert = ({notification, onStatusChange}) => {
     if (status === 'VIEWING') return 'Viewing';
     if (status === 'VIEWED') return 'Viewed';
     if(status === 'SOLD') return 'Sold';
-    if(status === 'CANCELLED') return 'Cancelled';
+    if(status === 'PAID') return 'Paid';
+    if(status === 'RECEIVED') return 'Received';
     if (status === 'DENIED') return 'Denied';
     return 'Pending';
   };

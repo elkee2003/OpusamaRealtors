@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Alert } from 'react-native';
+import { View, Text, FlatList, Alert, RefreshControl } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ShortAlert from '../ShortAlert';
 import styles from './styles';
@@ -10,8 +10,9 @@ const ShortAlertList = () => {
 
     const {dbUser} = useAuthContext()
 
-    const [alerts, setAlerts] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [alerts, setAlerts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [refreshing, setRefreshing] = useState(false);
 
     const fetchBookings = async () =>{
       setLoading(true);
@@ -33,6 +34,7 @@ const ShortAlertList = () => {
         Alert.alert('Error fetching Bookings', e.message)
       }finally{
         setLoading(false);
+        setRefreshing(false);
       }
     }
 
@@ -48,6 +50,11 @@ const ShortAlertList = () => {
       return () => subscription.unsubscribe();
     },[])
 
+    const handleRefresh = () => {
+      setRefreshing(true); // Start the refreshing spinner
+      fetchBookings();
+    };
+
   return (
     <View style={styles.container}>
         { alerts && alerts.length > 0 ? (
@@ -55,6 +62,13 @@ const ShortAlertList = () => {
                 showsVerticalScrollIndicator={false} 
                 data={alerts}
                 renderItem={({item})=> <ShortAlert notification={item}/>}
+                refreshControl={
+                  <RefreshControl
+                      refreshing={refreshing}
+                      onRefresh={handleRefresh}
+                      colors={['#11032b']} // Spinner color
+                  />
+                }
             />
         ): (
             <Text style={styles.noListings}>You have no pending alert</Text>

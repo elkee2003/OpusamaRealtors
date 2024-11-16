@@ -1,4 +1,4 @@
-import { View, Text, Alert, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, Alert, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import PostSingle from '../PostSingle';
 import { useAuthContext } from '@/providers/AuthProvider';
@@ -12,6 +12,7 @@ const PostList = () => {
 
     const [myPostList, setMyPostList] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
 
     const fetchMyPosts = async() =>{
         setLoading(true);
@@ -27,6 +28,7 @@ const PostList = () => {
             Alert.alert('Error fetching posts', e.message)
         }finally {
           setLoading(false);
+          setRefreshing(false);
         }
     };
 
@@ -46,6 +48,11 @@ const PostList = () => {
         <ActivityIndicator size={'large'} style={styles.loading}/>
     }
 
+    const handleRefresh = () => {
+      setRefreshing(true); // Start the refreshing spinner
+      fetchMyPosts();
+    };
+
   return (
     <View style={styles.container}>
       { myPostList && myPostList.length > 0 ? (
@@ -54,6 +61,13 @@ const PostList = () => {
             keyExtractor={(item)=>item.id.toString()}
             showsVerticalScrollIndicator={false}
             renderItem={({item})=><PostSingle post={item}/>}
+            refreshControl={
+              <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={handleRefresh}
+                  colors={['#11032b']} // Spinner color
+              />
+            }
         />
       ) : (
         <Text style={styles.noListings}>No Post Available</Text>

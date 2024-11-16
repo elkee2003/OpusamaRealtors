@@ -157,10 +157,10 @@ const EditProfile = () => {
           style={styles.input}
           keyboardType='numeric'
         />
-
-        {/* Error Message */}
-        <Text style={styles.error}>{errorMessage}</Text>
       </ScrollView>
+
+      {/* Error Message */}
+      <Text style={styles.error}>{errorMessage}</Text>
 
       <TouchableOpacity onPress={goToNxtPage} style={styles.nxtBtn}>
         <MaterialIcons name="navigate-next" style={styles.nxtBtnIcon} />

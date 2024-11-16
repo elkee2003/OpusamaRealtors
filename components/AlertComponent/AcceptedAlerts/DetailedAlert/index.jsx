@@ -1,6 +1,7 @@
 import { View, Text, Image, ScrollView, Alert, TouchableOpacity } from 'react-native';
 import React from 'react';
 import styles from './styles';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import * as Clipboard from 'expo-clipboard';
 import { router } from 'expo-router';
 
@@ -12,7 +13,8 @@ const DetailedAlert = ({notification, onStatusChange}) => {
     if (status === 'VIEWING') return 'Viewing';
     if (status === 'VIEWED') return 'Viewed';
     if(status === 'SOLD') return 'Sold';
-    if(status === 'CANCELLED') return 'Cancelled';
+    if(status === 'PAID') return 'Paid';
+    if(status === 'RECEIVED') return 'Received';
     if (status === 'DENIED') return 'Denied';
     return 'Pending';
   }
@@ -203,23 +205,23 @@ const DetailedAlert = ({notification, onStatusChange}) => {
             </>
           )}
 
-          {/* Status */}
-          <View style={styles.statusRow}>
-              <Text style={styles.status}>
-              {getStatusText(notification.status)}
-              </Text>
-              {(notification.status === 'ACCEPTED') ? (
-                  <View style={styles.greenIcon}/>
-              ):(
-                  <View style={styles.redIcon}/>
-              )}
-          </View>
-
           {/* By Account */}
           <Text style={styles.bookedBy}>
             by: {notification?.user?.firstName}
           </Text>
         </ScrollView>
+
+        {/* Status */}
+        <View style={styles.statusRow}>
+          <Text style={styles.status}>
+          {getStatusText(notification.status)}
+          </Text>
+          {(notification.status === 'ACCEPTED'  || notification.status === 'VIEWING' || notification.status === 'VIEWED' || notification.status === 'PAID' || notification.status === 'SOLD' || notification.status === 'RECEIVED') ? (
+              <View style={styles.greenIcon}/>
+          ):(
+              <View style={styles.redIcon}/>
+          )}
+        </View>
 
         {/* Buttons - Only show if propertyType is not 'Hotel / Shortlet' */}
 
@@ -227,41 +229,98 @@ const DetailedAlert = ({notification, onStatusChange}) => {
           <>
             {/* Viewing */}
             {notification.status === 'ACCEPTED' && (
-              <TouchableOpacity 
-                style={styles.view}
-                onPress={() => {
-                  onStatusChange('VIEWING');
-                  router.back();
-                }}
-              >
-                <Text style={styles.btnTxt}>Viewing</Text>
-              </TouchableOpacity>
+              <View style={styles.viewConInfoRow}>
+                <TouchableOpacity 
+                  style={styles.view}
+                  onPress={() => {
+                    onStatusChange('VIEWING');
+                    router.back();
+                  }}
+                >
+                  <Text style={styles.btnTxt}>Viewing</Text>
+                </TouchableOpacity>
+
+                {/* Info Icon */}
+                <TouchableOpacity 
+                  style={styles.infoIconCon}
+                  onPress={() => Alert.alert('Booking Info', 'Click on "Viewing" once you are showing the client the property.')}
+                >
+                  <AntDesign name="infocirlceo" style={styles.infoIcon} />
+                </TouchableOpacity>
+              </View>
             )}
 
             {/* Viewed */}
             {notification.status === 'VIEWING' && (
-              <TouchableOpacity 
-                style={styles.view}
-                onPress={() => {
-                  onStatusChange('VIEWED');
-                  router.back();
-                }}
-              >
-                <Text style={styles.btnTxt}>Viewed</Text>
-              </TouchableOpacity>
+              <View style={styles.viewConInfoRow}>
+                <TouchableOpacity 
+                  style={styles.view}
+                  onPress={() => {
+                    onStatusChange('VIEWED');
+                    router.back();
+                  }}
+                >
+                  <Text style={styles.btnTxt}>Viewed</Text>
+                </TouchableOpacity>
+                
+                {/* Info Icon */}
+                <TouchableOpacity 
+                style={styles.infoIconCon}
+                onPress={() => Alert.alert('Booking Info', 'Click on "Viewed" if client has viewed the property.')}
+                >
+                  <AntDesign name="infocirlceo" style={styles.infoIcon} />
+                </TouchableOpacity>
+              </View>
             )}
 
             {/* Sold */}
             {notification.status === 'VIEWED' && (
-              <TouchableOpacity 
-                style={styles.sold}
-                onPress={() => {
-                  onStatusChange('SOLD');
-                  router.back();
-                }}
-              >
-                <Text style={styles.btnTxt}>Sold</Text>
-              </TouchableOpacity>
+              <View style={styles.viewConInfoRow}>
+                <TouchableOpacity 
+                  style={styles.sold}
+                  onPress={() => {
+                    onStatusChange('SOLD');
+                    router.back();
+                  }}
+                >
+                  <Text style={styles.btnTxt}>Sold / Rented</Text>
+                </TouchableOpacity>
+
+                {/* Info Icon */}
+                <TouchableOpacity 
+                  style={styles.infoIconCon}
+                  onPress={() => Alert.alert('Booking Info', 'Click on "Sold / Rented" if you have sold/rented the property.')}
+                >
+                  <AntDesign name="infocirlceo" style={styles.infoIcon} />
+                </TouchableOpacity>
+              </View>
+            )}
+          </>
+        )}
+
+        {/* Buttons - Only show if propertyType is 'Hotel / Shortlet' */}
+        {notification.propertyType === 'Hotel / Shortlet' && (
+          <>
+            {notification.status === 'PAID' && (
+              <View style={styles.viewConInfoRow}>
+                <TouchableOpacity 
+                  style={styles.view}
+                  onPress={() => {
+                    onStatusChange('RECEIVED');
+                    router.back();
+                  }}
+                >
+                  <Text style={styles.btnTxt}>Received</Text>
+                </TouchableOpacity>
+
+                {/* Info Icon */}
+                <TouchableOpacity 
+                  style={styles.infoIconCon}
+                  onPress={() => Alert.alert('Booking Info', 'Click on "Received" once you have received payment for booking.')}
+                >
+                  <AntDesign name="infocirlceo" style={styles.infoIcon} />
+                </TouchableOpacity>
+              </View>
             )}
           </>
         )}

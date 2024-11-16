@@ -38,23 +38,37 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         gap:10,
-        marginBottom:5,
+        marginVertical:5,
     },
     status:{
-        fontSize:16,
+        fontSize:17,
         fontWeight:'bold',
     },
     greenIcon:{
-        width:10,
-        height:10,
+        width:13,
+        height:13,
         borderRadius:5,
         backgroundColor:'#03eb03',
     },
     redIcon:{
-        width:10,
-        height:10,
+        width:13,
+        height:13,
         borderRadius:5,
         backgroundColor:'#eb1e03',
+    },
+    viewConInfoRow:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        gap:5,
+    },
+    infoIconCon:{
+        justifyContent:'center',
+        alignItems:'center',
+        padding:5,
+    },
+    infoIcon:{
+        fontSize:20,
     },
     bookedBy:{
         fontSize:17,

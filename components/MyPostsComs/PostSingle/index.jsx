@@ -4,11 +4,14 @@ import React, {useState, useEffect} from 'react';
 import styles from './styles';
 import DefaultImage from '../../../assets/images/defaultImage.png';
 import { FontAwesome6 } from '@expo/vector-icons';
+import {useProfileContext} from '@/providers/ProfileProvider';
 import { getUrl } from 'aws-amplify/storage';
 
 const PostSingle = ({post}) => {
 
   const [imageUris, setImageUris] = useState([]);
+
+  const {firstName} = useProfileContext()
 
    // Fetch signed URLs for each image in post.media
    const fetchImageUrls = async () => {
@@ -79,7 +82,7 @@ const PostSingle = ({post}) => {
         {/* Username */}
         <View style={styles.contact}>
           <FontAwesome6 name="person" size={24} color="black" />
-          <Text style={styles.name}>{post.firstName}</Text>
+          <Text style={styles.name}>{firstName}</Text>
         </View>
 
         {/* Type & Description */}
