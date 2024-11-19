@@ -14,7 +14,7 @@ import { Post} from '../../../src/models';
 
 const UploadProperty = () => {
 
-    const {dbUser} = useAuthContext();
+    const {dbUser, sub} = useAuthContext();
 
     const {
         propertyType, setPropertyType, type, setType, nameOfType, setNameOfType, availableDocs, setAvailableDocs, 
@@ -62,7 +62,7 @@ const UploadProperty = () => {
                 const response = await fetch(manipulatedImage.uri);
                 const blob = await response.blob();
     
-                const fileKey = `public/media/${Crypto.randomUUID()}.jpg`;
+                const fileKey = `public/media/${sub}/${Crypto.randomUUID()}.jpg`;
     
                 const result = await uploadData({
                     path: fileKey,

@@ -78,6 +78,16 @@ const ProfileHead = () => {
   return (
     <View style={styles.container}>
       <View style={styles.profileDetails}>
+
+        {/* Three dots */}
+        <TouchableOpacity 
+          style={styles.dotCon}
+          onPress={()=>router.push('/screens/profileoptions')}
+        >
+          <Entypo name="dots-three-vertical" style={styles.icon}/>
+        </TouchableOpacity>
+
+        {/* Image */}
         <TouchableOpacity style={styles.profilePicContainer} onPress={()=>router.push('/profile/editprofile')}>
           {loading ? (
             <Image 

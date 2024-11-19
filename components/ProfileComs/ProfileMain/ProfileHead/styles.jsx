@@ -2,11 +2,17 @@ import { StyleSheet, } from 'react-native'
 
 const styles = StyleSheet.create({
     container:{
-        // flex:1,
+        position:'relative',
         marginTop:30,
         marginHorizontal:20,
     },
-    profileDetails:{
+    dotCon:{
+        position:'absolute',
+        top:20,
+        right:0,
+    },
+    icon:{
+        fontSize:25,
     },
     profilePicContainer:{
         height:130,

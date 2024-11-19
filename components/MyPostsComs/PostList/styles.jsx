@@ -4,8 +4,14 @@ import {Colors} from '../../../constants/Colors'
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        marginVertical:35,
+        marginVertical:40,
 
+    },
+    logo:{
+        resizeMode:'contain', 
+        width:50,
+        height:50,
+        alignSelf:'center',
     },
     noListings:{
         textAlign:'center',

@@ -1,6 +1,7 @@
-import { View, Text, Alert, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
+import { View, Text, Alert, FlatList, ActivityIndicator, RefreshControl, Image } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import PostSingle from '../PostSingle';
+import Logo from '../../../assets/data/images/Opusama3.png'
 import { useAuthContext } from '@/providers/AuthProvider';
 import { DataStore } from 'aws-amplify/datastore';
 import {Post} from '../../../src/models';
@@ -55,6 +56,7 @@ const PostList = () => {
 
   return (
     <View style={styles.container}>
+      <Image source={Logo} style={styles.logo}/>
       { myPostList && myPostList.length > 0 ? (
         <FlatList
             data={myPostList}
