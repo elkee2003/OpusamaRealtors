@@ -313,11 +313,11 @@ const DetailedPost = ({post}) => {
           <View style={styles.priceRow}>
             <Text style={styles.sub}>Price: </Text>
             <Text style={styles.price}> 
-              { post.propertyType === 'Hotel / Shortlet' 
-                ? `₦${post.price?.toLocaleString()} / night` 
-                : (post.propertyType === 'House Sale' || post.propertyType === 'Land Sale')
-                  ? `₦${post.price?.toLocaleString()}`
-                  : `₦${post.price?.toLocaleString()} / year`
+              { post?.propertyType === 'Hotel / Shortlet' 
+                ? `₦${post?.price?.toLocaleString()} / night` 
+                : (post?.propertyType === 'House Sale' || post?.propertyType === 'Land Sale')
+                  ? `₦${post?.price?.toLocaleString()}`
+                  : `₦${post?.price?.toLocaleString()} / year`
               }
             </Text>
           </View>
@@ -326,7 +326,7 @@ const DetailedPost = ({post}) => {
           <View style={styles.priceRowTotal}>
             <Text style={styles.sub}>Total:</Text>
             <Text style={styles.totalPrice}>
-              {''}₦{post?.price?.toLocaleString()}
+              {''}₦{post?.totalPrice?.toLocaleString()}
             </Text>
           </View>
         </View>
