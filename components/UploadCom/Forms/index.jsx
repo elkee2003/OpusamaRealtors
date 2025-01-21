@@ -1,9 +1,7 @@
-import { View, Text, ScrollView, TextInput, Pressable, TouchableOpacity} from 'react-native';
+import { View, ScrollView, Text, TextInput, Pressable, TouchableOpacity} from 'react-native';
 // import { ScrollView } from 'react-native-virtualized-view';
 import React, {useState, useEffect, useRef} from 'react'
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { GOOGLE_API_KEY } from '@/keys';
-import { Ionicons } from '@expo/vector-icons';
+import { Dropdown } from 'react-native-element-dropdown';
 import { useUploadContext } from '@/providers/UploadProvider';
 import AccommodationDropDown from '../DropDown/AccommodationDropDown';
 import CountryDropDown from '../DropDown/CountryDropDown';
@@ -25,7 +23,9 @@ const Forms = () => {
       type, setType,
       cautionFee, setCautionFee,
       price, setPrice,
+      inspectionFee, setInspectionFee,
       totalPrice, setTotalPrice,
+      timeFrame, setTimeFrame,
       address, setAddress,
       setLat, setLng,
       amenities, setAmenities,
@@ -33,11 +33,14 @@ const Forms = () => {
       errors, onValidate, media,
       } = useUploadContext()
 
-      // function to clear autocompleter
-    const handleClearAddress = () => {
-      autocompleteRef.current?.clear(); // Clear the autocomplete input
-      setAddress(null);
-    };
+      const timeOptions = [
+        { label: 'Night', value: 'Night' },
+        { label: 'Week', value: 'Week' },
+        { label: 'Month', value: 'Month' },
+        { label: 'Year', value: 'Year' },
+      ];
+
+      
 
      const goToReview = ()=>{
       if(onValidate()){
@@ -45,28 +48,8 @@ const Forms = () => {
       }
      }
 
-     // function to handle focus
-    const handleFocusChange = (focused) => {
-        setIsFocused(focused);
-    };
+     
 
-    // Start Of GooglePlacesAutoComplete function
-    const handlePlaceSelect = (data, details = null) => {
-      // Extract the address from the selected place
-      const selectedAddress = data?.description || details?.formatted_address;
-
-      const selectedAddylat = JSON.stringify(details?.geometry?.location.lat) 
-
-      const selectedAddylng = JSON.stringify(details?.geometry?.location.lng) 
-
-      console.log(selectedAddylng, selectedAddylat)
-
-      // Update the address state
-      setAddress(selectedAddress);
-      setLat(selectedAddylat)
-      setLng(selectedAddylng)
-
-  };
 
     // Function to update totalPrice whenever cautionFee or price changes
     useEffect(() => {
@@ -123,43 +106,56 @@ const Forms = () => {
             </View>
           )}
         </View>
+
+        {propertyType !== 'Hotel / Shortlet' && (
+          <View>
+            <Text style={styles.label}>Inspection Fee:</Text>
+            <TextInput
+              style={styles.genInput}
+              value={inspectionFee}
+              onChangeText={setInspectionFee}
+              placeholder='Inspection Fee (Opt)'
+              keyboardType='numeric'
+              multiline
+            />
+          </View>
+          )}
+
+        {propertyType !== 'House Sale' && propertyType !== 'Land Sale' && (
+          <View>
+            <Text style={styles.label}>Time Frame:</Text>
+            <Dropdown
+                style={[styles.timeDropdown, isFocused && { borderColor: '#0f238a' }]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={styles.iconStyle}
+                data={timeOptions}
+                search
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder={!isFocused ? 'Select Time Frame' : '...'}
+                searchPlaceholder="Search..."
+                value={timeFrame}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                onChange={item => {
+                setTimeFrame(item.value)
+                setIsFocused(false);
+                }}
+            />
+          </View>
+        )}
         
-        <Text style={styles.label}>Address:</Text>
-        {/* Googleplaces autocomplete */}
-        {/* <View style={isFocused ? styles.gContainerFocused : styles.gContainer}>
-              <GooglePlacesAutocomplete
-              fetchDetails
-              ref={autocompleteRef}
-              placeholder='Select Address From Here'
-              onPress={handlePlaceSelect}
-              textInputProps={{
-              onFocus:() => handleFocusChange(true),
-              onBlur:() => handleFocusChange(false),
-              
-              }} 
-              styles={{
-              textInput:styles.gTextInput,
-              textInputContainer:styles.gTextInputContainer,
-              listView:styles.glistView,
-              poweredContainer:styles.gPoweredContainer
-              }}
-              query={{
-              key: GOOGLE_API_KEY,
-              language: 'en',
-              components: 'country:ng',
-              }}
-              />
-              <TouchableOpacity onPress={handleClearAddress} style={styles.clearIconContainer}>
-                  <Ionicons name='close-circle' style={styles.clearIcon}/>
-              </TouchableOpacity>
-        </View> */}
-        <TextInput
+        {/* </View> */}
+        {/* <TextInput
         style={styles.input}
         value={address}
         onChangeText={setAddress}
         placeholder='Address'
         multiline
-        />
+        /> */}
 
 
         {/* Country and State */}

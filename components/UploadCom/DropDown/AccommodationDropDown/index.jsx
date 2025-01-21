@@ -19,7 +19,7 @@ const AccommodationDropDown = () => {
     
 
     const propertyTypes = [
-      { label: 'House', value: 'House' },
+      { label: 'House Rent', value: 'House Rent' },
       { label: 'Hotel / Shortlet', value: 'Hotel / Shortlet' },
       { label: 'House Sale', value: 'House Sale' },
       { label: 'Land Sale', value: 'Land Sale' },
@@ -31,6 +31,10 @@ const AccommodationDropDown = () => {
 
     const houseData = [
       { label: 'Self Contain', value: 'Self Contain' },
+      { label: 'One Bedroom', value: 'One Bedroom' },
+      { label: 'Two Bedroom', value: 'Two Bedroom' },
+      { label: 'Three Bedroom', value: 'Three Bedroom' },
+      { label: 'Five Bedroom', value: 'Five Bedroom' },
       { label: 'Bungalow', value: 'Bungalow' },
       { label: 'Duplex', value: 'Duplex' },
       { label: 'Single-Family Home', value: 'Single-Family Home' },
@@ -61,6 +65,8 @@ const AccommodationDropDown = () => {
       {label:'Suite', value:'Suite'},
       {label:'Connecting Rooms', value:'Connecting Rooms'},
       {label:'Accessible Room', value:'Accessible Room'},
+      {label:'Whole Floor', value:'Whole Floor'},
+      {label:'Half Floor', value:'Half Floor'},
       {label:'Balcony/Terrace Room', value:'Balcony/Terrace Room'},
       {label:'Deluxe Room', value:'Deluxe Room'},
       {label:'Penthouse', value:'Penthouse'},
@@ -118,7 +124,7 @@ const AccommodationDropDown = () => {
         />
 
         {/* House */}
-        {propertyType === 'House' && (
+        {propertyType === 'House Rent' && (
           <>
             <Text style={styles.labelTxt}>Accommodation Type</Text>
             <Dropdown

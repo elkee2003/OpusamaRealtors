@@ -18,7 +18,8 @@ const index = () => {
     const [loading, setLoading] = useState(false);
 
     const onSignInPressed = async (data) =>{
-        const { email, password } = data;
+        const email = data.email.trim(); 
+        const password = data.password;
 
         if(loading){
             return;
@@ -58,7 +59,7 @@ const index = () => {
         {/* Header */}
         <View style={styles.titleCon}>
             <Text style={styles.title}>
-                Sign In
+                Sign In (Realtor App)
             </Text>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>

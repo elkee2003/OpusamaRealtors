@@ -35,6 +35,12 @@ const DetailedAlert = ({notification, onStatusChange}) => {
     }
   };
 
+  // I am meant to update the available field to false when notification.status is accepted
+  // console.log('checking status:', notification?.post?.propertyType)
+
+  // if(notification.status === 'ACCEPTED' && notification?.post?.propertyType === 'Hotel / Shortlet'){
+  // }
+
   return (
     <View style={styles.container}>
         <Text style={styles.header}>Guest Details</Text>

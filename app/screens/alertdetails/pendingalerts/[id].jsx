@@ -64,7 +64,7 @@ const PendingDetailedAlert = () => {
       }
     });
 
-    return () => subscription.unsubscribe;
+    return () => subscription.unsubscribe();
   },[booking])
   
   if (!booking) {

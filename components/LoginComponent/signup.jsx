@@ -28,41 +28,25 @@ const SignupCom = () => {
         const { email, password } = data;
     
         try {
-          // Register the user with additional custom attributes
-        //   const userAttributes = {
-        //     email: email,
-        //     'custom:role': role // Automatically add the custom role attribute
-        //   };
-        // Old way:
-        // const { courier} = await Auth.signUp({
-        //     username: email,  // Using email as the username
-        //     password,
-        //     attributes: {
-        //         email,
-        //         'custom:role': role, // Automatically add the custom role attribute
-        //       },
-        //       autoSignIn: { enabled: true } // Automatically sign in after sign-up
-        //     });
-
-        const { isSignUpComplete, userId, nextStep } = await signUp({
-            username: email,  // Using email as the username
-            password,
-            options: {
-                userAttributes: {
-                    email,
-                    'custom:role': role, // Automatically add the custom role attribute
+            const { isSignUpComplete, userId, nextStep } = await signUp({
+                username: email,  // Using email as the username
+                password,
+                options: {
+                    userAttributes: {
+                        email,
+                        'custom:role': role, // Automatically add the custom role attribute
+                    },
+                    autoSignIn: true, // Automatically sign in after sign-up
                 },
-                autoSignIn: true, // Automatically sign in after sign-up
-            },
-        });
+            });
           
-          router.push({
-            pathname: '/login/confirmemail', 
-            params: { username: email } // Pass the username/email
-          });
+            router.push({
+                pathname: '/login/confirmemail', 
+                params: { username: email } // Pass the username/email
+            });
 
         } catch (error) {
-          Alert.alert('Error', error.message);
+            Alert.alert('Error', error.message);
         }
     
         setLoading(false);

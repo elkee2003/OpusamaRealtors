@@ -18,7 +18,7 @@ const DisplayMedia = () => {
   // function to go to forms
   const goToForms =()=>{
     if(media.length >= 3){
-     router.push('/share/forms')
+     router.push('/share/selectaddress')
      return true; 
     }else{
       Alert.alert('Kindly add more media files')

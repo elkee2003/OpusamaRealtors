@@ -14,7 +14,7 @@ const WriteDescription = () => {
     <View>
 
         {/* House */}
-        {propertyType === 'House' && ( 
+        {propertyType === 'House Rent' && ( 
             <>
                 <Text style={styles.label}>House Description:</Text>
                 <TextInput

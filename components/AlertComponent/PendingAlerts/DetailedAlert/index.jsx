@@ -11,7 +11,11 @@ const DetailedAlert = ({notification, onStatusChange}) => {
     if (status === 'VIEWED') return 'Viewed';
     if(status === 'SOLD') return 'Sold';
     if(status === 'PAID') return 'Paid';
+    if(status === 'DELAYED_PAYMENT') return 'Delayed Payment';
     if(status === 'RECEIVED') return 'Received';
+    if (status === 'OCCUPIED') return 'Occupied';
+    if (status === 'REMOVED_REALTOR') return 'Removed';
+    if(status === 'REMOVED_REALTOR_PAYMENT_DELAYED') return 'Delayed Payment (Removed)';
     if (status === 'DENIED') return 'Denied';
     return 'Pending';
   };
@@ -192,45 +196,96 @@ const DetailedAlert = ({notification, onStatusChange}) => {
         
         {/* Buttons */}
 
-        <View style={styles.acceptDenyRow}>
+        <View style={styles.acceptTryAnotherRow}>
           {/* Accept */}
-          <TouchableOpacity 
-            style={styles.accept}
-            onPress={() => {
-              onStatusChange('ACCEPTED');
-              router.back();
-            }}
-          >
-            <Text style={styles.btnTxt}>Accept</Text>
-          </TouchableOpacity>
+          {notification.status !== 'DELAYED_PAYMENT' && (
+            <TouchableOpacity 
+              style={styles.accept}
+              onPress={() => {
+                onStatusChange('ACCEPTED');
+                router.back();
+              }}
+            >
+              <Text style={styles.btnTxt}>Accept</Text>
+            </TouchableOpacity>
+          )}
 
-          {/* Deny */}
-          <TouchableOpacity 
-            style={styles.deny}
-            onPress={() => {
-              Alert.alert(
-                'Confirm Deny',
-                'Are you sure you want to deny this request?',
-                [
-                  {
-                    text:'Cancel',
-                    style:'cancel',
-                  },
-                  {
-                    text:'Deny',
-                    onPress: () => {
-                      onStatusChange('DENIED');
-                      router.back()
+          {notification.status !== 'DELAYED_PAYMENT' && (
+            <TouchableOpacity 
+              style={styles.occupied}
+              onPress={() => {
+                Alert.alert(
+                  'Confirm',
+                  'By clicking this you want client to try another listing because this is unavailable',
+                  [
+                    {
+                      text:'Cancel',
+                      style:'cancel',
                     },
-                    style:'destructive'
-                  }
-                ]
-              );
-            }}
-          >
-            <Text style={styles.btnTxt}>Deny</Text>
-          </TouchableOpacity>
+                    {
+                      text:'Try Another',
+                      onPress: () => {
+                        onStatusChange('OCCUPIED');
+                        router.back();
+                      },
+                      style:'destructive'
+                    }
+                  ]
+                );
+                
+              }}
+            >
+              <Text style={styles.btnTxt}>Try another</Text>
+            </TouchableOpacity>
+          )}
+
         </View>
+
+        {/* Deny Container */}
+        {notification.status !== 'DELAYED_PAYMENT' && (
+          <View style={styles.denyCon}>
+            {/* Deny */}
+            <TouchableOpacity 
+              style={styles.deny}
+              onPress={() => {
+                Alert.alert(
+                  'Confirm Deny',
+                  'Are you sure you want to deny this request?',
+                  [
+                    {
+                      text:'Cancel',
+                      style:'cancel',
+                    },
+                    {
+                      text:'Deny',
+                      onPress: () => {
+                        onStatusChange('DENIED');
+                        router.back()
+                      },
+                      style:'destructive'
+                    }
+                  ]
+                );
+              }}
+            >
+              <Text style={styles.btnTxt}>Deny</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {notification.status === 'DELAYED_PAYMENT' && (
+          <View style={styles.denyCon}>
+            <TouchableOpacity 
+              style={styles.deny}
+              onPress={() => {
+                onStatusChange('REMOVED_REALTOR_PAYMENT_DELAYED');
+                router.back();
+              }}
+            >
+              <Text style={styles.btnTxt}>Remove</Text>
+            </TouchableOpacity>
+          </View>
+        )}
     </View>
   )
 }

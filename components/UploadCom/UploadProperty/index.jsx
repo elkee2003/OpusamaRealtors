@@ -19,7 +19,7 @@ const UploadProperty = () => {
     const {
         propertyType, setPropertyType, type, setType, nameOfType, setNameOfType, availableDocs, setAvailableDocs, 
         // customInput, setCustomInput,
-        accommodationParts, setAccommodationParts, media, setMedia, description, setDescription, bedrooms, setBedrooms, bed, setBed, cautionFee, setCautionFee, price, setPrice, totalPrice, setTotalPrice, country, setCountry, state, setState, city, setCity, address, setAddress, lat, setLat, lng, setLng, amenities, setAmenities, policies, setPolicies, uploadPost, setUploadPost, onValidateUpload
+        accommodationParts, setAccommodationParts, media, setMedia, description, setDescription, bedrooms, setBedrooms, bed, setBed, cautionFee, setCautionFee, timeFrame, setTimeFrame, inspectionFee, setInspectionFee, price, setPrice, totalPrice, setTotalPrice, country, setCountry, state, setState, city, setCity, address, setAddress, lat, setLat, lng, setLng, amenities, setAmenities, policies, setPolicies, uploadPost, setUploadPost, onValidateUpload
     } = useUploadContext();
 
     const [uploading, setUploading] = useState(false);
@@ -40,7 +40,9 @@ const UploadProperty = () => {
         setBedrooms('');
         setBed('');
         setCautionFee(''),
+        setTimeFrame('')
         setPrice('');
+        setInspectionFee('')
         setTotalPrice('');
         setCountry('');
         setState('');
@@ -55,8 +57,8 @@ const UploadProperty = () => {
                 // Resize and compress image
                 const manipulatedImage = await ImageManipulator.manipulateAsync(
                     item.uri,
-                    [{ resize: { width: 800 } }],  // Adjust width as needed
-                    { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG } // Compress quality between 0 and 1
+                    [{ resize: { width: 600 } }],  // Adjust width as needed
+                    { compress: 0.6, format: ImageManipulator.SaveFormat.JPEG } // Compress quality between 0 and 1
                 );
     
                 const response = await fetch(manipulatedImage.uri);
@@ -126,6 +128,8 @@ const UploadProperty = () => {
                 lng: parseFloat(lng),
                 // lat: 2.2,
                 // lng:3.4,
+                timeFrame,
+                inspectionFee: parseFloat(inspectionFee),
                 cautionFee: parseFloat(cautionFee),
                 price: parseFloat(price),
                 totalPrice:parseFloat(totalPrice),

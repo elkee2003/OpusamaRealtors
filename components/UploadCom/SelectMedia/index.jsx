@@ -29,8 +29,8 @@ const SelectMedia = () => {
       // Check the length immediately after setting state
       if (selectedImages.length < 3) {
         Alert.alert('Error', 'Select at least 3 media files');
-      } else if (selectedImages.length > 9) {
-        Alert.alert('Error', 'You can only select up to 9 media files');
+      } else if (selectedImages.length > 12) {
+        Alert.alert('Error', 'You can only select up to 12 media files');
       } else {
         setMedia(selectedImages);
         router.push('/share/displayedmedia');

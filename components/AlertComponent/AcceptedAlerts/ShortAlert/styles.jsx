@@ -44,7 +44,23 @@ const styles = StyleSheet.create({
     accOwner:{
         color:'#464545',
         fontStyle:'italic'
-    }
+    },
+    
+    delCon:{
+        padding:10,
+        width:150,
+        marginTop:10,
+        alignSelf:'center',
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#f31d1d',
+        borderRadius:15,
+    },
+    removeTxt:{
+        color:'#f7f4f4',
+        fontSize:18,
+        fontWeight:'bold',
+    },
 })
 
 export default styles;

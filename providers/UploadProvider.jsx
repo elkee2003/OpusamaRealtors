@@ -20,8 +20,10 @@ const UploadContextProvider = ({children}) => {
     const [bedrooms, setBedrooms] = useState('');
     const [bed, setBed] = useState('');
     const [cautionFee, setCautionFee] = useState(0);
+    const [inspectionFee, setInspectionFee]= useState('')
     const [price, setPrice] = useState('');
     const [totalPrice, setTotalPrice] = useState('');
+    const [timeFrame, setTimeFrame] = useState('');
     const [country, setCountry] = useState('');
     const [state, setState]= useState('');
     const [city, setCity] = useState('');
@@ -78,9 +80,13 @@ const UploadContextProvider = ({children}) => {
         }
 
         // Specific validations for each property type
-        if (propertyType === 'House') {
+        if (propertyType === 'House Rent') {
           if (!bedrooms) {
             setErrors('Number of Bedrooms is Required');
+            return false;
+          }
+          if(!timeFrame){
+            setErrors('Time frame is required');
             return false;
           }
         } else if (propertyType === 'Hotel / Shortlet') {
@@ -90,6 +96,10 @@ const UploadContextProvider = ({children}) => {
           }
           if (!bed) {
             setErrors('Number of Beds is Required');
+            return false;
+          }
+          if(!timeFrame){
+            setErrors('Time frame is required');
             return false;
           }
         } else if (propertyType === 'House Sale') {
@@ -109,6 +119,15 @@ const UploadContextProvider = ({children}) => {
         } else if (propertyType === 'Student Accommodation') {
           if (!accommodationParts) {
             setErrors('Accommodation Parts are Required');
+            return false;
+          }
+          if(!timeFrame){
+            setErrors('Time frame is required');
+            return false;
+          }
+        } else if (propertyType === 'Office Space') {
+          if(!timeFrame){
+            setErrors('Time frame is required');
             return false;
           }
         }
@@ -200,8 +219,10 @@ const UploadContextProvider = ({children}) => {
         bedrooms, setBedrooms,
         bed, setBed,
         cautionFee, setCautionFee,
+        inspectionFee, setInspectionFee,
         price, setPrice,
         totalPrice, setTotalPrice,
+        timeFrame, setTimeFrame,
         country, setCountry,
         state, setState,
         city, setCity,

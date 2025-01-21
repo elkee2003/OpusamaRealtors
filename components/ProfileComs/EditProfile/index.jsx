@@ -60,7 +60,7 @@ const EditProfile = () => {
     const onSignout = ()=>{
       Alert.alert(
         'Sign Out',
-        'Are you sure you want to sign out? Click on YES, then refresh the App',
+        'Are you sure you want to sign out?',
         [
           {
             text: "Cancel",
@@ -102,7 +102,7 @@ const EditProfile = () => {
         <TextInput 
           value={firstName}
           onChangeText={setFirstName}
-          placeholder='Name / Company name'
+          placeholder='First Name / Company name'
           style={styles.input}
         />
         <TextInput 

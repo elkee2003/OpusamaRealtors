@@ -72,7 +72,7 @@ const PostList = () => {
             }
         />
       ) : (
-        <Text style={styles.noListings}>No Post Available</Text>
+        <Text style={styles.noListings}>You have not made any post yet</Text>
       )}
     </View>
   )

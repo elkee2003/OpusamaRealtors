@@ -71,7 +71,7 @@ const PostSingle = ({post}) => {
           {/* Bed & Bedrooms */}
           {post.bedrooms && (
             <Text style={styles.bedroom}>
-              {post.bedrooms} {post.propertyType === 'House' ? 'Bedroom Apartment' : 'Bedroom'} 
+              {post.bedrooms} {post.propertyType === 'House Rent' ? 'Bedroom Apartment' : 'Bedroom'} 
             </Text>
           )}
 
@@ -92,12 +92,7 @@ const PostSingle = ({post}) => {
         <View style={styles.priceRow}>
           <Text style={styles.sub}>Price: </Text>
           <Text style={styles.price}> 
-            { post.propertyType === 'Hotel / Shortlet' 
-              ? `₦${post.price?.toLocaleString()} / night` 
-              : (post.propertyType === 'House Sale' || post.propertyType === 'Land Sale')
-                ? `₦${post.price?.toLocaleString()}`
-                : `₦${post.price?.toLocaleString()} / year`
-            }
+            ₦{post?.price?.toLocaleString()} {post.timeFrame && `/ ${post.timeFrame}`}
           </Text>
         </View>
 

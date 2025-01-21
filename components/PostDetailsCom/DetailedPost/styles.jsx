@@ -99,6 +99,21 @@ const styles = StyleSheet.create({
         fontSize:19,
         textDecorationLine:'underline'
     },
+
+    // For inspection fee
+    subInspectionFee:{
+        fontStyle:'italic',
+        fontSize:18,
+        fontWeight:'bold',
+        marginRight:7,
+        color:'grey',
+    },
+    inspectionFee:{
+        fontWeight:'bold',
+        fontSize:19,
+        color:'grey',
+    },
+    
     deleteButton: {
         backgroundColor: 'red',
         padding: 10,

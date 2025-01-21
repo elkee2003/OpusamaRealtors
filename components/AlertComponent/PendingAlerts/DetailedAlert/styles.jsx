@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
     },
 
     // Buttons
-    acceptDenyRow:{
+    acceptTryAnotherRow:{
         flexDirection:'row',
         gap:30,
         justifyContent:'center',
         alignItems:'center',
         marginTop:15,
-        marginBottom:40,
+        marginBottom:10,
     },
     accept:{
         padding:10,
@@ -79,6 +79,19 @@ const styles = StyleSheet.create({
         backgroundColor:'#0ac00a',
         borderRadius:20,
     },
+    occupied:{
+        padding:10,
+        width:150,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#9b3224',
+        borderRadius:20,
+    },
+    denyCon:{
+        alignSelf:'center',
+        marginBottom:25,
+    },
+
     deny:{
         padding:10,
         width:150,

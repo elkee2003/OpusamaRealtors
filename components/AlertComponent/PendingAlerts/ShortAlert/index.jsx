@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import styles from './styles';
 import { router } from 'expo-router';
@@ -12,6 +12,7 @@ const ShortAlert = ({notification}) => {
         if (status === 'VIEWED') return 'Viewed';
         if(status === 'SOLD') return 'Sold';
         if(status === 'PAID') return 'Paid';
+        if(status === 'DELAYED_PAYMENT') return 'Delayed Payment';
         if(status === 'RECEIVED') return 'Received';
         if (status === 'DENIED') return 'Denied';
         return 'Pending';
@@ -30,9 +31,11 @@ const ShortAlert = ({notification}) => {
 
             {/* Property Type */}
             {notification.propertyType &&(
-                <Text style={styles.details}>
-                <Text style={styles.detailsSub}>Accommodation Type:</Text> {notification?.propertyType}
-                </Text>
+                <TouchableOpacity onPress={()=> router.push(`home/${notification?.post?.id}`)}>
+                    <Text style={styles.details}>
+                    <Text style={styles.detailsSub}>Accommodation Type (click to view):</Text> {notification?.propertyType}
+                    </Text>
+                </TouchableOpacity>
             )}
 
             {/* Accommodation Type */}
@@ -80,7 +83,7 @@ const ShortAlert = ({notification}) => {
 
             {/* by Account Owner */}
             <Text style={styles.accOwner}>
-                by: {notification.user.firstName}
+                by: {notification?.user?.firstName}
             </Text>
         </TouchableOpacity>
     </View>

@@ -302,23 +302,20 @@ const DetailedPost = ({post}) => {
 
         <View style={styles.card}>
           {/* Caution Fee */}
-          <View style={styles.priceRow}>
-            <Text style={styles.sub}>Caution fee: </Text>
-            <Text style={styles.price}> 
-              ₦{post.cautionFee?.toLocaleString()}
-            </Text>
-          </View>
+          {post?.cautionFee && (
+            <View style={styles.priceRow}>
+              <Text style={styles.sub}>Caution fee: </Text>
+              <Text style={styles.price}> 
+                ₦{post?.cautionFee?.toLocaleString()}
+              </Text>
+            </View>
+          )}
 
           {/* Price */}
           <View style={styles.priceRow}>
             <Text style={styles.sub}>Price: </Text>
             <Text style={styles.price}> 
-              { post?.propertyType === 'Hotel / Shortlet' 
-                ? `₦${post?.price?.toLocaleString()} / night` 
-                : (post?.propertyType === 'House Sale' || post?.propertyType === 'Land Sale')
-                  ? `₦${post?.price?.toLocaleString()}`
-                  : `₦${post?.price?.toLocaleString()} / year`
-              }
+              ₦{post?.price?.toLocaleString()} {post.timeFrame && `/ ${post.timeFrame}`}
             </Text>
           </View>
 
@@ -329,6 +326,16 @@ const DetailedPost = ({post}) => {
               {''}₦{post?.totalPrice?.toLocaleString()}
             </Text>
           </View>
+
+          {/* Inspection Fee */}
+          {post?.inspectionFee && (
+            <View style={styles.priceRowTotal}>
+              <Text style={styles.subInspectionFee}>Inspection Fee:</Text>
+              <Text style={styles.inspectionFee}>
+                {''}₦{post?.inspectionFee?.toLocaleString()}
+              </Text>
+            </View>
+          )}
         </View>
 
         {/* Delete Button */}

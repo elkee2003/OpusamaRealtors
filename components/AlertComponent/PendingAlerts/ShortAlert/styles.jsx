@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     accOwner:{
         color:'#464545',
         fontStyle:'italic'
-    }
+    },
 })
 
 export default styles;

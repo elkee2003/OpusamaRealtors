@@ -19,9 +19,11 @@ const ReviewUpload = () => {
         bed,
         accommodationParts, 
         description,
+        timeFrame,
         cautionFee, 
         price, 
         totalPrice, 
+        inspectionFee,
         country,
         state,
         address,
@@ -31,10 +33,12 @@ const ReviewUpload = () => {
         amenities, 
     } = useUploadContext()
 
+     const displayInspectionFee = inspectionFee;
      const displayCautionFee = cautionFee;
      const displayPrice = price;
      const displayTotalPrice = totalPrice;
 
+     const formattedInspectionFee = Number(displayInspectionFee)?.toLocaleString();
      const formattedCautionFee = Number(displayCautionFee)?.toLocaleString();
      const formattedPrice = Number(displayPrice)?.toLocaleString();
      const formattedTotalPrice = Number(displayTotalPrice)?.toLocaleString();
@@ -103,6 +107,12 @@ const ReviewUpload = () => {
           <Text style={styles.inputReview}>₦{formattedPrice}</Text>
         </View>
 
+        {timeFrame && <View style={styles.row}>
+          <Text style={styles.displayLabel}>Time Frame:</Text>
+          <Text style={styles.inputReview}>{timeFrame}</Text>
+        </View>
+        }
+
         <View style={styles.row}>
           <Text style={styles.displayLabel}>Caution Fee:</Text>
           <Text style={styles.inputReview}>₦{formattedCautionFee}</Text>
@@ -112,6 +122,12 @@ const ReviewUpload = () => {
           <Text style={styles.displayLabel}>Total Price:</Text>
           <Text style={styles.inputReview}>₦{formattedTotalPrice}</Text>
         </View>
+
+        {inspectionFee && <View style={styles.row}>
+          <Text style={styles.displayLabel}>Inspection Fee:</Text>
+          <Text style={styles.inputReview}>₦{formattedInspectionFee}</Text>
+        </View>
+        }
 
         {bedrooms && <View style={styles.row}>  
           <Text style={styles.displayLabel}>Number of Rooms:</Text>
