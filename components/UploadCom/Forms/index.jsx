@@ -1,11 +1,13 @@
 import { View, ScrollView, Text, TextInput, Pressable, TouchableOpacity} from 'react-native';
 // import { ScrollView } from 'react-native-virtualized-view';
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect,} from 'react'
 import { Dropdown } from 'react-native-element-dropdown';
 import { useUploadContext } from '@/providers/UploadProvider';
 import AccommodationDropDown from '../DropDown/AccommodationDropDown';
 import CountryDropDown from '../DropDown/CountryDropDown';
 import PropertySale from '../DropDown/PropertySale';
+import Recreation from '../DropDown/Recreation';
+import NightLife from '../DropDown/NightLife';
 import WriteDescription from '../DropDown/Description';
 import OfficeSpace from '../DropDown/OfficeSpace';
 import Shop from '../DropDown/Shop';
@@ -15,21 +17,14 @@ import styles from './styles'
 const Forms = () => {
 
     const [isFocused, setIsFocused] = useState(false);
-
-    const autocompleteRef = useRef(null)
     
     const {
-      propertyType, setPropertyType,
-      type, setType,
+      propertyType, 
       cautionFee, setCautionFee,
       price, setPrice,
       inspectionFee, setInspectionFee,
       totalPrice, setTotalPrice,
       timeFrame, setTimeFrame,
-      address, setAddress,
-      setLat, setLng,
-      amenities, setAmenities,
-      policies, setPolicies,
       errors, onValidate, media,
       } = useUploadContext()
 
@@ -75,6 +70,10 @@ const Forms = () => {
 
         {propertyType === 'House Sale' && <PropertySale/>}
 
+        {propertyType === 'Recreation' && <Recreation/>}
+
+        {propertyType === 'Nightlife' && <NightLife/>}
+
         {propertyType === 'Office Space' && <OfficeSpace/>}
 
         {/* {propertyType === 'Shop' && <Shop/>} */}
@@ -92,7 +91,7 @@ const Forms = () => {
               multiline
             />
           </View>
-          {propertyType !== 'House Sale' && propertyType !== 'Land Sale' && (
+          {(propertyType !== 'House Sale' && propertyType !== 'Land Sale' && propertyType !== 'Recreation' && propertyType !== 'Nightlife') && (
             <View>
               <Text style={styles.label}>Caution Fee:</Text>
               <TextInput
@@ -107,7 +106,7 @@ const Forms = () => {
           )}
         </View>
 
-        {propertyType !== 'Hotel / Shortlet' && (
+        {(propertyType !== 'Hotel / Shortlet' && propertyType !== 'Recreation' && propertyType !== 'Nightlife') && (
           <View>
             <Text style={styles.label}>Inspection Fee:</Text>
             <TextInput
@@ -121,7 +120,7 @@ const Forms = () => {
           </View>
           )}
 
-        {propertyType !== 'House Sale' && propertyType !== 'Land Sale' && (
+        {(propertyType !== 'House Sale' && propertyType !== 'Land Sale' && propertyType !== 'Recreation' && propertyType !== 'Nightlife') && (
           <View>
             <Text style={styles.label}>Time Frame:</Text>
             <Dropdown

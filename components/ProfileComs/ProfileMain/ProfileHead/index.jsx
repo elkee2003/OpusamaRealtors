@@ -35,10 +35,6 @@ const ProfileHead = () => {
   ? `${locationText.substring(0, maxLength)}...` 
   : locationText;
 
-  const comingSoon =()=>{
-    Alert.alert('Soon', 'Functionality will soon be available')
-  };
-
   // Fetch signed URL for profile picture
   const fetchImageUrl = async () => {
     setLoading(true);
@@ -142,9 +138,9 @@ const ProfileHead = () => {
           <Text style={styles.subHeader}>Edit Profile</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={comingSoon} style={styles.subHeaderContainer}>
+        <TouchableOpacity onPress={()=>router.push('/screens/realtorratings')} style={styles.subHeaderContainer}>
           <Text style={styles.subHeader}>
-            View Subscription
+            View Ratings
           </Text>
         </TouchableOpacity>
 

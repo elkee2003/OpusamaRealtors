@@ -10,10 +10,11 @@ const ShortAlert = ({notification}) => {
         if (status === 'ACCEPTED') return 'Accepted';
         if (status === 'VIEWING') return 'Viewing';
         if (status === 'VIEWED') return 'Viewed';
-        if(status === 'SOLD') return 'Sold';
-        if(status === 'PAID') return 'Paid';
-        if(status === 'DELAYED_PAYMENT') return 'Delayed Payment';
-        if(status === 'RECEIVED') return 'Received';
+        if (status === 'SOLD') return 'Sold';
+        if (status === 'PAID') return 'Paid';
+        if (status === 'DELAYED_PAYMENT') return 'Delayed Payment';
+        if (status === 'RECEIVED') return 'Received';
+        if (status === 'OCCUPIED') return 'Occupied, try another listing';
         if (status === 'DENIED') return 'Denied';
         return 'Pending';
       };

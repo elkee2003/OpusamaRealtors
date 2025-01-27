@@ -11,10 +11,18 @@ const DetailedAlert = ({notification, onStatusChange}) => {
     if (status === 'PENDING') return 'Pending';
     if (status === 'ACCEPTED') return 'Accepted';
     if (status === 'VIEWING') return 'Viewing';
+    if (status === 'CHECKED_IN') return 'Checked In';
+    if (status === 'VISITING') return 'Visting';
     if (status === 'VIEWED') return 'Viewed';
-    if(status === 'SOLD') return 'Sold';
-    if(status === 'PAID') return 'Paid';
-    if(status === 'RECEIVED') return 'Received';
+    if (status === 'CHECKED_OUT') return 'Checked Out';
+    if (status === 'VISITED') return 'Visited';
+    if (status === 'SOLD') return 'Sold';
+    if(status === 'DELAYED_PAYMENT') return 'Delayed Payment';
+    if (status === 'PAID') return 'Paid';
+    if (status === 'RECEIVED') return 'Received';
+    if (status === 'OCCUPIED') return 'Occupied, try another listing';
+    if (status === 'REMOVED_REALTOR') return 'Removed';
+    if (status === 'REMOVED_REALTOR_PAYMENT_DELAYED') return 'Delayed Payment (Removed)';
     if (status === 'DENIED') return 'Denied';
     return 'Pending';
   }

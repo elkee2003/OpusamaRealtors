@@ -3,7 +3,7 @@ import { StyleSheet,} from 'react-native'
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        marginTop:40,
+        marginTop:20,
         marginHorizontal:10,
     },
     header:{
@@ -11,6 +11,15 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         textAlign:'center'
     },
+
+    searchInput:{
+        padding:5,
+        height:50,
+        borderRadius:15,
+        fontSize:16,
+        backgroundColor:'white'
+    },
+    
     noListings:{
         textAlign:'center',
         fontWeight:'bold',

@@ -17,7 +17,7 @@ const UploadProperty = () => {
     const {dbUser, sub} = useAuthContext();
 
     const {
-        propertyType, setPropertyType, type, setType, nameOfType, setNameOfType, availableDocs, setAvailableDocs, 
+        propertyType, setPropertyType, type, setType, packageType, setPackageType, nameOfType, setNameOfType, availableDocs, setAvailableDocs, 
         // customInput, setCustomInput,
         accommodationParts, setAccommodationParts, media, setMedia, description, setDescription, bedrooms, setBedrooms, bed, setBed, cautionFee, setCautionFee, timeFrame, setTimeFrame, inspectionFee, setInspectionFee, price, setPrice, totalPrice, setTotalPrice, country, setCountry, state, setState, city, setCity, address, setAddress, lat, setLat, lng, setLng, amenities, setAmenities, policies, setPolicies, uploadPost, setUploadPost, onValidateUpload
     } = useUploadContext();
@@ -29,6 +29,7 @@ const UploadProperty = () => {
     const resetFormFields = () => {
         setPropertyType('');
         setType('');
+        setPackageType('');
         setNameOfType('');
         setAvailableDocs('');
         setAccommodationParts('');
@@ -117,6 +118,7 @@ const UploadProperty = () => {
             const post = await DataStore.save(new Post({
                 propertyType,
                 type,
+                packageType,
                 nameOfType,
                 availableDocs,
                 accommodationParts,

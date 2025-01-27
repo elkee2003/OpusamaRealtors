@@ -162,6 +162,64 @@ const WriteDescription = () => {
                 />
             </>
         )}
+        {/* Night Life */}
+        {propertyType === 'Recreation' && ( 
+            <>
+                <Text style={styles.label}>Recreation Description:</Text>
+                <TextInput
+                style={styles.input}
+                value={description}
+                onChangeText={setDescription}
+                placeholder='Describe the services you offer.'
+                multiline
+                />
+                <Text style={styles.label}>Amenities:</Text>
+                <TextInput
+                style={styles.input}
+                value={amenities}
+                onChangeText={setAmenities}
+                placeholder='Advantage of using your services'
+                multiline
+                />
+                <Text style={styles.label}>Policies:</Text>
+                <TextInput
+                style={styles.inputLast}
+                value={policies}
+                onChangeText={setPolicies}
+                placeholder='How clients should behave and act while using your service'
+                multiline
+                />
+            </>
+        )}
+        {/* Night Life */}
+        {propertyType === 'Nightlife' && ( 
+            <>
+                <Text style={styles.label}>Nightlife Description:</Text>
+                <TextInput
+                style={styles.input}
+                value={description}
+                onChangeText={setDescription}
+                placeholder='Describe the services you offer.'
+                multiline
+                />
+                <Text style={styles.label}>Amenities:</Text>
+                <TextInput
+                style={styles.input}
+                value={amenities}
+                onChangeText={setAmenities}
+                placeholder='Advantage of using your services'
+                multiline
+                />
+                <Text style={styles.label}>Policies:</Text>
+                <TextInput
+                style={styles.inputLast}
+                value={policies}
+                onChangeText={setPolicies}
+                placeholder='How clients should behave and act while using your service'
+                multiline
+                />
+            </>
+        )}
         {/* Office Space */}
         {propertyType === 'Office Space' && ( 
             <>

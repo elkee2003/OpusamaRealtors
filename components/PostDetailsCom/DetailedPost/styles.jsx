@@ -113,6 +113,82 @@ const styles = StyleSheet.create({
         fontSize:19,
         color:'grey',
     },
+
+    rateContainer:{
+        flex:1,
+        gap:10,
+    },
+
+    rateTxt:{
+        fontSize:25.888,
+        fontWeight:'bold',
+        color:'#707070',
+    },
+
+    starContainer:{
+        flex:1,
+        flexDirection:'row',
+        width:"70%",
+        justifyContent:'space-between',
+        alignSelf:'center',
+    },
+    
+    usersStarContainer:{
+        flex:1,
+        flexDirection:'row',
+        gap:10,
+    },
+
+    lastReviewsContainer: {
+        padding: 7,
+        borderRadius:20,
+        backgroundColor: '#e4dfdf',
+    },
+
+    // lastRatingReviewTxt:{
+    //     marginTop: 15,
+    //     fontSize:25.888,
+    //     fontWeight:'bold',
+    //     color:'#2c2c2c',
+    // },
+
+    reviewsContainer: {
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: '#f9f9f9',
+    },
+
+    seeAllReviews:{
+        fontSize:16,
+        color:'#07630e',
+        textDecorationLine:'underline',
+        marginBottom:50,
+    },
+
+    reviewItem: {
+        borderBottomWidth:1,
+        borderColor:'#dbd9d9',
+        marginBottom: 15,
+    },
+
+    reviewerName: {
+        fontWeight: 'bold',
+        fontSize:17,
+    },
+
+    reviewText: {
+        color: '#0e0d0d',
+        fontSize:15,
+        marginBottom:10,
+    },
+
+    noReviews:{
+        marginTop:60,
+        fontSize:30,
+        fontWeight:'bold',
+        color:'#b6b3b3',
+        textAlign:'center',
+    },
     
     deleteButton: {
         backgroundColor: 'red',
